@@ -5,55 +5,103 @@
 
 class ArticlesManager {
     constructor() {
-        // 文章数据
+        // 文章数据 —— 聚焦数据开发方向
         this.articles = [
             {
                 id: 1,
-                title: '线性代数基础：矩阵运算详解',
-                date: '2024-01-15',
-                tags: ['线性代数', '数学', '基础'],
-                excerpt: '深入理解矩阵的基本运算，包括加法、乘法、转置等操作，为后续的数据科学学习打下坚实基础。',
-                category: '数学'
+                title: '数据仓库分层架构：ODS/DWD/DWS/ADS 实践',
+                date: '2024-01-10',
+                tags: ['数据仓库', '架构设计', '数据工程'],
+                excerpt: '深入解析数仓分层架构设计原则，每层的职责定义、命名规范与数据流转最佳实践，助你构建可维护的企业级数仓。',
+                category: '数据工程'
             },
             {
                 id: 2,
-                title: 'Python数据分析：Pandas入门指南',
+                title: 'SQL 性能调优：从慢查询到毫秒级响应',
                 date: '2024-01-20',
-                tags: ['Python', '数据分析', 'Pandas'],
-                excerpt: '学习如何使用Pandas进行数据处理和分析，掌握DataFrame的基本操作和常用函数。',
-                category: '编程'
+                tags: ['SQL', '性能优化', '数据库'],
+                excerpt: '系统梳理索引设计、执行计划分析、分区裁剪、物化视图等核心优化手段，结合真实业务场景的调优案例讲解。',
+                category: '数据库'
             },
             {
                 id: 3,
-                title: '数据仓库设计：维度建模实践',
+                title: 'Apache Airflow：数据管道编排实战',
                 date: '2024-02-01',
-                tags: ['数据仓库', '数据库', '设计'],
-                excerpt: '探讨数据仓库的维度建模方法，学习星型模式和雪花模式的设计原则。',
+                tags: ['Airflow', 'ETL', '任务调度'],
+                excerpt: '使用 Airflow DAG 构建可靠的数据管道：任务依赖、重试策略、SLA 监控与动态任务生成，踩坑经验全记录。',
                 category: '数据工程'
             },
             {
                 id: 4,
-                title: '机器学习：线性回归算法原理',
-                date: '2024-02-10',
-                tags: ['机器学习', '算法', '线性回归'],
-                excerpt: '从数学原理到代码实现，全面理解线性回归算法的工作原理和应用场景。',
-                category: '机器学习'
+                title: 'PySpark 大数据处理：RDD 到 DataFrame',
+                date: '2024-02-15',
+                tags: ['Spark', 'PySpark', '大数据'],
+                excerpt: '从 RDD 底层原理到 DataFrame/Dataset API 高阶用法，深入理解 Spark 执行模型、宽窄依赖与 Shuffle 机制。',
+                category: '计算引擎'
             },
             {
                 id: 5,
-                title: 'SQL优化技巧：提升查询性能',
-                date: '2024-02-15',
-                tags: ['SQL', '数据库', '优化'],
-                excerpt: '分享SQL查询优化的实用技巧，包括索引使用、查询重写等方法。',
+                title: 'Hive 维度建模：星型模式与雪花模式',
+                date: '2024-03-01',
+                tags: ['Hive', '维度建模', '数据仓库'],
+                excerpt: '探讨维度建模核心方法论：事实表与维度表设计、缓慢变化维（SCD）处理、代理键策略在 Hive 中的落地实践。',
                 category: '数据工程'
             },
             {
                 id: 6,
-                title: '数据可视化：Matplotlib与Seaborn',
-                date: '2024-02-20',
-                tags: ['Python', '数据可视化', 'Matplotlib'],
-                excerpt: '学习使用Matplotlib和Seaborn创建美观的数据可视化图表。',
+                title: 'Kafka 消息队列：生产者消费者与数据一致性',
+                date: '2024-03-15',
+                tags: ['Kafka', '消息队列', '实时计算'],
+                excerpt: '详解 Kafka Topic/Partition/Offset 核心概念、消息丢失与重复消费场景分析，以及 Python 实战消费者示例。',
+                category: '实时计算'
+            },
+            {
+                id: 7,
+                title: 'ClickHouse OLAP 查询优化实践',
+                date: '2024-04-01',
+                tags: ['ClickHouse', 'OLAP', '查询优化'],
+                excerpt: '深入 ClickHouse MergeTree 存储引擎、主键稀疏索引与跳数索引的工作原理，以及 JOIN 优化与物化视图使用技巧。',
+                category: '数据库'
+            },
+            {
+                id: 8,
+                title: 'Python 数据分析：Pandas 高阶操作',
+                date: '2024-04-10',
+                tags: ['Python', 'Pandas', '数据分析'],
+                excerpt: '超越入门的 Pandas 使用技巧：groupby 聚合、pivot_table、窗口函数、内存优化与千万行数据处理方案。',
                 category: '数据分析'
+            },
+            {
+                id: 9,
+                title: '数据质量治理：从发现到修复的全流程',
+                date: '2024-04-20',
+                tags: ['数据质量', '数据治理', '数据工程'],
+                excerpt: '构建数据质量监控体系：完整性、准确性、一致性、及时性四个维度的检测规则设计，以及异常告警与修复流程。',
+                category: '数据治理'
+            },
+            {
+                id: 10,
+                title: 'ETL vs ELT：现代数仓的架构选择',
+                date: '2024-05-01',
+                tags: ['ETL', 'ELT', '数据仓库', '架构设计'],
+                excerpt: '对比 ETL 和 ELT 在不同业务场景下的取舍：云数仓时代 ELT 的优势、dbt 工具链实践与数据变换层设计。',
+                category: '数据工程'
+            },
+            {
+                id: 11,
+                title: 'Linux 常用命令速查：数据工程师必备',
+                date: '2024-05-15',
+                tags: ['Linux', '运维', '工具'],
+                excerpt: '数据工程师高频 Linux 场景：文件处理、进程管理、日志分析、Shell 脚本、定时任务与网络排查命令汇总。',
+                category: '开发工具'
+            },
+            {
+                id: 12,
+                title: 'Docker 容器化大数据开发环境搭建',
+                date: '2024-06-01',
+                tags: ['Docker', '容器化', '开发环境'],
+                excerpt: '使用 Docker Compose 快速搭建本地 Hadoop/Hive/Spark/Kafka 开发环境，告别繁琐的环境配置，一键启动大数据集群。',
+                category: '开发工具'
             }
         ];
 
@@ -91,17 +139,17 @@ class ArticlesManager {
         }
 
         container.innerHTML = this.filteredArticles.map(article => `
-            <div class="article-card fade-in" onclick="window.location.href='#'">
+            <div class="article-card fade-in" role="article" tabindex="0" aria-label="${article.title}">
                 <div class="article-card-header">
-                    <div class="article-card-title">${article.title}</div>
+                    <div class="article-card-title">${this.escapeHtml(article.title)}</div>
                 </div>
                 <div class="article-card-body">
                     <div class="article-card-meta">
                         📅 ${article.date} | 📁 ${article.category}
                     </div>
-                    <div class="article-card-excerpt">${article.excerpt}</div>
+                    <div class="article-card-excerpt">${this.escapeHtml(article.excerpt)}</div>
                     <div class="article-card-tags">
-                        ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        ${article.tags.map(tag => `<span class="tag">${this.escapeHtml(tag)}</span>`).join('')}
                     </div>
                 </div>
             </div>
@@ -115,14 +163,21 @@ class ArticlesManager {
         const container = document.getElementById('tagContainer');
         if (!container) return;
 
-        // 收集所有标签
-        const allTags = new Set();
+        // 收集所有标签并统计文章数
+        const tagCount = {};
         this.articles.forEach(article => {
-            article.tags.forEach(tag => allTags.add(tag));
+            article.tags.forEach(tag => {
+                tagCount[tag] = (tagCount[tag] || 0) + 1;
+            });
         });
 
-        container.innerHTML = Array.from(allTags).map(tag => `
-            <span class="tag" data-tag="${tag}">${tag}</span>
+        // 按文章数降序排列
+        const sortedTags = Object.entries(tagCount)
+            .sort((a, b) => b[1] - a[1])
+            .map(([tag]) => tag);
+
+        container.innerHTML = sortedTags.map(tag => `
+            <span class="tag" data-tag="${this.escapeHtml(tag)}">${this.escapeHtml(tag)}</span>
         `).join('');
     }
 
@@ -134,7 +189,7 @@ class ArticlesManager {
         if (!searchBox) return;
 
         searchBox.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
+            const query = e.target.value.toLowerCase().trim();
             this.filterArticles(query);
         });
     }
@@ -149,7 +204,7 @@ class ArticlesManager {
         container.addEventListener('click', (e) => {
             if (e.target.classList.contains('tag')) {
                 const tag = e.target.getAttribute('data-tag');
-                this.toggleTag(tag);
+                this.toggleTag(tag, e.target);
             }
         });
     }
@@ -157,21 +212,14 @@ class ArticlesManager {
     /**
      * 切换标签选中状态
      */
-    toggleTag(tag) {
+    toggleTag(tag, el) {
         if (this.activeTags.has(tag)) {
             this.activeTags.delete(tag);
         } else {
             this.activeTags.add(tag);
         }
-
-        // 更新标签样式
-        document.querySelectorAll('[data-tag]').forEach(el => {
-            if (el.getAttribute('data-tag') === tag) {
-                el.classList.toggle('active');
-            }
-        });
-
-        this.filterArticles(document.getElementById('searchBox')?.value || '');
+        el.classList.toggle('active');
+        this.filterArticles(document.getElementById('searchBox')?.value?.toLowerCase().trim() || '');
     }
 
     /**
@@ -179,13 +227,11 @@ class ArticlesManager {
      */
     filterArticles(query) {
         this.filteredArticles = this.articles.filter(article => {
-            // 文本搜索
             const matchesQuery = !query ||
                 article.title.toLowerCase().includes(query) ||
                 article.excerpt.toLowerCase().includes(query) ||
                 article.tags.some(tag => tag.toLowerCase().includes(query));
 
-            // 标签过滤
             const matchesTags = this.activeTags.size === 0 ||
                 Array.from(this.activeTags).some(tag => article.tags.includes(tag));
 
@@ -194,11 +240,18 @@ class ArticlesManager {
 
         this.renderArticles();
     }
+
+    /**
+     * 转义 HTML，防止 XSS
+     */
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
 }
 
 // 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     new ArticlesManager();
 });
-
-

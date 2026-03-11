@@ -1338,6 +1338,9 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.99) 100%);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
     .article-preview:hover {
@@ -1348,3 +1351,322 @@ body {
 
 
 /* 废弃代码已清理 */
+
+/* ===============================
+   🌙 暗黑模式
+================================ */
+
+[data-theme="dark"] {
+    --primary-color: #e0e0e0;
+    --secondary-color: #a0a0b8;
+    --accent-color: #c0c0c0;
+    --text-color: #e8e8e8;
+    --text-secondary: #a0a0a0;
+    --bg-color: #121212;
+    --border-color: #2a2a2a;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .navbar {
+    background-color: #1a1a1a;
+    border-bottom-color: #2a2a2a;
+}
+
+[data-theme="dark"] .card {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .skill-item {
+    background: linear-gradient(135deg, #1e1e1e 0%, #252525 100%);
+    border-color: #333;
+}
+
+[data-theme="dark"] .intro-section {
+    background: linear-gradient(135deg, #1e1e1e 0%, #252525 100%);
+    border-color: #333;
+}
+
+[data-theme="dark"] .intro-text strong {
+    color: #e8e8e8;
+}
+
+[data-theme="dark"] .search-box {
+    background: #1e1e1e;
+    color: #e8e8e8;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .search-box:focus {
+    border-color: #a0a0b8;
+    box-shadow: 0 0 0 4px rgba(160, 160, 184, 0.15);
+}
+
+[data-theme="dark"] .article-card {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .contact-section {
+    background: linear-gradient(135deg, rgba(160, 160, 184, 0.08) 0%, rgba(160, 160, 200, 0.08) 100%);
+    border-color: rgba(160, 160, 200, 0.2);
+}
+
+[data-theme="dark"] .contact-icon {
+    background: #1e1e1e;
+    background-image: linear-gradient(#1e1e1e, #1e1e1e), linear-gradient(135deg, #a0a0b8 0%, #c0c0d0 100%);
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-textarea {
+    background: #1e1e1e;
+    color: #e8e8e8;
+    border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-textarea:focus {
+    border-color: #a0a0b8;
+}
+
+[data-theme="dark"] .message-form {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .message-item {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .footer {
+    background: #1a1a1a;
+    border-top-color: #2a2a2a;
+}
+
+[data-theme="dark"] .dish-manager {
+    background: #1e1e1e;
+    border-color: #2a2a2a;
+}
+
+[data-theme="dark"] .dish-item {
+    background: #252525;
+    border-color: #333;
+}
+
+[data-theme="dark"] .tag {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%);
+    color: #e8e8e8;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .tag.active {
+    background: linear-gradient(135deg, #a0a0b8 0%, #8080a0 100%);
+    color: #fff;
+    border-color: transparent;
+}
+
+[data-theme="dark"] .skills-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 100%);
+}
+
+[data-theme="dark"] .nav-menu {
+    background-color: #1a1a1a;
+}
+
+[data-theme="dark"] .article-preview {
+    background: linear-gradient(135deg, #1e1e1e 0%, #252525 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 暗黑模式切换按钮 */
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: var(--transition);
+    line-height: 1;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* ===============================
+   📱 移动端汉堡菜单图标
+================================ */
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ===============================
+   🎨 按钮扩展
+================================ */
+
+.btn-primary {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    color: white;
+}
+
+/* ===============================
+   📰 文章卡片标题修复（暗色背景上用白色）
+================================ */
+
+.article-card-header .article-card-title {
+    color: white;
+}
+
+/* ===============================
+   🚀 项目经历样式
+================================ */
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.project-item {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.99) 100%);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .project-item {
+    background: linear-gradient(135deg, #1e1e1e 0%, #252525 100%);
+    border-color: #2a2a2a;
+}
+
+.project-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.project-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.project-desc {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* ===============================
+   🎠 轮播图渐变背景（替代缺失图片）
+================================ */
+
+.carousel-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel-bg-1 {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+.carousel-bg-2 {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+}
+
+.carousel-bg-3 {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 50%, #4a4a6a 100%);
+}
+
+/* ===============================
+   📊 技能进度条
+================================ */
+
+.skill-bar-wrap {
+    margin-top: 0.4rem;
+}
+
+.skill-bar-bg {
+    width: 100%;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .skill-bar-bg {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.skill-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #1a1a1a, #555);
+    transition: width 1s ease;
+}
+
+[data-theme="dark"] .skill-bar-fill {
+    background: linear-gradient(90deg, #a0a0b8, #d0d0e0);
+}
+
+/* 技能等级颜色 */
+.skill-level.level-expert  { color: #1a7a1a; font-weight: 700; }
+.skill-level.level-good    { color: #2a5a9a; font-weight: 600; }
+.skill-level.level-beginner { color: var(--text-secondary); }
+.skill-level.level-learning { color: #9a6a1a; }
+
+[data-theme="dark"] .skill-level.level-expert  { color: #6fd96f; }
+[data-theme="dark"] .skill-level.level-good    { color: #6aabf0; }
+[data-theme="dark"] .skill-level.level-learning { color: #f0c060; }
+
+/* ===============================
+   📊 性能：减少重排的占位符
+================================ */
+
+.carousel-container {
+    contain: layout;
+}

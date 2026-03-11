@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="关于 FishRain —— 专注数据开发与数据仓库方向的工程师，精通 Spark、Hive、Airflow、Kafka 等大数据技术栈。">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta property="og:title" content="关于我 - FishRain">
+    <meta property="og:description" content="专注数据开发与数据仓库方向的工程师。">
+    <meta property="og:type" content="website">
     <title>关于我 - FishRain</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="主导航">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html">🐟 FishRain</a>
@@ -20,6 +27,14 @@
                 <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
                 <li><a href="guestbook.html" class="nav-link">留言板</a></li>
             </ul>
+            <div class="nav-controls">
+                <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
+                <button class="nav-toggle" aria-label="切换导航菜单" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -29,17 +44,17 @@
 
         <!-- 自我介绍板块 -->
         <div class="intro-section fade-in">
-            <img src="images/avatar.jpg" alt="头像" class="intro-avatar">
+            <img src="images/avatar.jpg" alt="FishRain 的头像" class="intro-avatar" loading="lazy" onerror="this.style.display='none'">
             <div class="intro-content">
                 <h2 class="intro-title">👋 你好，我是 FishRain</h2>
                 <p class="intro-text">
-                    我是一名专注于<strong>数据开发与数据仓库</strong>方向的工程师。精通大数据平台建设、ETL数据管道设计、以及维度建模等核心技术。
+                    我是一名专注于<strong>数据开发与数据仓库</strong>方向的工程师。深耕大数据平台建设、ETL 数据管道设计、维度建模以及数仓分层架构等核心领域。
                 </p>
                 <p class="intro-text">
-                    掌握从数据收集、数据加工、到数据应用的全链路开发能力。擅长使用 Python、SQL、Spark 等技术栈，能够设计高效的数据仓库架构和优化复杂的数据处理流程。
+                    具备从数据采集、数据加工到数据应用的全链路开发能力。熟练使用 Python、SQL、Spark 等技术栈，能独立设计高效的数仓架构并优化复杂数据处理流程。
                 </p>
                 <p class="intro-text">
-                    在这个博客中，我会分享数据仓库设计原理、大数据技术应用、以及数据开发最佳实践。希望与志同道合的你一起探索数据的价值！
+                    在这个博客中，我会分享数仓设计原理、大数据技术实践以及数据开发中的踩坑经验，希望与你一起探索数据工程的价值！
                 </p>
             </div>
         </div>
@@ -55,22 +70,26 @@
                     <div class="skill-item">
                         <span class="skill-icon">🐍</span>
                         <div class="skill-name">Python</div>
-                        <div class="skill-level">熟练</div>
+                        <div class="skill-level level-expert">熟练</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">📊</span>
                         <div class="skill-name">SQL</div>
-                        <div class="skill-level">熟练</div>
+                        <div class="skill-level level-expert">熟练</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">☕</span>
                         <div class="skill-name">Java</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:65%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🟢</span>
                         <div class="skill-name">Scala</div>
-                        <div class="skill-level">入门</div>
+                        <div class="skill-level level-beginner">入门</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:35%"></div></div></div>
                     </div>
                 </div>
             </div>
@@ -82,167 +101,211 @@
                     <div class="skill-item">
                         <span class="skill-icon">🏗️</span>
                         <div class="skill-name">维度建模</div>
-                        <div class="skill-level">熟练</div>
+                        <div class="skill-level level-expert">熟练</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">⭐</span>
                         <div class="skill-name">星型模式</div>
-                        <div class="skill-level">熟练</div>
+                        <div class="skill-level level-expert">熟练</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🔗</span>
-                        <div class="skill-name">E-R模型设计</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-name">E-R 模型设计</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">⚙️</span>
                         <div class="skill-name">元数据管理</div>
-                        <div class="skill-level">学习中</div>
+                        <div class="skill-level level-learning">学习中</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:45%"></div></div></div>
                     </div>
                 </div>
             </div>
 
             <!-- 数据库 & 存储 -->
             <div class="skill-category">
-                <h3 class="skill-category-title">🗄️ 数据库 & 存储</h3>
+                <h3 class="skill-category-title">🗄️ 数据库 &amp; 存储</h3>
                 <div class="skill-items">
                     <div class="skill-item">
                         <span class="skill-icon">🐘</span>
                         <div class="skill-name">PostgreSQL</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:72%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🐬</span>
                         <div class="skill-name">MySQL</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">☁️</span>
                         <div class="skill-name">Hive</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🌊</span>
                         <div class="skill-name">ClickHouse</div>
-                        <div class="skill-level">入门</div>
+                        <div class="skill-level level-beginner">入门</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div></div>
                     </div>
                 </div>
             </div>
 
             <!-- 大数据计算引擎 -->
             <div class="skill-category">
-                <h3 class="skill-category-title">⚡ 计算引擎 & 数据处理</h3>
+                <h3 class="skill-category-title">⚡ 计算引擎 &amp; 数据处理</h3>
                 <div class="skill-items">
                     <div class="skill-item">
                         <span class="skill-icon">🔥</span>
                         <div class="skill-name">Apache Spark</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🔥</span>
                         <div class="skill-name">PySpark</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🐼</span>
-                        <div class="skill-name">Pandas & NumPy</div>
-                        <div class="skill-level">熟练</div>
+                        <div class="skill-name">Pandas &amp; NumPy</div>
+                        <div class="skill-level level-expert">熟练</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🔨</span>
                         <div class="skill-name">MapReduce</div>
-                        <div class="skill-level">入门</div>
+                        <div class="skill-level level-beginner">入门</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:40%"></div></div></div>
                     </div>
                 </div>
             </div>
 
             <!-- ETL & 数据流 -->
             <div class="skill-category">
-                <h3 class="skill-category-title">🔄 ETL & 数据管道</h3>
+                <h3 class="skill-category-title">🔄 ETL &amp; 数据管道</h3>
                 <div class="skill-items">
                     <div class="skill-item">
                         <span class="skill-icon">🔧</span>
                         <div class="skill-name">Apache Airflow</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:72%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🦘</span>
                         <div class="skill-name">Kafka</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🚀</span>
                         <div class="skill-name">实时数据流处理</div>
-                        <div class="skill-level">学习中</div>
+                        <div class="skill-level level-learning">学习中</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:45%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">📦</span>
                         <div class="skill-name">数据质量检测</div>
-                        <div class="skill-level">入门</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 大数据生态 -->
-            <div class="skill-category">
-                <h3 class="skill-category-title">🌐 大数据生态</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <span class="skill-icon">🐝</span>
-                        <div class="skill-name">Hadoop 生态</div>
-                        <div class="skill-level">入门</div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-icon">📊</span>
-                        <div class="skill-name">数据可视化</div>
-                        <div class="skill-level">良好</div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-icon">📈</span>
-                        <div class="skill-name">数据分析</div>
-                        <div class="skill-level">良好</div>
-                    </div>
-                    <div class="skill-item">
-                        <span class="skill-icon">🔍</span>
-                        <div class="skill-name">数据探索 (EDA)</div>
-                        <div class="skill-level">熟练</div>
+                        <div class="skill-level level-beginner">入门</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:38%"></div></div></div>
                     </div>
                 </div>
             </div>
 
             <!-- 开发工具 & 基础设施 -->
             <div class="skill-category">
-                <h3 class="skill-category-title">🛠️ 开发工具 & 环境</h3>
+                <h3 class="skill-category-title">🛠️ 开发工具 &amp; 环境</h3>
                 <div class="skill-items">
                     <div class="skill-item">
                         <span class="skill-icon">📝</span>
                         <div class="skill-name">Git</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🐳</span>
                         <div class="skill-name">Docker</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:70%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">🐧</span>
                         <div class="skill-name">Linux</div>
-                        <div class="skill-level">良好</div>
+                        <div class="skill-level level-good">良好</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div></div>
                     </div>
                     <div class="skill-item">
                         <span class="skill-icon">📔</span>
                         <div class="skill-name">Jupyter Notebook</div>
-                        <div class="skill-level">熟练</div>
+                        <div class="skill-level level-expert">熟练</div>
+                        <div class="skill-bar-wrap"><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目经历 -->
+        <div class="card fade-in" style="margin: 3rem 0;">
+            <h2 style="margin-bottom: 2rem; font-size: 1.5rem; font-weight: 600;">🚀 项目经历</h2>
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-title">离线数据仓库建设</h3>
+                        <span class="project-badge">数据工程</span>
+                    </div>
+                    <p class="project-desc">
+                        基于 Hadoop + Hive + Spark 构建企业级离线数仓，覆盖 ODS→DWD→DWS→ADS 四层架构。完成用户行为、订单、商品等核心主题域的维度建模，使用 Airflow 进行 ETL 任务调度，支撑日均亿级数据处理。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tag">Hive</span>
+                        <span class="tag">Spark</span>
+                        <span class="tag">Airflow</span>
+                        <span class="tag">Hadoop</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-title">实时数据流处理平台</h3>
+                        <span class="project-badge">实时计算</span>
+                    </div>
+                    <p class="project-desc">
+                        基于 Kafka + PySpark Structured Streaming 搭建实时数据管道，实现业务事件的秒级处理与指标计算，结果写入 ClickHouse 支持 OLAP 实时查询，延迟控制在 3 秒以内。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tag">Kafka</span>
+                        <span class="tag">PySpark</span>
+                        <span class="tag">ClickHouse</span>
+                        <span class="tag">实时计算</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-title">数据质量监控系统</h3>
+                        <span class="project-badge">数据治理</span>
+                    </div>
+                    <p class="project-desc">
+                        设计并实现数据质量规则引擎，覆盖完整性、准确性、一致性、及时性四个维度的校验规则，通过 Airflow 定时触发检测任务，异常结果推送企业微信告警，提升数仓数据可信度。
+                    </p>
+                    <div class="project-tech">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Airflow</span>
+                        <span class="tag">数据质量</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- 🎣 小猫钓鱼打卡系统 -->
-        <div class="fishing-checkin card fade-in" style="margin: 3rem 0; background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%); color: white;">
+        <div class="fishing-checkin card fade-in" style="margin: 3rem 0;">
             <div class="checkin-header"></div>
-            
-            <!-- 钓鱼场景 -->
             <div class="fishing-scene" style="padding: 2rem;">
                 <div style="text-align: center;">
                     <div class="cat-sprite">🐱</div>
@@ -251,14 +314,8 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 周统计 -->
             <div class="week-stats"></div>
-
-            <!-- 统计数据 -->
             <div class="checkin-stats"></div>
-
-            <!-- 打卡按钮 -->
             <div style="text-align: center; margin-top: 2rem;">
                 <button class="checkin-btn">🎣 立即甩杆</button>
             </div>
@@ -272,10 +329,8 @@
         </footer>
     </div>
 
-    <script src="js/config.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/checkin-v2.js"></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/checkin-v2.js" defer></script>
 </body>
 </html>
-
-

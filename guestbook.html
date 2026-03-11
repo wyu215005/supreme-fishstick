@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FishRain 留言板 —— 欢迎留下你的想法、建议或问题。">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta property="og:title" content="留言板 - FishRain">
+    <meta property="og:description" content="欢迎留下你的想法、建议或问题。">
+    <meta property="og:type" content="website">
     <title>留言板 - FishRain</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="主导航">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html">🐟 FishRain</a>
@@ -20,6 +27,14 @@
                 <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
                 <li><a href="guestbook.html" class="nav-link active">留言板</a></li>
             </ul>
+            <div class="nav-controls">
+                <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
+                <button class="nav-toggle" aria-label="切换导航菜单" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -32,21 +47,25 @@
 
         <div class="guestbook-container">
             <!-- 留言表单 -->
-            <form id="messageForm" class="message-form card">
+            <form id="messageForm" class="message-form card" novalidate>
                 <div class="form-group">
                     <label for="messageName" class="form-label">你的名字</label>
-                    <input type="text" id="messageName" class="form-input" placeholder="请输入你的名字" required>
+                    <input type="text" id="messageName" class="form-input"
+                        placeholder="请输入你的名字（最多 20 字）"
+                        maxlength="20" required autocomplete="nickname">
                 </div>
                 <div class="form-group">
                     <label for="messageContent" class="form-label">留言内容</label>
-                    <textarea id="messageContent" class="form-textarea" placeholder="写下你想说的话..." required></textarea>
+                    <textarea id="messageContent" class="form-textarea"
+                        placeholder="写下你想说的话...（最多 300 字）"
+                        maxlength="300" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">提交留言</button>
             </form>
 
             <!-- 留言列表 -->
-            <div id="messageList" class="message-list">
-                <!-- 留言将通过JavaScript动态生成 -->
+            <div id="messageList" class="message-list" role="feed" aria-label="留言列表">
+                <!-- 留言将通过 JavaScript 动态生成 -->
             </div>
         </div>
     </div>
@@ -58,10 +77,8 @@
         </div>
     </footer>
 
-    <script src="js/config.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/guestbook.js"></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/guestbook.js" defer></script>
 </body>
 </html>
-
-

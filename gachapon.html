@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FishRain 扭蛋机 —— 今天吃什么？让随机来决定！">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta property="og:title" content="扭蛋机 - FishRain">
+    <meta property="og:description" content="今天吃什么？让扭蛋机来决定！">
+    <meta property="og:type" content="website">
     <title>美食大放送 - FishRain</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="主导航">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html">🐟 FishRain</a>
@@ -20,6 +27,14 @@
                 <li><a href="gachapon.html" class="nav-link active">扭蛋机</a></li>
                 <li><a href="guestbook.html" class="nav-link">留言板</a></li>
             </ul>
+            <div class="nav-controls">
+                <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
+                <button class="nav-toggle" aria-label="切换导航菜单" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -32,7 +47,7 @@
             <div class="gachapon-machine-v3" id="machineBody">
                 <div class="glass-dome" id="dome"></div>
                 <div class="machine-control">
-                    <div class="knob-v3" id="spinBtn">
+                    <div class="knob-v3" id="spinBtn" role="button" tabindex="0" aria-label="转动扭蛋机">
                         <div class="knob-line"></div>
                     </div>
                     <div style="width: 100px; height: 12px; background: #111; margin: 10px auto; border-radius: 10px;"></div>
@@ -44,7 +59,10 @@
             <div class="dish-manager">
                 <h2 style="font-size: 1.2rem; margin-bottom: 20px;">📋 菜品库管理</h2>
                 <div style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
-                    <input type="text" id="dishInput" placeholder="输入新菜品名称..." style="flex:1; padding:12px; border-radius:10px; border:1px solid #ddd;">
+                    <input type="text" id="dishInput" placeholder="输入新菜品名称..."
+                        maxlength="20"
+                        style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);"
+                        aria-label="菜品名称">
                     <button class="btn" id="addBtn" style="background:#333; color:white; border:none; padding:0 20px; border-radius:10px; cursor:pointer;">添加</button>
                 </div>
 
@@ -56,11 +74,11 @@
     </div>
 
     <!-- 结果弹窗 -->
-    <div class="result-overlay" id="resultOverlay">
+    <div class="result-overlay" id="resultOverlay" role="dialog" aria-modal="true" aria-labelledby="resultDish">
         <div class="result-card" id="resultCard">
             <p style="font-size: 1.1rem; color: #666;">🎉 抽中的美味是：</p>
             <div class="result-dish" id="resultDish">---</div>
-            <button class="btn" onclick="app.closeResult()" style="background: #333; color: white; padding: 12px 40px; border-radius: 30px; border: none; cursor: pointer;">太棒了！</button>
+            <button class="btn" id="closeResultBtn" style="background: #333; color: white; padding: 12px 40px; border-radius: 30px; border: none; cursor: pointer;">太棒了！</button>
         </div>
     </div>
 
@@ -71,8 +89,8 @@
         </div>
     </footer>
 
-    <script src="js/config.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/gachapon.js"></script>
+    <script src="js/config.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/gachapon.js" defer></script>
 </body>
 </html>

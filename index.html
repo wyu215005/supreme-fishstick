@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FishRain - 学习博客</title>
+    <meta name="description" content="FishRain 学习博客 —— 专注数据开发与数据仓库领域，分享 Spark、Hive、Kafka、Airflow、SQL 优化等技术实践。">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <!-- Open Graph -->
+    <meta property="og:title" content="FishRain - 数据开发学习博客">
+    <meta property="og:description" content="专注数据开发与数据仓库，分享 Spark、Hive、Kafka、SQL 优化等技术实践。">
+    <meta property="og:type" content="website">
+    <title>FishRain - 数据开发学习博客</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="主导航">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html">🐟 FishRain</a>
@@ -20,112 +28,152 @@
                 <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
                 <li><a href="guestbook.html" class="nav-link">留言板</a></li>
             </ul>
+            <div class="nav-controls">
+                <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
+                <button class="nav-toggle" aria-label="切换导航菜单" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <!-- 轮播图（全宽，独立于容器之外） -->
+    <div class="carousel-container" id="carousel" aria-label="轮播图" role="region">
+        <div class="carousel-slide active">
+            <div class="carousel-bg carousel-bg-1"></div>
+            <div class="carousel-caption">
+                <h2>欢迎来到 FishRain</h2>
+                <p>记录学习路上的点点滴滴</p>
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <div class="carousel-bg carousel-bg-2"></div>
+            <div class="carousel-caption">
+                <h2>数据开发 &amp; 数据仓库</h2>
+                <p>探索数据工程的深度与广度</p>
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <div class="carousel-bg carousel-bg-3"></div>
+            <div class="carousel-caption">
+                <h2>持续学习，不断进步</h2>
+                <p>分享知识与实战经验</p>
+            </div>
+        </div>
+        <button class="carousel-nav prev" aria-label="上一张">‹</button>
+        <button class="carousel-nav next" aria-label="下一张">›</button>
+        <div class="carousel-indicators" role="tablist" aria-label="轮播图指示器">
+            <span class="indicator active" role="tab" aria-selected="true" aria-label="第1张"></span>
+            <span class="indicator" role="tab" aria-selected="false" aria-label="第2张"></span>
+            <span class="indicator" role="tab" aria-selected="false" aria-label="第3张"></span>
+        </div>
+    </div>
+
     <!-- 主容器 -->
-        <!-- 轮播图 -->
-        <div class="carousel-container" id="carousel">
-                <div class="carousel-slide active">
-                    <img src="images/carousel1.jpg" alt="轮播图1">
-                    <div class="carousel-caption">
-                        <h2>欢迎来到 FishRain</h2>
-                        <p>记录学习路上的点点滴滴</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/carousel2.jpg" alt="轮播图2">
-                    <div class="carousel-caption">
-                        <h2>数据科学与大数据</h2>
-                        <p>探索数据的奥秘</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/carousel3.jpg" alt="轮播图3">
-                    <div class="carousel-caption">
-                        <h2>持续学习，不断进步</h2>
-                        <p>分享知识与经验</p>
-                    </div>
-                </div>
-                <button class="carousel-nav prev">‹</button>
-                <button class="carousel-nav next">›</button>
-                <div class="carousel-indicators">
-                    <span class="indicator active"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </div>
+    <div class="container">
 
-            <!-- 欢迎信息 -->
-            <div class="card fade-in" style="margin-top: 3rem;">
-                <h1 style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem; font-weight: 600;">🐟 欢迎来到 FishRain</h1>
-                <p style="text-align: center; color: var(--text-secondary); line-height: 1.8; font-size: 1rem;">
-                    这是一个记录学习与成长的地方。在这里，我会分享关于数据科学、大数据、数据开发等相关领域的学习笔记、项目经验和心得体会。
-                    希望这些内容能够帮助到同样在路上的你，也欢迎大家一起交流学习！
-                </p>
-            </div>
+        <!-- 欢迎信息 -->
+        <div class="card fade-in" style="margin-top: 3rem;">
+            <h1 style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem; font-weight: 600;">🐟 欢迎来到 FishRain</h1>
+            <p style="text-align: center; color: var(--text-secondary); line-height: 1.8; font-size: 1rem;">
+                这是一个专注于<strong>数据开发与数据仓库</strong>的学习博客。在这里，我会分享数仓架构设计、大数据处理、ETL 数据管道、SQL 优化等实战经验与技术笔记。
+                希望这些内容能帮到同样在数据工程路上探索的你，也欢迎一起交流学习！
+            </p>
+        </div>
 
-            <!-- 最新文章预览 -->
-            <div class="card fade-in" style="margin: 3rem 0;">
-                <h2 style="margin-bottom: 2rem; font-size: 1.3rem; font-weight: 600;">📝 最新文章</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-                    <div class="article-preview" onclick="window.location.href='articles.html'">
-                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">线性代数基础：矩阵运算详解</div>
-                        <div style="font-size: 0.875rem; color: var(--text-secondary);">深入理解矩阵的基本运算，为数据科学学习打下基础...</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-15</div>
-                    </div>
-                    <div class="article-preview" onclick="window.location.href='articles.html'">
-                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Python数据分析：Pandas入门指南</div>
-                        <div style="font-size: 0.875rem; color: var(--text-secondary);">学习如何使用Pandas进行数据处理和分析...</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-20</div>
-                    </div>
-                    <div class="article-preview" onclick="window.location.href='articles.html'">
-                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">数据仓库设计：维度建模实践</div>
-                        <div style="font-size: 0.875rem; color: var(--text-secondary);">探讨数据仓库的维度建模方法，学习星型模式...</div>
-                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-02-01</div>
-                    </div>
+        <!-- 技术方向速览 -->
+        <div class="card fade-in" style="margin: 2rem 0;">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 600;">⚡ 技术方向</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; text-align: center;">
+                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏗️</div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">数据仓库</div>
                 </div>
-                <div style="text-align: center; margin-top: 2.5rem;">
-                    <a href="articles.html" class="btn">查看全部文章 →</a>
+                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔄</div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">ETL 数据管道</div>
                 </div>
-            </div>
-
-            <!-- 联系信息 -->
-            <div class="contact-section fade-in" style="margin: 3rem 0;">
-                <h2 style="text-align: center; margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 600;">📮 联系方式</h2>
-                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">点击图标查看详细信息</p>
-                <div class="contact-icons">
-                    <div class="contact-icon" data-platform="Bilibili" data-info="B站：FishRain">
-                        <span>📺</span>
-                        <div class="contact-info">B站：FishRain</div>
-                    </div>
-                    <div class="contact-icon" data-platform="GitHub" data-info="GitHub：FishRain">
-                        <span>💻</span>
-                        <div class="contact-info">GitHub：FishRain</div>
-                    </div>
-                    <div class="contact-icon" data-platform="Email" data-info="邮箱：fishrain@example.com">
-                        <span>📧</span>
-                        <div class="contact-info">邮箱：fishrain@example.com</div>
-                    </div>
-                    <div class="contact-icon" data-platform="WeChat" data-info="微信：FishRain2024">
-                        <span>💬</span>
-                        <div class="contact-info">微信：FishRain2024</div>
-                    </div>
+                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔥</div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">Spark / PySpark</div>
+                </div>
+                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">SQL 优化</div>
+                </div>
+                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🦘</div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">Kafka 实时流</div>
+                </div>
+                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔧</div>
+                    <div style="font-weight: 600; font-size: 0.9rem;">Airflow 调度</div>
                 </div>
             </div>
         </div>
 
-        <!-- 页脚 -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p>&copy; 2026 FishRain. 记录学习，分享成长。</p>
+        <!-- 最新文章预览 -->
+        <div class="card fade-in" style="margin: 3rem 0;">
+            <h2 style="margin-bottom: 2rem; font-size: 1.3rem; font-weight: 600;">📝 最新文章</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <a href="articles.html" class="article-preview" aria-label="阅读文章：数据仓库分层架构">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">数据仓库分层架构：ODS/DWD/DWS/ADS</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">深入解析数仓分层架构设计原则，每层职责与数据流转最佳实践...</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-10</div>
+                </a>
+                <a href="articles.html" class="article-preview" aria-label="阅读文章：SQL性能调优">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">SQL 性能调优：从慢查询到毫秒级响应</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">索引设计、执行计划分析、分区裁剪与物化视图等核心优化手段...</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-20</div>
+                </a>
+                <a href="articles.html" class="article-preview" aria-label="阅读文章：Airflow数据管道">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Apache Airflow：数据管道编排实战</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">使用 Airflow DAG 构建可靠数据管道，任务依赖与重试策略...</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-02-01</div>
+                </a>
             </div>
-        </footer>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="articles.html" class="btn">查看全部文章 →</a>
+            </div>
+        </div>
 
-        <script src="js/config.js"></script>
-        <script src="js/navbar.js"></script>
-        <script src="js/carousel.js"></script>
-    </body>
+        <!-- 联系信息 -->
+        <div class="contact-section fade-in" style="margin: 3rem 0;">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 600;">📮 联系方式</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">悬停查看详细信息</p>
+            <div class="contact-icons">
+                <div class="contact-icon" aria-label="B站：FishRain">
+                    <span>📺</span>
+                    <div class="contact-info">B站：FishRain</div>
+                </div>
+                <div class="contact-icon" aria-label="GitHub：FishRain">
+                    <span>💻</span>
+                    <div class="contact-info">GitHub：FishRain</div>
+                </div>
+                <div class="contact-icon" aria-label="邮箱">
+                    <span>📧</span>
+                    <div class="contact-info">邮箱：fishrain@example.com</div>
+                </div>
+                <div class="contact-icon" aria-label="微信">
+                    <span>💬</span>
+                    <div class="contact-info">微信：FishRain2024</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.container -->
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 FishRain. 记录学习，分享成长。</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/carousel.js" defer></script>
+</body>
 </html>
-
-

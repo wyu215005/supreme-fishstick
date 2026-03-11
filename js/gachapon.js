@@ -156,6 +156,16 @@ class GachaponApp {
             return;
         }
 
+        if (val.length > 20) {
+            UTILS.showToast('菜品名称不能超过 20 个字符！');
+            return;
+        }
+
+        if (this.dishes.length >= 30) {
+            UTILS.showToast('菜品已达上限（30个），请先删除一些再添加！');
+            return;
+        }
+
         if (this.dishes.includes(val)) {
             UTILS.showToast('该菜品已存在！');
             return;
@@ -201,20 +211,27 @@ class GachaponApp {
     }
 
     /**
-     * 绑定事件
+     * 绑定事件（使用 addEventListener 替代内联 onclick）
      */
     bindEvents() {
         const spinBtn = document.getElementById('spinBtn');
         const addBtn = document.getElementById('addBtn');
         const resetBtn = document.getElementById('resetBtn');
+        const closeBtn = document.getElementById('closeResultBtn');
         const input = document.getElementById('dishInput');
 
-        if (spinBtn) spinBtn.onclick = () => this.spin();
-        if (addBtn) addBtn.onclick = () => this.addDish();
-        if (resetBtn) resetBtn.onclick = () => this.reset();
-        if (input) input.onkeypress = (e) => {
-            if (e.key === 'Enter') this.addDish();
-        };
+        if (spinBtn) spinBtn.addEventListener('click', () => this.spin());
+        if (spinBtn) spinBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.spin(); }
+        });
+        if (addBtn) addBtn.addEventListener('click', () => this.addDish());
+        if (resetBtn) resetBtn.addEventListener('click', () => this.reset());
+        if (closeBtn) closeBtn.addEventListener('click', () => this.closeResult());
+        if (input) {
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); this.addDish(); }
+            });
+        }
     }
 }
 
