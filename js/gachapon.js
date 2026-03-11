@@ -1,6 +1,6 @@
 /**
  * 扭蛋机模块
- * 随机美食选择器
+ * 随机美食选择器 - 增强版动画交互
  */
 
 class GachaponApp {
@@ -13,7 +13,9 @@ class GachaponApp {
         this.storageKey = 'gachapon_dishes';
         this.dishes = this.loadDishes();
         this.isSpinning = false;
-        this.colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#70a1ff', '#ff6b81'];
+        this.colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#70a1ff', '#ff6b81', '#ff6348', '#7bed9f', '#a29bfe'];
+        this.spinDuration = 2200;
+        this.progressTimer = null;
 
         this.init();
     }
@@ -25,6 +27,37 @@ class GachaponApp {
         this.renderDishList();
         this.createCapsules(true);
         this.bindEvents();
+        this.setDisplay('● READY');
+    }
+
+    /**
+     * 更新机器状态显示屏
+     */
+    setDisplay(text) {
+        const el = document.getElementById('displayText');
+        if (el) el.textContent = text;
+    }
+
+    /**
+     * 设置指示灯状态
+     */
+    setLights(state) {
+        const red = document.getElementById('lightRed');
+        const yellow = document.getElementById('lightYellow');
+        const green = document.getElementById('lightGreen');
+        if (!red || !yellow || !green) return;
+        // 先清除所有 lit 类
+        [red, yellow, green].forEach(l => l.className = 'machine-light');
+        if (state === 'ready') {
+            green.classList.add('lit-green');
+        } else if (state === 'spinning') {
+            red.classList.add('lit-red');
+            yellow.classList.add('lit-yellow');
+        } else if (state === 'done') {
+            red.classList.add('lit-red');
+            yellow.classList.add('lit-yellow');
+            green.classList.add('lit-green');
+        }
     }
 
     /**
@@ -51,8 +84,8 @@ class GachaponApp {
 
             const row = Math.floor(i / 5);
             const col = i % 5;
-            const x = 40 + (col * 45) + (Math.random() * 10);
-            const y = 230 - (row * 35) + (Math.random() * 10);
+            const x = 30 + (col * 42) + (Math.random() * 12);
+            const y = 210 - (row * 34) + (Math.random() * 10);
 
             ball.style.backgroundColor = this.colors[i % this.colors.length];
             ball.style.left = `${x}px`;
@@ -62,8 +95,9 @@ class GachaponApp {
             } else {
                 ball.style.top = `-50px`;
                 setTimeout(() => {
+                    ball.style.transition = 'top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
                     ball.style.top = `${y}px`;
-                }, i * 50);
+                }, i * 40);
             }
 
             ball.style.transform = `rotate(${Math.random() * 360}deg)`;
@@ -72,7 +106,23 @@ class GachaponApp {
     }
 
     /**
-     * 开始转动
+     * 更新进度圆环
+     */
+    updateProgress(pct) {
+        const circle = document.getElementById('spinProgressCircle');
+        const svg = document.getElementById('spinProgressSvg');
+        if (!circle || !svg) return;
+        const circumference = 283;
+        circle.style.strokeDashoffset = circumference * (1 - pct);
+        if (pct > 0) {
+            svg.classList.add('visible');
+        } else {
+            svg.classList.remove('visible');
+        }
+    }
+
+    /**
+     * 开始转动 - 三阶段动画
      */
     spin() {
         if (this.isSpinning || this.dishes.length === 0) {
@@ -82,28 +132,148 @@ class GachaponApp {
 
         this.isSpinning = true;
         const machine = document.getElementById('machineBody');
+        const knob = document.getElementById('spinBtn');
         const balls = document.querySelectorAll('.capsule-v3');
 
-        // 机身震动
-        machine.style.animation = 'machine-shake 0.1s infinite';
+        // 阶段 1: 准备 (0-300ms) - 旋钮旋转，指示灯切换
+        this.setDisplay('◉ LOADING..');
+        this.setLights('spinning');
+        knob.style.transition = 'transform 0.3s ease-in-out';
+        knob.style.transform = 'rotate(90deg) scale(1.05)';
+        this.updateProgress(0);
 
-        // 球乱飞
-        balls.forEach(ball => {
-            ball.style.transition = 'all 0.4s ease-out';
-            ball.style.left = `${Math.random() * 210 + 20}px`;
-            ball.style.top = `${Math.random() * 180 + 40}px`;
-            ball.style.transform = `rotate(${Math.random() * 1000}deg) scale(1.1)`;
-        });
-
-        // 1.5秒后停止并显示结果
+        // 阶段 2: 摇晃 (300ms-2000ms) - 机器摇晃，球乱飞
         setTimeout(() => {
-            machine.style.animation = '';
-            const result = this.dishes[Math.floor(Math.random() * this.dishes.length)];
+            this.setDisplay('▶ SPINNING..');
+            machine.classList.add('machine-spinning');
+            knob.style.transition = 'transform 0.8s linear';
+            knob.style.transform = 'rotate(720deg)';
 
-            this.showResult(result);
-            this.createCapsules(false);
-            this.isSpinning = false;
-        }, 1500);
+            // 球开始随机运动
+            balls.forEach((ball, i) => {
+                setTimeout(() => {
+                    ball.style.transition = 'all 0.35s ease-out';
+                    ball.style.left = `${Math.random() * 200 + 25}px`;
+                    ball.style.top = `${Math.random() * 180 + 35}px`;
+                    ball.style.transform = `rotate(${Math.random() * 1080}deg) scale(${0.85 + Math.random() * 0.3})`;
+                }, i * 25);
+            });
+
+            // 进度条动画
+            const startTime = performance.now();
+            const totalTime = this.spinDuration - 300;
+            const tick = (now) => {
+                const elapsed = now - startTime;
+                const pct = Math.min(elapsed / totalTime, 1);
+                this.updateProgress(pct);
+                if (pct < 1) {
+                    this.progressTimer = requestAnimationFrame(tick);
+                }
+            };
+            this.progressTimer = requestAnimationFrame(tick);
+        }, 300);
+
+        // 阶段 3: 出结果 (2200ms) - 停止摇晃，弹出球，显示结果
+        setTimeout(() => {
+            if (this.progressTimer) {
+                cancelAnimationFrame(this.progressTimer);
+            }
+            this.updateProgress(1);
+
+            machine.classList.remove('machine-spinning');
+            knob.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            knob.style.transform = 'rotate(0deg)';
+
+            const result = this.dishes[Math.floor(Math.random() * this.dishes.length)];
+            this.setDisplay('★ DONE!');
+            this.setLights('done');
+
+            // 弹出球动画
+            this.ejectBall();
+
+            setTimeout(() => {
+                this.updateProgress(0);
+                this.showResult(result);
+                this.createCapsules(false);
+                this.isSpinning = false;
+                // 延迟重置为 READY
+                setTimeout(() => {
+                    this.setDisplay('● READY');
+                    this.setLights('ready');
+                }, 3000);
+            }, 700);
+        }, this.spinDuration);
+    }
+
+    /**
+     * 弹出球动画
+     */
+    ejectBall() {
+        const tray = document.getElementById('trayOpening');
+        if (!tray) return;
+
+        // 移除旧的弹出球
+        const old = tray.querySelector('.ejected-capsule');
+        if (old) old.remove();
+
+        const ball = document.createElement('div');
+        ball.className = 'ejected-capsule';
+        ball.style.backgroundColor = this.colors[Math.floor(Math.random() * this.colors.length)];
+        tray.appendChild(ball);
+
+        setTimeout(() => ball.remove(), 1500);
+    }
+
+    /**
+     * 显示彩带/烟花效果
+     */
+    showConfetti() {
+        const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#ff6b81', '#7bed9f', '#a29bfe'];
+        const count = 55;
+
+        for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+                const piece = document.createElement('div');
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = 6 + Math.random() * 7;
+                const xStart = Math.random() * window.innerWidth;
+                const drift = (Math.random() - 0.5) * 160;
+                const duration = 1600 + Math.random() * 1800;
+                const isCircle = Math.random() > 0.45;
+
+                piece.style.cssText = `
+                    position: fixed;
+                    top: 10px;
+                    left: ${xStart}px;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    border-radius: ${isCircle ? '50%' : '2px'};
+                    z-index: 20000;
+                    pointer-events: none;
+                `;
+                document.body.appendChild(piece);
+
+                const startT = performance.now();
+                const animate = (now) => {
+                    const elapsed = now - startT;
+                    const progress = elapsed / duration;
+                    if (progress >= 1) {
+                        piece.remove();
+                        return;
+                    }
+                    const y = progress * window.innerHeight * 1.1;
+                    const x = drift * progress;
+                    const rotation = progress * (isCircle ? 360 : 900);
+                    const scale = 1 - progress * 0.6;
+                    const opacity = progress > 0.75 ? (1 - progress) * 4 : 1;
+                    piece.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`;
+                    piece.style.opacity = opacity;
+                    requestAnimationFrame(animate);
+                };
+                requestAnimationFrame(animate);
+            }, i * 20);
+        }
     }
 
     /**
@@ -116,7 +286,10 @@ class GachaponApp {
 
         text.innerText = dish;
         overlay.style.display = 'flex';
-        setTimeout(() => card.classList.add('show'), 50);
+        setTimeout(() => {
+            card.classList.add('show');
+            this.showConfetti();
+        }, 60);
     }
 
     /**
@@ -126,7 +299,7 @@ class GachaponApp {
         const overlay = document.getElementById('resultOverlay');
         const card = document.getElementById('resultCard');
         card.classList.remove('show');
-        setTimeout(() => overlay.style.display = 'none', 300);
+        setTimeout(() => overlay.style.display = 'none', 400);
     }
 
     /**
@@ -138,8 +311,8 @@ class GachaponApp {
 
         list.innerHTML = this.dishes.map((dish, i) => `
             <div class="dish-item">
-                <span style="font-weight:500;">${this.escapeDishName(dish)}</span>
-                <span class="dish-delete" data-index="${i}" style="color:#ccc; cursor:pointer; font-size:1.2rem;" aria-label="删除 ${this.escapeDishName(dish)}" role="button" tabindex="0">&times;</span>
+                <span style="font-weight:500; font-size: 0.88rem;">${this.escapeDishName(dish)}</span>
+                <span class="dish-delete" data-index="${i}" style="color: var(--text-muted); cursor:pointer; font-size:1.1rem; line-height:1; padding: 2px; border-radius: 4px; transition: all 0.15s; flex-shrink: 0;" aria-label="删除 ${this.escapeDishName(dish)}" role="button" tabindex="0">&times;</span>
             </div>
         `).join('');
     }
@@ -184,7 +357,7 @@ class GachaponApp {
         this.save();
         this.renderDishList();
         input.value = '';
-        UTILS.showToast('添加成功！');
+        UTILS.showToast('✅ 添加成功！');
     }
 
     /**
@@ -197,7 +370,7 @@ class GachaponApp {
         this.dishes.splice(index, 1);
         this.save();
         this.renderDishList();
-        UTILS.showToast(`已删除 "${dish}"`);
+        UTILS.showToast(`🗑️ 已删除 "${dish}"`);
     }
 
     /**
@@ -215,7 +388,7 @@ class GachaponApp {
             this.dishes = [...this.defaultDishes];
             this.save();
             this.renderDishList();
-            UTILS.showToast('已恢复默认菜单');
+            UTILS.showToast('🔄 已恢复默认菜单');
         }
     }
 
@@ -241,6 +414,15 @@ class GachaponApp {
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') { e.preventDefault(); this.addDish(); }
             });
+            // 聚焦时高亮边框
+            input.addEventListener('focus', () => {
+                input.style.borderColor = '#3b82f6';
+                input.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.15)';
+            });
+            input.addEventListener('blur', () => {
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+            });
         }
 
         // 事件委托：菜品删除按钮
@@ -255,7 +437,27 @@ class GachaponApp {
                     if (btn) { e.preventDefault(); this.deleteDish(parseInt(btn.dataset.index, 10)); }
                 }
             });
+            // hover 效果
+            dishList.addEventListener('mouseover', (e) => {
+                const btn = e.target.closest('.dish-delete');
+                if (btn) { btn.style.color = '#ef4444'; btn.style.background = '#fee2e2'; }
+            });
+            dishList.addEventListener('mouseout', (e) => {
+                const btn = e.target.closest('.dish-delete');
+                if (btn) { btn.style.color = ''; btn.style.background = ''; }
+            });
         }
+
+        // 点击遮罩关闭弹窗
+        const overlay = document.getElementById('resultOverlay');
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) this.closeResult();
+            });
+        }
+
+        // 初始化指示灯
+        this.setLights('ready');
     }
 }
 

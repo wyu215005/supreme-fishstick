@@ -75,66 +75,81 @@
     <div class="container">
 
         <!-- 欢迎信息 -->
-        <div class="card fade-in" style="margin-top: 3rem;">
-            <h1 style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem; font-weight: 600;">🐟 欢迎来到 FishRain</h1>
-            <p style="text-align: center; color: var(--text-secondary); line-height: 1.8; font-size: 1rem;">
-                这是一个专注于<strong>数据开发与数据仓库</strong>的学习博客。在这里，我会分享数仓架构设计、大数据处理、ETL 数据管道、SQL 优化等实战经验与技术笔记。
+        <div class="card fade-in" style="margin-top: 2.5rem; text-align: center;">
+            <h1 style="font-size: 1.9rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.03em;">🐟 欢迎来到 FishRain</h1>
+            <p style="color: var(--text-secondary); line-height: 1.85; font-size: 0.98rem; max-width: 680px; margin: 0 auto;">
+                这是一个专注于<strong style="color: var(--text-color);">数据开发与数据仓库</strong>的学习博客。在这里，我会分享数仓架构设计、数据治理、指标体系建设、大数据处理与 SQL 优化等实战经验与技术笔记。
                 希望这些内容能帮到同样在数据工程路上探索的你，也欢迎一起交流学习！
             </p>
         </div>
 
         <!-- 技术方向速览 -->
         <div class="card fade-in" style="margin: 2rem 0;">
-            <h2 style="margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 600;">⚡ 技术方向</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; text-align: center;">
-                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏗️</div>
-                    <div style="font-weight: 600; font-size: 0.9rem;">数据仓库</div>
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em;">⚡ 技术方向</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.85rem; text-align: center;">
+                <div style="padding: 1.1rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-subtle); transition: var(--transition);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(59,130,246,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform=''; this.style.borderColor=''; this.style.boxShadow=''">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🏗️</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-color);">数据仓库</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">分层架构</div>
                 </div>
-                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔄</div>
-                    <div style="font-weight: 600; font-size: 0.9rem;">ETL 数据管道</div>
+                <div style="padding: 1.1rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-subtle); transition: var(--transition);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(59,130,246,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform=''; this.style.borderColor=''; this.style.boxShadow=''">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🛡️</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-color);">数据治理</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">元数据管理</div>
                 </div>
-                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔥</div>
-                    <div style="font-weight: 600; font-size: 0.9rem;">Spark / PySpark</div>
+                <div style="padding: 1.1rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-subtle); transition: var(--transition);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(59,130,246,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform=''; this.style.borderColor=''; this.style.boxShadow=''">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🔄</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-color);">ETL 数据管道</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">Airflow / Kafka</div>
                 </div>
-                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
-                    <div style="font-weight: 600; font-size: 0.9rem;">SQL 优化</div>
+                <div style="padding: 1.1rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-subtle); transition: var(--transition);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(59,130,246,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform=''; this.style.borderColor=''; this.style.boxShadow=''">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🎯</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-color);">指标体系</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">北极星指标</div>
                 </div>
-                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🦘</div>
-                    <div style="font-weight: 600; font-size: 0.9rem;">Kafka 实时流</div>
+                <div style="padding: 1.1rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-subtle); transition: var(--transition);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(59,130,246,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform=''; this.style.borderColor=''; this.style.boxShadow=''">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🔥</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-color);">Spark / PySpark</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">大数据计算</div>
                 </div>
-                <div style="padding: 1.2rem; border: 1px solid var(--border-color); border-radius: 10px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔧</div>
-                    <div style="font-weight: 600; font-size: 0.9rem;">Airflow 调度</div>
+                <div style="padding: 1.1rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-subtle); transition: var(--transition);" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(59,130,246,0.3)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform=''; this.style.borderColor=''; this.style.boxShadow=''">
+                    <div style="font-size: 1.8rem; margin-bottom: 0.4rem;">🤖</div>
+                    <div style="font-weight: 600; font-size: 0.85rem; color: var(--text-color);">数据 + AI</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">大模型协作</div>
                 </div>
             </div>
         </div>
 
         <!-- 最新文章预览 -->
-        <div class="card fade-in" style="margin: 3rem 0;">
-            <h2 style="margin-bottom: 2rem; font-size: 1.3rem; font-weight: 600;">📝 最新文章</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div class="card fade-in" style="margin: 2rem 0;">
+            <h2 style="margin-bottom: 1.75rem; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em;">📝 最新文章</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.25rem;">
                 <a href="articles.html" class="article-preview" aria-label="阅读文章：数据仓库分层架构">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">数据仓库分层架构：ODS/DWD/DWS/ADS</div>
-                    <div style="font-size: 0.875rem; color: var(--text-secondary);">深入解析数仓分层架构设计原则，每层职责与数据流转最佳实践...</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-10</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color); font-size: 0.95rem;">数据仓库分层架构：ODS/DWD/DWS/ADS</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">深入解析数仓分层架构设计原则，每层职责与数据流转最佳实践...</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📅 2024-01-10</span>
+                        <span style="display: inline-block; padding: 0.15rem 0.5rem; background: var(--bg-subtle); border-radius: 4px; font-size: 0.72rem; border: 1px solid var(--border-color);">数据仓库</span>
+                    </div>
                 </a>
                 <a href="articles.html" class="article-preview" aria-label="阅读文章：SQL性能调优">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">SQL 性能调优：从慢查询到毫秒级响应</div>
-                    <div style="font-size: 0.875rem; color: var(--text-secondary);">索引设计、执行计划分析、分区裁剪与物化视图等核心优化手段...</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-20</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color); font-size: 0.95rem;">SQL 性能调优：从慢查询到毫秒级响应</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">索引设计、执行计划分析、分区裁剪与物化视图等核心优化手段...</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📅 2024-01-20</span>
+                        <span style="display: inline-block; padding: 0.15rem 0.5rem; background: var(--bg-subtle); border-radius: 4px; font-size: 0.72rem; border: 1px solid var(--border-color);">SQL优化</span>
+                    </div>
                 </a>
                 <a href="articles.html" class="article-preview" aria-label="阅读文章：Airflow数据管道">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Apache Airflow：数据管道编排实战</div>
-                    <div style="font-size: 0.875rem; color: var(--text-secondary);">使用 Airflow DAG 构建可靠数据管道，任务依赖与重试策略...</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-02-01</div>
+                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color); font-size: 0.95rem;">Apache Airflow：数据管道编排实战</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">使用 Airflow DAG 构建可靠数据管道，任务依赖与重试策略...</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📅 2024-02-01</span>
+                        <span style="display: inline-block; padding: 0.15rem 0.5rem; background: var(--bg-subtle); border-radius: 4px; font-size: 0.72rem; border: 1px solid var(--border-color);">ETL</span>
+                    </div>
                 </a>
             </div>
-            <div style="text-align: center; margin-top: 2.5rem;">
+            <div style="text-align: center; margin-top: 2rem;">
                 <a href="articles.html" class="btn">查看全部文章 →</a>
             </div>
         </div>
