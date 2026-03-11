@@ -40,35 +40,65 @@
 
     <!-- 主容器 -->
     <div class="container">
-        <h1 style="text-align: center; margin-bottom: 30px;">🎰 今天吃什么？</h1>
+        <h1 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em;">🎰 今天吃什么？</h1>
 
         <div class="gachapon-page-container">
             <!-- 扭蛋机 -->
             <div class="gachapon-machine-v3" id="machineBody">
-                <div class="glass-dome" id="dome"></div>
-                <div class="machine-control">
-                    <div class="knob-v3" id="spinBtn" role="button" tabindex="0" aria-label="转动扭蛋机">
-                        <div class="knob-line"></div>
+                <!-- 顶部品牌栏 + 指示灯 -->
+                <div class="machine-header">
+                    <div class="machine-brand">🎰 GACHAPON</div>
+                    <div class="machine-lights">
+                        <span class="machine-light lit-red" id="lightRed"></span>
+                        <span class="machine-light lit-yellow" id="lightYellow"></span>
+                        <span class="machine-light lit-green" id="lightGreen"></span>
                     </div>
-                    <div style="width: 100px; height: 12px; background: #111; margin: 10px auto; border-radius: 10px;"></div>
-                    <p style="color: #f1c40f; font-weight: bold; font-size: 0.8rem; letter-spacing: 2px;">SPIN TO DECIDE</p>
+                </div>
+
+                <!-- 玻璃罩 -->
+                <div class="glass-dome" id="dome"></div>
+
+                <!-- 控制面板 -->
+                <div class="machine-control">
+                    <!-- 状态显示屏 -->
+                    <div class="machine-display" id="machineDisplay">
+                        <span id="displayText">● READY</span>
+                    </div>
+
+                    <!-- 旋钮（带进度圆环） -->
+                    <div class="spin-progress-wrap">
+                        <div class="knob-v3" id="spinBtn" role="button" tabindex="0" aria-label="转动扭蛋机">
+                            <div class="knob-line"></div>
+                        </div>
+                        <svg class="spin-progress-svg" id="spinProgressSvg" viewBox="0 0 100 100">
+                            <circle class="spin-progress-circle" id="spinProgressCircle" cx="50" cy="50" r="45"/>
+                        </svg>
+                    </div>
+
+                    <p style="color: var(--gold); font-weight: 800; font-size: 0.72rem; letter-spacing: 3px; margin-top: 4px; text-shadow: 0 0 8px rgba(255,209,102,0.5);">SPIN TO DECIDE</p>
+                </div>
+
+                <!-- 出球托盘 -->
+                <div class="machine-tray">
+                    <div class="tray-label">OUTPUT</div>
+                    <div class="tray-opening" id="trayOpening"></div>
                 </div>
             </div>
 
             <!-- 菜品管理面板 -->
             <div class="dish-manager">
-                <h2 style="font-size: 1.2rem; margin-bottom: 20px;">📋 菜品库管理</h2>
-                <div style="display: flex; gap: 10px; margin-bottom: 1.5rem;">
+                <h2 style="font-size: 1.1rem; margin-bottom: 18px; font-weight: 700; letter-spacing: -0.01em;">📋 菜品库管理</h2>
+                <div style="display: flex; gap: 8px; margin-bottom: 1.25rem;">
                     <input type="text" id="dishInput" placeholder="输入新菜品名称..."
                         maxlength="20"
-                        style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);"
+                        style="flex:1; padding:10px 14px; border-radius:8px; border:1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;"
                         aria-label="菜品名称">
-                    <button class="btn" id="addBtn" style="background:#333; color:white; border:none; padding:0 20px; border-radius:10px; cursor:pointer;">添加</button>
+                    <button class="btn" id="addBtn" style="padding: 0 18px; font-size: 0.85rem;">添加</button>
                 </div>
 
                 <div id="dishList" class="dish-grid"></div>
 
-                <button id="resetBtn" style="margin-top: 30px; width: 100%; background: none; border: 1px dashed #ccc; padding: 10px; cursor: pointer; color: #999; border-radius: 10px;">恢复系统默认菜单</button>
+                <button id="resetBtn" style="margin-top: 24px; width: 100%; background: none; border: 1px dashed var(--border-color); padding: 10px; cursor: pointer; color: var(--text-muted); border-radius: 8px; font-size: 0.85rem; transition: all 0.2s;">恢复系统默认菜单</button>
             </div>
         </div>
     </div>
@@ -76,9 +106,9 @@
     <!-- 结果弹窗 -->
     <div class="result-overlay" id="resultOverlay" role="dialog" aria-modal="true" aria-labelledby="resultDish">
         <div class="result-card" id="resultCard">
-            <p style="font-size: 1.1rem; color: #666;">🎉 抽中的美味是：</p>
+            <p class="result-label">🎉 今天就吃这个了！</p>
             <div class="result-dish" id="resultDish">---</div>
-            <button class="btn" id="closeResultBtn" style="background: #333; color: white; padding: 12px 40px; border-radius: 30px; border: none; cursor: pointer;">太棒了！</button>
+            <button class="btn" id="closeResultBtn" style="padding: 12px 40px; border-radius: 30px;">太棒了！开吃！</button>
         </div>
     </div>
 
