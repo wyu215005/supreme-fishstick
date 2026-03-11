@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FishRain - 学习博客</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🐟 FishRain</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">首页</a></li>
+                <li><a href="articles.html" class="nav-link">文章</a></li>
+                <li><a href="about.html" class="nav-link">关于我</a></li>
+                <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
+                <li><a href="guestbook.html" class="nav-link">留言板</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+        <!-- 轮播图 -->
+        <div class="carousel-container" id="carousel">
+                <div class="carousel-slide active">
+                    <img src="images/carousel1.jpg" alt="轮播图1">
+                    <div class="carousel-caption">
+                        <h2>欢迎来到 FishRain</h2>
+                        <p>记录学习路上的点点滴滴</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel2.jpg" alt="轮播图2">
+                    <div class="carousel-caption">
+                        <h2>数据科学与大数据</h2>
+                        <p>探索数据的奥秘</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/carousel3.jpg" alt="轮播图3">
+                    <div class="carousel-caption">
+                        <h2>持续学习，不断进步</h2>
+                        <p>分享知识与经验</p>
+                    </div>
+                </div>
+                <button class="carousel-nav prev">‹</button>
+                <button class="carousel-nav next">›</button>
+                <div class="carousel-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+            </div>
+
+            <!-- 欢迎信息 -->
+            <div class="card fade-in" style="margin-top: 3rem;">
+                <h1 style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem; font-weight: 600;">🐟 欢迎来到 FishRain</h1>
+                <p style="text-align: center; color: var(--text-secondary); line-height: 1.8; font-size: 1rem;">
+                    这是一个记录学习与成长的地方。在这里，我会分享关于数据科学、大数据、数据开发等相关领域的学习笔记、项目经验和心得体会。
+                    希望这些内容能够帮助到同样在路上的你，也欢迎大家一起交流学习！
+                </p>
+            </div>
+
+            <!-- 最新文章预览 -->
+            <div class="card fade-in" style="margin: 3rem 0;">
+                <h2 style="margin-bottom: 2rem; font-size: 1.3rem; font-weight: 600;">📝 最新文章</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <div class="article-preview" onclick="window.location.href='articles.html'">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">线性代数基础：矩阵运算详解</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">深入理解矩阵的基本运算，为数据科学学习打下基础...</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-15</div>
+                    </div>
+                    <div class="article-preview" onclick="window.location.href='articles.html'">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Python数据分析：Pandas入门指南</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">学习如何使用Pandas进行数据处理和分析...</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-01-20</div>
+                    </div>
+                    <div class="article-preview" onclick="window.location.href='articles.html'">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">数据仓库设计：维度建模实践</div>
+                        <div style="font-size: 0.875rem; color: var(--text-secondary);">探讨数据仓库的维度建模方法，学习星型模式...</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">2024-02-01</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2.5rem;">
+                    <a href="articles.html" class="btn">查看全部文章 →</a>
+                </div>
+            </div>
+
+            <!-- 联系信息 -->
+            <div class="contact-section fade-in" style="margin: 3rem 0;">
+                <h2 style="text-align: center; margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 600;">📮 联系方式</h2>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">点击图标查看详细信息</p>
+                <div class="contact-icons">
+                    <div class="contact-icon" data-platform="Bilibili" data-info="B站：FishRain">
+                        <span>📺</span>
+                        <div class="contact-info">B站：FishRain</div>
+                    </div>
+                    <div class="contact-icon" data-platform="GitHub" data-info="GitHub：FishRain">
+                        <span>💻</span>
+                        <div class="contact-info">GitHub：FishRain</div>
+                    </div>
+                    <div class="contact-icon" data-platform="Email" data-info="邮箱：fishrain@example.com">
+                        <span>📧</span>
+                        <div class="contact-info">邮箱：fishrain@example.com</div>
+                    </div>
+                    <div class="contact-icon" data-platform="WeChat" data-info="微信：FishRain2024">
+                        <span>💬</span>
+                        <div class="contact-info">微信：FishRain2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2026 FishRain. 记录学习，分享成长。</p>
+            </div>
+        </footer>
+
+        <script src="js/config.js"></script>
+        <script src="js/navbar.js"></script>
+        <script src="js/carousel.js"></script>
+    </body>
+</html>
+
+
