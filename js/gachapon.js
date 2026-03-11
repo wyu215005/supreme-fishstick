@@ -13,9 +13,10 @@ class GachaponApp {
         this.storageKey = 'gachapon_dishes';
         this.dishes = this.loadDishes();
         this.isSpinning = false;
-        this.colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#70a1ff', '#ff6b81', '#ff6348', '#7bed9f', '#a29bfe'];
+        this.colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#70a1ff', '#ff6b81', '#a29bfe'];
         this.spinDuration = 2200;
         this.progressTimer = null;
+        this.CONFETTI_COUNT = 55;
 
         this.init();
     }
@@ -131,6 +132,11 @@ class GachaponApp {
         }
 
         this.isSpinning = true;
+        // 清理可能残留的进度动画
+        if (this.progressTimer) {
+            cancelAnimationFrame(this.progressTimer);
+            this.progressTimer = null;
+        }
         const machine = document.getElementById('machineBody');
         const knob = document.getElementById('spinBtn');
         const balls = document.querySelectorAll('.capsule-v3');
@@ -229,7 +235,7 @@ class GachaponApp {
      */
     showConfetti() {
         const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#ff6b81', '#7bed9f', '#a29bfe'];
-        const count = 55;
+        const count = this.CONFETTI_COUNT;
 
         for (let i = 0; i < count; i++) {
             setTimeout(() => {
@@ -416,7 +422,7 @@ class GachaponApp {
             });
             // 聚焦时高亮边框
             input.addEventListener('focus', () => {
-                input.style.borderColor = '#3b82f6';
+                input.style.borderColor = 'var(--accent-blue, #3b82f6)';
                 input.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.15)';
             });
             input.addEventListener('blur', () => {

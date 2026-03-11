@@ -1968,8 +1968,32 @@ body {
 }
 
 /* ===============================
-   🎠 轮播图渐变背景（替代缺失图片）
+   🏗️ 首页技术方向卡片
 ================================ */
+
+.tech-card {
+    padding: 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-subtle);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.tech-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: var(--shadow-md);
+    background: var(--bg-card);
+}
+
+[data-theme="dark"] .tech-card {
+    background: #1e293b;
+}
+
+[data-theme="dark"] .tech-card:hover {
+    background: #253045;
+}
 
 .carousel-bg {
     width: 100%;
