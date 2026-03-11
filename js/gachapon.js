@@ -138,10 +138,19 @@ class GachaponApp {
 
         list.innerHTML = this.dishes.map((dish, i) => `
             <div class="dish-item">
-                <span style="font-weight:500;">${dish}</span>
-                <span style="color:#ccc; cursor:pointer; font-size:1.2rem;" onclick="app.deleteDish(${i})">&times;</span>
+                <span style="font-weight:500;">${this.escapeDishName(dish)}</span>
+                <span class="dish-delete" data-index="${i}" style="color:#ccc; cursor:pointer; font-size:1.2rem;" aria-label="删除 ${this.escapeDishName(dish)}" role="button" tabindex="0">&times;</span>
             </div>
         `).join('');
+    }
+
+    /**
+     * 转义菜品名称防止 XSS
+     */
+    escapeDishName(name) {
+        const div = document.createElement('div');
+        div.textContent = String(name);
+        return div.innerHTML;
     }
 
     /**
@@ -219,6 +228,7 @@ class GachaponApp {
         const resetBtn = document.getElementById('resetBtn');
         const closeBtn = document.getElementById('closeResultBtn');
         const input = document.getElementById('dishInput');
+        const dishList = document.getElementById('dishList');
 
         if (spinBtn) spinBtn.addEventListener('click', () => this.spin());
         if (spinBtn) spinBtn.addEventListener('keydown', (e) => {
@@ -230,6 +240,20 @@ class GachaponApp {
         if (input) {
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') { e.preventDefault(); this.addDish(); }
+            });
+        }
+
+        // 事件委托：菜品删除按钮
+        if (dishList) {
+            dishList.addEventListener('click', (e) => {
+                const btn = e.target.closest('.dish-delete');
+                if (btn) this.deleteDish(parseInt(btn.dataset.index, 10));
+            });
+            dishList.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    const btn = e.target.closest('.dish-delete');
+                    if (btn) { e.preventDefault(); this.deleteDish(parseInt(btn.dataset.index, 10)); }
+                }
             });
         }
     }
