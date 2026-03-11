@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FishRain 技术文章 —— 数据仓库、Spark、Hive、Kafka、Airflow、SQL 优化等数据开发实战笔记。">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta property="og:title" content="文章 - FishRain">
+    <meta property="og:description" content="数据仓库、Spark、SQL 优化等数据开发实战笔记。">
+    <meta property="og:type" content="website">
+    <title>文章 - FishRain</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" role="navigation" aria-label="主导航">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🐟 FishRain</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="articles.html" class="nav-link active">文章</a></li>
+                <li><a href="about.html" class="nav-link">关于我</a></li>
+                <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
+                <li><a href="guestbook.html" class="nav-link">留言板</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
+                <button class="nav-toggle" aria-label="切换导航菜单" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <h1 style="text-align: center; margin: 2rem 0; font-size: 2rem; font-weight: 600;">📚 文章列表</h1>
+
+        <!-- 搜索框 -->
+        <div class="card">
+            <input type="text" id="searchBox" class="search-box" placeholder="搜索文章标题、内容或标签..." aria-label="搜索文章" maxlength="100">
+        </div>
+
+        <!-- 标签筛选 -->
+        <div class="card">
+            <h3 style="margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">🏷️ 标签筛选</h3>
+            <div id="tagContainer" style="display: flex; flex-wrap: wrap; gap: 0.5rem;" role="group" aria-label="标签筛选">
+                <!-- 标签将通过 JavaScript 动态生成 -->
+            </div>
+        </div>
+
+        <!-- 文章统计 -->
+        <div style="margin: 1rem 0; color: var(--text-secondary); font-size: 0.9rem;" aria-live="polite">
+            <span id="articleCount">加载中...</span>
+        </div>
+
+        <!-- 文章列表 -->
+        <div id="articleList" class="article-list" role="main">
+            <!-- 文章将通过 JavaScript 动态生成 -->
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 FishRain. 记录学习，分享成长。</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+    <script src="js/articles.js" defer></script>
+</body>
+</html>
