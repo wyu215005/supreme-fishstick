@@ -79,7 +79,8 @@ class ArticlesManager {
                 date: '2024-04-20',
                 tags: ['数据质量', '数据治理', '数据工程'],
                 excerpt: '构建数据质量监控体系：完整性、准确性、一致性、及时性四个维度的检测规则设计，以及异常告警与修复流程。',
-                category: '数据治理'
+                category: '数据治理',
+                link: 'https://github.com/wyu215005/Data-Quality-Governance-The-End-to-End-Lifecycle-from-Discovery-to-Remediation'
             },
             {
                 id: 10,
