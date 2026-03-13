@@ -47,7 +47,8 @@ class ArticlesManager {
                 date: '2024-03-01',
                 tags: ['Hive', '维度建模', '数据仓库'],
                 excerpt: '探讨维度建模核心方法论：事实表与维度表设计、缓慢变化维（SCD）处理、代理键策略在 Hive 中的落地实践。',
-                category: '数据工程'
+                category: '数据工程',
+                link: 'https://github.com/wyu215005/Hive-Dimensional-Modeling-Mastering-Star-and-Snowflake-Schemas'
             },
             {
                 id: 6,
