@@ -740,6 +740,48 @@ body::before {
     border-color: #b8a4ff;
 }
 
+/* ===== 马里奥金币点击特效 ===== */
+.pixel-coin-fx {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow:
+        2px 2px 0 #b8860b,
+        -1px -1px 0 #b8860b,
+        1px -1px 0 #b8860b,
+        -1px 1px 0 #b8860b;
+    white-space: nowrap;
+    user-select: none;
+    transform: translate(-50%, -50%);
+    /* 0.9s duration with 12 discrete steps creates a pixel-art "chunky" float feel */
+    animation: coin-float-up 0.9s steps(12) forwards;
+    letter-spacing: 0.05em;
+    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes coin-float-up {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+    30% {
+        opacity: 1;
+        transform: translate(-50%, -90px) scale(1.1);
+    }
+    70% {
+        opacity: 0.7;
+        transform: translate(-50%, -140px) scale(0.9);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -200px) scale(0.6);
+    }
+}
+
 /* ===== 响应式：小屏幕减少装饰 ===== */
 @media (max-width: 768px) {
     .pixel-cloud-1,
