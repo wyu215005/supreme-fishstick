@@ -731,7 +731,7 @@ body {
     --machine-body-shadow: #9d0208;
     --gold: #ffd166;
     --gold-dark: #c9a227;
-    --glass-shine: rgba(255, 255, 255, 0.5);
+    --glass-shine: rgba(255, 255, 255, 0.55);
     --shadow-arcade: 0 12px 0 var(--machine-body-shadow), 0 14px 0 rgba(0,0,0,0.2);
 }
 
@@ -746,16 +746,21 @@ body {
     margin: 0 auto;
 }
 
-/* 扭蛋机外壳 */
+/* 扭蛋机外壳 - 更鲜艳的街机风 */
 .gachapon-machine-v3 {
     width: 320px;
-    background: linear-gradient(160deg, #e63946 0%, #c1121f 100%);
+    background: linear-gradient(160deg, #ff4d6d 0%, #e63946 45%, #c1121f 100%);
     border-radius: 36px 36px 16px 16px;
     padding: 18px 22px 0;
-    box-shadow: var(--shadow-arcade), 0 30px 50px rgba(0,0,0,0.3);
+    box-shadow:
+        var(--shadow-arcade),
+        0 30px 50px rgba(0,0,0,0.35),
+        inset 0 2px 0 rgba(255,255,255,0.2),
+        inset 2px 0 0 rgba(255,255,255,0.08);
     position: relative;
-    border: 3px solid rgba(255,255,255,0.12);
+    border: 3px solid rgba(255,255,255,0.15);
     border-bottom: none;
+    transition: filter 0.3s ease;
 }
 
 /* 机器顶部装饰栏 */
@@ -764,10 +769,11 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 14px;
-    padding: 6px 12px;
-    background: rgba(0, 0, 0, 0.25);
+    padding: 7px 14px;
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 .machine-brand {
@@ -775,19 +781,25 @@ body {
     font-weight: 800;
     font-size: 0.8rem;
     letter-spacing: 3px;
-    text-shadow: 0 0 12px rgba(255, 209, 102, 0.7);
+    text-shadow: 0 0 12px rgba(255, 209, 102, 0.9), 0 0 24px rgba(255, 209, 102, 0.4);
     font-family: 'Arial Black', sans-serif;
+    animation: brand-glow 2s ease-in-out infinite;
+}
+
+@keyframes brand-glow {
+    0%, 100% { text-shadow: 0 0 10px rgba(255,209,102,0.8), 0 0 20px rgba(255,209,102,0.4); }
+    50% { text-shadow: 0 0 16px rgba(255,209,102,1), 0 0 32px rgba(255,209,102,0.6); }
 }
 
 .machine-lights {
     display: flex;
-    gap: 6px;
+    gap: 7px;
     align-items: center;
 }
 
 .machine-light {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #333;
     transition: all 0.2s ease;
@@ -796,18 +808,18 @@ body {
 }
 
 .machine-light.lit-red {
-    background: radial-gradient(circle at 35% 35%, #ff6b6b, #e74c3c);
-    box-shadow: 0 0 8px rgba(231, 76, 60, 0.9), 0 0 14px rgba(231, 76, 60, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+    background: radial-gradient(circle at 35% 35%, #ff8080, #e74c3c);
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.9), 0 0 18px rgba(231, 76, 60, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .machine-light.lit-yellow {
-    background: radial-gradient(circle at 35% 35%, #ffe66d, var(--gold));
-    box-shadow: 0 0 8px rgba(255, 209, 102, 0.9), 0 0 14px rgba(255, 209, 102, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+    background: radial-gradient(circle at 35% 35%, #ffe880, var(--gold));
+    box-shadow: 0 0 10px rgba(255, 209, 102, 0.9), 0 0 18px rgba(255, 209, 102, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .machine-light.lit-green {
-    background: radial-gradient(circle at 35% 35%, #7bed9f, #2ed573);
-    box-shadow: 0 0 8px rgba(46, 213, 115, 0.9), 0 0 14px rgba(46, 213, 115, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+    background: radial-gradient(circle at 35% 35%, #90f0b8, #2ed573);
+    box-shadow: 0 0 10px rgba(46, 213, 115, 0.9), 0 0 18px rgba(46, 213, 115, 0.5), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 @keyframes light-blink {
@@ -816,7 +828,7 @@ body {
 }
 
 .machine-spinning .machine-light {
-    animation: light-blink 0.25s infinite;
+    animation: light-blink 0.22s infinite;
 }
 
 .machine-spinning .machine-light.lit-red {
@@ -824,89 +836,139 @@ body {
 }
 
 .machine-spinning .machine-light.lit-yellow {
-    animation-delay: 0.08s;
+    animation-delay: 0.07s;
 }
 
 .machine-spinning .machine-light.lit-green {
-    animation-delay: 0.16s;
+    animation-delay: 0.14s;
 }
 
-/* 玻璃罩 */
+/* 玻璃罩 - 更通透，带彩色反光 */
 .glass-dome {
     width: 270px;
     height: 270px;
-    background: radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.85) 0%, rgba(220,235,255,0.6) 40%, rgba(180,210,255,0.4) 100%);
-    border: 8px solid rgba(0, 0, 0, 0.35);
+    background: radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.9) 0%, rgba(230,245,255,0.65) 35%, rgba(200,225,255,0.45) 70%, rgba(180,210,240,0.35) 100%);
+    border: 8px solid rgba(0, 0, 0, 0.32);
     border-radius: 50%;
     position: relative;
     overflow: hidden;
     margin: 0 auto;
-    box-shadow: 
-        inset 0 12px 30px rgba(0,0,0,0.08),
-        inset 0 -4px 10px rgba(0,0,0,0.05),
-        0 4px 12px rgba(0,0,0,0.2);
+    box-shadow:
+        inset 0 14px 32px rgba(255,255,255,0.12),
+        inset 0 -6px 14px rgba(0,0,0,0.08),
+        0 5px 16px rgba(0,0,0,0.25),
+        0 0 0 2px rgba(255,255,255,0.06);
 }
 
-    .glass-dome::after {
-        content: '';
-        position: absolute;
-        top: 18px;
-        left: 30px;
-        width: 55px;
-        height: 90px;
-        background: var(--glass-shine);
-        border-radius: 50%;
-        transform: rotate(25deg);
-        filter: blur(10px);
-        pointer-events: none;
-    }
+.glass-dome::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 105%, rgba(255,180,100,0.15) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 5;
+}
 
-/* 扭蛋球样式 */
+.glass-dome::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 28px;
+    width: 60px;
+    height: 100px;
+    background: var(--glass-shine);
+    border-radius: 50%;
+    transform: rotate(28deg);
+    filter: blur(12px);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* 扭蛋球样式 - 更有光泽感 */
 .capsule-v3 {
     position: absolute;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
-    box-shadow: inset -3px -3px 6px rgba(0,0,0,0.25), inset 2px 2px 4px rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.15);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(255,255,255,0.35);
+    box-shadow:
+        inset -4px -4px 7px rgba(0,0,0,0.28),
+        inset 3px 3px 5px rgba(255,255,255,0.45),
+        0 3px 6px rgba(0,0,0,0.2);
+    transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: capsule-idle 3s ease-in-out infinite;
 }
 
-/* 控制区面板 */
+.capsule-v3:nth-child(odd) {
+    animation-delay: 0.4s;
+    animation-duration: 3.5s;
+}
+
+.capsule-v3:nth-child(3n) {
+    animation-delay: 0.8s;
+    animation-duration: 2.8s;
+}
+
+@keyframes capsule-idle {
+    0%, 100% { transform: translateY(0) rotate(var(--init-rot, 0deg)); }
+    30% { transform: translateY(-4px) rotate(calc(var(--init-rot, 0deg) + 5deg)); }
+    60% { transform: translateY(2px) rotate(calc(var(--init-rot, 0deg) - 3deg)); }
+}
+
+/* 控制区面板 - 更精致 */
 .machine-control {
-    background: linear-gradient(160deg, #2a2a2a, #1a1a1a);
+    background: linear-gradient(160deg, #2d2d2d, #1c1c1c);
     margin-top: 16px;
     border-radius: 18px 18px 0 0;
     padding: 18px 15px 22px;
     text-align: center;
-    border: 3px solid rgba(255,255,255,0.08);
+    border: 3px solid rgba(255,255,255,0.09);
     border-bottom: none;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), inset 0 -1px 0 rgba(255,255,255,0.03);
 }
 
-/* 机器状态显示屏 */
+/* 机器状态显示屏 - 像素LCD风 */
 .machine-display {
-    background: #060f0a;
-    border: 2px solid #1a3a25;
+    background: #040e08;
+    border: 2px solid #153320;
     border-radius: 6px;
-    padding: 6px 12px;
+    padding: 7px 12px;
     margin-bottom: 14px;
     font-family: 'Courier New', 'Lucida Console', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+    font-size: 0.72rem;
+    letter-spacing: 2.5px;
     text-align: center;
-    color: #00e676;
-    text-shadow: 0 0 10px rgba(0, 230, 118, 0.8), 0 0 20px rgba(0, 230, 118, 0.4);
-    box-shadow: inset 0 2px 8px rgba(0,0,0,0.7), 0 0 8px rgba(0, 230, 118, 0.1);
+    color: #00f57a;
+    text-shadow: 0 0 8px rgba(0, 245, 122, 0.9), 0 0 18px rgba(0, 245, 122, 0.45);
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.8), 0 0 10px rgba(0, 230, 118, 0.12);
     user-select: none;
+    position: relative;
+    overflow: hidden;
 }
 
-/* 旋钮按钮 */
+.machine-display::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.07) 2px,
+        rgba(0,0,0,0.07) 4px
+    );
+    pointer-events: none;
+}
+
+/* 旋钮按钮 - 更立体的金色按钮 */
 .knob-v3 {
-    width: 76px;
-    height: 76px;
-    background: radial-gradient(circle at 35% 30%, #ffe66d, var(--gold) 50%, var(--gold-dark) 100%);
-    border: 5px solid rgba(0,0,0,0.5);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 35% 30%, #fff0a0, #ffd166 45%, #e0a020 80%, #c9a227 100%);
+    border: 5px solid rgba(0,0,0,0.45);
     border-radius: 50%;
     cursor: pointer;
     margin: 0 auto 14px;
@@ -914,31 +976,53 @@ body {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
-    box-shadow: 0 5px 0 var(--gold-dark), 0 8px 0 rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4);
+    box-shadow:
+        0 6px 0 #a07800,
+        0 9px 0 rgba(0,0,0,0.3),
+        inset 0 2px 5px rgba(255,255,255,0.5),
+        inset 0 -2px 4px rgba(0,0,0,0.15);
     position: relative;
 }
 
-    .knob-v3::before {
-        content: '';
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        right: 6px;
-        bottom: 6px;
-        border-radius: 50%;
-        border: 2px solid rgba(0,0,0,0.15);
-        pointer-events: none;
-    }
+.knob-v3::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    right: 7px;
+    bottom: 7px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.12);
+    pointer-events: none;
+}
 
-    .knob-v3:hover {
-        transform: rotate(15deg) scale(1.05);
-        box-shadow: 0 7px 0 var(--gold-dark), 0 10px 0 rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.4);
-    }
+.knob-v3::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: 20px;
+    height: 8px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: rotate(-30deg);
+    pointer-events: none;
+    filter: blur(2px);
+}
 
-    .knob-v3:active {
-        transform: rotate(180deg) scale(0.95) !important;
-        box-shadow: 0 2px 0 var(--gold-dark), 0 3px 0 rgba(0,0,0,0.2);
-    }
+.knob-v3:hover {
+    transform: rotate(15deg) scale(1.07);
+    box-shadow:
+        0 8px 0 #a07800,
+        0 11px 0 rgba(0,0,0,0.25),
+        inset 0 2px 5px rgba(255,255,255,0.5);
+    filter: brightness(1.08);
+}
+
+.knob-v3:active {
+    transform: rotate(180deg) scale(0.94) !important;
+    box-shadow: 0 2px 0 #a07800, 0 3px 0 rgba(0,0,0,0.2);
+}
 
 @keyframes knob-spin {
     0% { transform: rotate(0deg); }
@@ -946,29 +1030,29 @@ body {
 }
 
 .knob-line {
-    width: 40px;
+    width: 42px;
     height: 10px;
-    background: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+    background: linear-gradient(90deg, rgba(0,0,0,0.4), rgba(0,0,0,0.65));
     border-radius: 5px;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.25);
 }
 
 /* 机器底部出球托盘 */
 .machine-tray {
-    background: linear-gradient(160deg, #1a1a1a, #0f0f0f);
+    background: linear-gradient(160deg, #1e1e1e, #111111);
     border-radius: 0 0 14px 14px;
-    padding: 12px 15px 16px;
+    padding: 12px 15px 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    border: 3px solid rgba(255,255,255,0.06);
+    border: 3px solid rgba(255,255,255,0.07);
     border-top: none;
-    box-shadow: 0 12px 0 var(--machine-body-shadow);
+    box-shadow: 0 12px 0 var(--machine-body-shadow), 0 14px 0 rgba(0,0,0,0.15);
 }
 
 .tray-label {
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.3);
     font-size: 0.6rem;
     letter-spacing: 3px;
     font-weight: 600;
@@ -976,56 +1060,68 @@ body {
 }
 
 .tray-opening {
-    width: 80px;
-    height: 28px;
-    background: #050505;
-    border-radius: 14px;
-    border: 2px solid #333;
+    width: 88px;
+    height: 30px;
+    background: #040404;
+    border-radius: 15px;
+    border: 2px solid #2a2a2a;
     position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 3px 8px rgba(0,0,0,0.8);
+    overflow: visible;
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.9);
 }
 
-.tray-opening::after {
+.tray-opening::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent);
+    border-radius: 13px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.03), transparent);
     pointer-events: none;
 }
 
-/* 弹出球动画 */
+/* 弹出球动画 - 更夸张的弹跳 */
 @keyframes ejectBall {
     0% {
-        transform: translateX(-50%) translateY(-80px) rotate(0deg) scale(0.6);
+        transform: translateX(-50%) translateY(-90px) rotate(0deg) scale(0.5);
         opacity: 0;
+        filter: brightness(2);
     }
-    40% {
+    25% {
         opacity: 1;
+        filter: brightness(1.4);
     }
-    70% {
-        transform: translateX(-50%) translateY(10px) rotate(540deg) scale(1.1);
+    60% {
+        transform: translateX(-50%) translateY(14px) rotate(600deg) scale(1.15);
+        filter: brightness(1.2);
     }
-    85% {
-        transform: translateX(-50%) translateY(-5px) rotate(630deg) scale(0.95);
+    80% {
+        transform: translateX(-50%) translateY(-6px) rotate(680deg) scale(0.92);
+        filter: brightness(1);
     }
     100% {
-        transform: translateX(-50%) translateY(0px) rotate(700deg) scale(1);
+        transform: translateX(-50%) translateY(2px) rotate(720deg) scale(1);
         opacity: 1;
+        filter: brightness(1);
     }
+}
+
+@keyframes ejectBallGlow {
+    0% { box-shadow: 0 0 20px 8px rgba(255,255,255,0.8), inset -2px -2px 4px rgba(0,0,0,0.3), inset 1px 1px 2px rgba(255,255,255,0.4); }
+    60% { box-shadow: 0 0 12px 4px rgba(255,255,200,0.5), inset -2px -2px 4px rgba(0,0,0,0.3), inset 1px 1px 2px rgba(255,255,255,0.4); }
+    100% { box-shadow: 0 2px 6px rgba(0,0,0,0.4), inset -2px -2px 4px rgba(0,0,0,0.3), inset 1px 1px 2px rgba(255,255,255,0.4); }
 }
 
 .ejected-capsule {
     position: absolute;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     left: 50%;
     top: 3px;
     transform: translateX(-50%);
-    border: 2px solid rgba(255,255,255,0.3);
-    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), inset 1px 1px 2px rgba(255,255,255,0.4);
-    animation: ejectBall 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    border: 2px solid rgba(255,255,255,0.35);
+    animation: ejectBall 1.0s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               ejectBallGlow 1.0s ease-out forwards;
 }
 
 /* 菜单管理面板 */
@@ -1062,57 +1158,75 @@ body {
     background: white;
     border-color: rgba(59, 130, 246, 0.3);
     box-shadow: var(--shadow-xs);
+    transform: translateY(-1px);
 }
 
-/* 弹窗效果 */
+/* 弹窗效果 - 更游戏化 */
 .result-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.82);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 10000;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
 }
 
 .result-card {
-    background: white;
+    background: linear-gradient(160deg, #ffffff 0%, #fff8f0 100%);
     padding: 3rem 3.5rem;
     border-radius: var(--radius-xl);
     text-align: center;
-    transform: scale(0.6) translateY(40px);
+    transform: scale(0.5) translateY(60px) rotate(-3deg);
     opacity: 0;
-    transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.2);
+    transition: 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.35),
+        0 0 0 3px rgba(255,209,102,0.4),
+        0 0 40px rgba(255,160,50,0.15);
     position: relative;
     overflow: hidden;
     max-width: 380px;
     width: 90%;
 }
 
-    .result-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #ff4757, #ffa502, #2ed573, #1e90ff, #ff4757);
-        background-size: 200% 100%;
-        animation: shimmer 2s linear infinite;
-    }
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #ff4757, #ffa502, #ffd700, #2ed573, #1e90ff, #a29bfe, #ff4757);
+    background-size: 300% 100%;
+    animation: shimmer 2.5s linear infinite;
+}
 
-    .result-card.show {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
+.result-card::after {
+    content: '🎉';
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.4rem;
+    animation: bounce-emoji 1s ease-in-out infinite;
+}
+
+@keyframes bounce-emoji {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(15deg); }
+}
+
+.result-card.show {
+    transform: scale(1) translateY(0) rotate(0deg);
+    opacity: 1;
+}
 
 .result-label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     margin-bottom: 0.5rem;
     letter-spacing: 0.05em;
@@ -1124,7 +1238,14 @@ body {
     color: var(--machine-red);
     margin: 1rem 0 1.5rem;
     letter-spacing: -0.02em;
-    text-shadow: 0 2px 8px rgba(230, 57, 70, 0.2);
+    text-shadow: 0 2px 12px rgba(230, 57, 70, 0.25), 0 4px 24px rgba(230, 57, 70, 0.1);
+    animation: dish-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes dish-pop {
+    0% { transform: scale(0.3); opacity: 0; }
+    60% { transform: scale(1.12); }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes shimmer {
@@ -1132,22 +1253,24 @@ body {
     100% { background-position: -200% 0; }
 }
 
-/* 机身震动动画 */
+/* 机身震动动画 - 更有活力 */
 @keyframes machine-shake {
     0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    10% { transform: translate(-3px, -1px) rotate(-0.8deg); }
-    20% { transform: translate(3px, 1px) rotate(0.8deg); }
-    30% { transform: translate(-5px, -1px) rotate(-1.2deg); }
-    40% { transform: translate(5px, 1px) rotate(1.2deg); }
-    50% { transform: translate(-4px, -2px) rotate(-1deg); }
-    60% { transform: translate(4px, 2px) rotate(1deg); }
-    70% { transform: translate(-3px, 1px) rotate(-0.5deg); }
-    80% { transform: translate(3px, -1px) rotate(0.5deg); }
-    90% { transform: translate(-2px, 0) rotate(-0.3deg); }
+    8% { transform: translate(-4px, -1px) rotate(-1deg); }
+    16% { transform: translate(4px, 1px) rotate(1deg); }
+    24% { transform: translate(-6px, -2px) rotate(-1.4deg); }
+    32% { transform: translate(6px, 1px) rotate(1.4deg); }
+    40% { transform: translate(-5px, -2px) rotate(-1.1deg); }
+    48% { transform: translate(5px, 2px) rotate(1.1deg); }
+    56% { transform: translate(-4px, 1px) rotate(-0.7deg); }
+    64% { transform: translate(4px, -1px) rotate(0.7deg); }
+    72% { transform: translate(-3px, 0) rotate(-0.4deg); }
+    80% { transform: translate(3px, 1px) rotate(0.4deg); }
+    92% { transform: translate(-2px, -1px) rotate(-0.2deg); }
 }
 
 .machine-spinning {
-    animation: machine-shake 0.3s infinite !important;
+    animation: machine-shake 0.28s infinite !important;
 }
 
 /* 彩带/烟花动画 */
