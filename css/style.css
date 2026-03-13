@@ -498,6 +498,28 @@ body {
     gap: 0.6rem;
 }
 
+.article-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.article-card-linked {
+    border-color: rgba(36, 122, 246, 0.35);
+}
+
+.article-github-badge {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.3rem 0.75rem;
+    background: linear-gradient(135deg, #24292e 0%, #3a3f44 100%);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
 /* 技能板块样式 */
 .skills-section {
     margin: 3rem 0;

@@ -13,7 +13,8 @@ class ArticlesManager {
                 date: '2024-01-10',
                 tags: ['数据仓库', '架构设计', '数据工程'],
                 excerpt: '深入解析数仓分层架构设计原则，每层的职责定义、命名规范与数据流转最佳实践，助你构建可维护的企业级数仓。',
-                category: '数据工程'
+                category: '数据工程',
+                link: 'https://github.com/wyu215005/DataWarehouse-Layered-Architecture-ODS-DWD-DWM-DWS-ADS-'
             },
             {
                 id: 2,
@@ -138,22 +139,33 @@ class ArticlesManager {
             return;
         }
 
-        container.innerHTML = this.filteredArticles.map(article => `
-            <div class="article-card fade-in" role="article" tabindex="0" aria-label="${article.title}">
-                <div class="article-card-header">
-                    <div class="article-card-title">${this.escapeHtml(article.title)}</div>
-                </div>
-                <div class="article-card-body">
-                    <div class="article-card-meta">
-                        📅 ${article.date} | 📁 ${article.category}
+        container.innerHTML = this.filteredArticles.map(article => {
+            const safeLink = article.link && /^https:\/\/github\.com\//.test(article.link)
+                ? article.link : null;
+            const githubBadge = safeLink
+                ? `<span class="article-github-badge">🔗 查看 GitHub 项目</span>`
+                : '';
+            const cardHtml = `
+                <div class="article-card fade-in${safeLink ? ' article-card-linked' : ''}" role="article"${safeLink ? '' : ' tabindex="0"'} aria-label="${article.title}">
+                    <div class="article-card-header">
+                        <div class="article-card-title">${this.escapeHtml(article.title)}</div>
                     </div>
-                    <div class="article-card-excerpt">${this.escapeHtml(article.excerpt)}</div>
-                    <div class="article-card-tags">
-                        ${article.tags.map(tag => `<span class="tag">${this.escapeHtml(tag)}</span>`).join('')}
+                    <div class="article-card-body">
+                        <div class="article-card-meta">
+                            📅 ${article.date} | 📁 ${article.category}
+                        </div>
+                        <div class="article-card-excerpt">${this.escapeHtml(article.excerpt)}</div>
+                        <div class="article-card-tags">
+                            ${article.tags.map(tag => `<span class="tag">${this.escapeHtml(tag)}</span>`).join('')}
+                        </div>
+                        ${githubBadge}
                     </div>
-                </div>
-            </div>
-        `).join('');
+                </div>`;
+            if (safeLink) {
+                return `<a href="${this.escapeHtml(safeLink)}" target="_blank" rel="noopener noreferrer" class="article-card-link" aria-label="${this.escapeHtml(article.title)} - 在 GitHub 中打开">${cardHtml}</a>`;
+            }
+            return cardHtml;
+        }).join('');
     }
 
     /**
