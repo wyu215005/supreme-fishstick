@@ -1,0 +1,764 @@
+/* ============================================================
+   🍄 FishRain 像素风主题 - Pixel Art Theme
+   可爱像素风，蘑菇光标，像素精灵漫天飞~
+   ============================================================ */
+
+/* ===== 像素蘑菇光标 ===== */
+*,
+*::before,
+*::after {
+    cursor: url('../images/pixel-mushroom.svg') 0 0, auto !important;
+}
+
+a,
+button,
+[role='button'],
+.tag,
+.article-preview,
+.contact-icon,
+.carousel-nav,
+.indicator,
+.nav-link,
+.knob-v3,
+input[type='submit'],
+input[type='button'],
+select,
+label {
+    cursor: url('../images/pixel-mushroom.svg') 4 2, pointer !important;
+}
+
+/* ===== 全局像素字体感 + 背景 ===== */
+body {
+    font-family: 'Courier New', 'Lucida Console', 'Noto Sans CJK SC', 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', monospace, sans-serif !important;
+    letter-spacing: 0.03em;
+    background-color: #f0e8ff;
+    background-image:
+        linear-gradient(rgba(150, 100, 200, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(150, 100, 200, 0.06) 1px, transparent 1px);
+    background-size: 16px 16px, 16px 16px;
+    padding-top: 80px;
+}
+
+/* 暗黑模式背景 */
+[data-theme='dark'] body {
+    background-color: #1a1230;
+    background-image:
+        linear-gradient(rgba(180, 130, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180, 130, 255, 0.06) 1px, transparent 1px);
+    background-size: 16px 16px, 16px 16px;
+}
+
+/* ===== 导航栏下移 4px 给彩虹条留空间 ===== */
+.navbar {
+    top: 4px !important;
+}
+
+/* ===== 轮播图和内容容器在精灵层之上 ===== */
+.carousel-container {
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+.footer {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== 像素风卡片边框 ===== */
+.card {
+    border-radius: 0 !important;
+    border: 3px solid #2c2c2c !important;
+    box-shadow:
+        4px 4px 0 0 #2c2c2c,
+        -2px 0 0 0 #2c2c2c,
+        0 -2px 0 0 #2c2c2c !important;
+    transition: transform 0.1s steps(1), box-shadow 0.1s steps(1) !important;
+    position: relative;
+    z-index: 2;
+    background-color: #fffdf0 !important;
+}
+
+[data-theme='dark'] .card {
+    border-color: #b8a4ff !important;
+    box-shadow:
+        4px 4px 0 0 #b8a4ff,
+        -2px 0 0 0 #b8a4ff,
+        0 -2px 0 0 #b8a4ff !important;
+    background-color: #231a3a !important;
+}
+
+.card:hover {
+    transform: translate(-3px, -3px) !important;
+    box-shadow:
+        7px 7px 0 0 #2c2c2c,
+        -2px 0 0 0 #2c2c2c,
+        0 -2px 0 0 #2c2c2c !important;
+}
+
+[data-theme='dark'] .card:hover {
+    box-shadow:
+        7px 7px 0 0 #b8a4ff,
+        -2px 0 0 0 #b8a4ff,
+        0 -2px 0 0 #b8a4ff !important;
+}
+
+.card::before {
+    display: none !important;
+}
+
+/* ===== 像素风导航栏 ===== */
+.navbar {
+    border-bottom: 3px solid #2c2c2c !important;
+    border-radius: 0 !important;
+    background-color: rgba(255, 248, 220, 0.96) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+[data-theme='dark'] .navbar {
+    background-color: rgba(30, 20, 50, 0.96) !important;
+    border-bottom-color: #b8a4ff !important;
+}
+
+.nav-logo a {
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.1em !important;
+    image-rendering: pixelated;
+}
+
+.nav-link {
+    border-radius: 0 !important;
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+}
+
+.nav-link::after {
+    border-radius: 0 !important;
+    height: 3px !important;
+}
+
+/* ===== 像素风按钮 ===== */
+.btn {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 3px 3px 0 0 #2c2c2c !important;
+    transition: transform 0.1s steps(1), box-shadow 0.1s steps(1) !important;
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    background: #3d3d8f !important;
+    color: #ffffff !important;
+}
+
+.btn:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 5px 5px 0 0 #2c2c2c !important;
+    background: #5050b0 !important;
+}
+
+.btn:active {
+    transform: translate(1px, 1px) !important;
+    box-shadow: 1px 1px 0 0 #2c2c2c !important;
+}
+
+/* ===== 技术方向卡片 - 像素风 ===== */
+.tech-card {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 2px 2px 0 0 #2c2c2c !important;
+    transition: transform 0.1s steps(1), box-shadow 0.1s steps(1) !important;
+    background: #fff8f0 !important;
+}
+
+[data-theme='dark'] .tech-card {
+    border-color: #9980cc !important;
+    box-shadow: 2px 2px 0 0 #9980cc !important;
+    background: #2a1f3d !important;
+}
+
+.tech-card:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 4px 4px 0 0 #2c2c2c !important;
+    background: #fff0e0 !important;
+}
+
+/* ===== 文章预览卡片 ===== */
+.article-preview {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 3px 3px 0 0 #2c2c2c !important;
+    transition: transform 0.1s steps(1), box-shadow 0.1s steps(1) !important;
+    background: #fffef5 !important;
+    padding: 1.25rem !important;
+}
+
+.article-preview:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 5px 5px 0 0 #2c2c2c !important;
+}
+
+/* ===== 联系方式区域 ===== */
+.contact-section {
+    border-radius: 0 !important;
+    border: 3px solid #2c2c2c !important;
+    box-shadow: 4px 4px 0 0 #2c2c2c !important;
+    background: linear-gradient(135deg, #fff8e1 0%, #e8f5e9 50%, #e3f2fd 100%) !important;
+}
+
+.contact-icon {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 2px 2px 0 0 #2c2c2c !important;
+    transition: transform 0.1s steps(1), box-shadow 0.1s steps(1) !important;
+    background: white !important;
+    background-image: none !important;
+}
+
+.contact-icon:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 4px 4px 0 0 #2c2c2c !important;
+}
+
+.contact-info {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+    font-size: 0.75rem !important;
+}
+
+/* ===== 轮播图 - 像素风背景 ===== */
+.carousel-bg-1 {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 15px,
+            rgba(255, 200, 100, 0.08) 15px,
+            rgba(255, 200, 100, 0.08) 16px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 15px,
+            rgba(255, 200, 100, 0.08) 15px,
+            rgba(255, 200, 100, 0.08) 16px
+        ),
+        linear-gradient(135deg, #6c3483 0%, #1a5276 40%, #0e6655 70%, #1a5276 100%) !important;
+    image-rendering: pixelated;
+}
+
+.carousel-bg-2 {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 15px,
+            rgba(100, 200, 255, 0.08) 15px,
+            rgba(100, 200, 255, 0.08) 16px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 15px,
+            rgba(100, 200, 255, 0.08) 15px,
+            rgba(100, 200, 255, 0.08) 16px
+        ),
+        linear-gradient(135deg, #154360 0%, #1a5276 40%, #2874a6 100%) !important;
+    image-rendering: pixelated;
+}
+
+.carousel-bg-3 {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 15px,
+            rgba(100, 255, 150, 0.08) 15px,
+            rgba(100, 255, 150, 0.08) 16px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 15px,
+            rgba(100, 255, 150, 0.08) 15px,
+            rgba(100, 255, 150, 0.08) 16px
+        ),
+        linear-gradient(135deg, #0b5345 0%, #117a65 40%, #1abc9c 100%) !important;
+    image-rendering: pixelated;
+}
+
+.carousel-caption h2 {
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+    text-shadow:
+        3px 3px 0 rgba(0, 0, 0, 0.7),
+        -1px -1px 0 rgba(0, 0, 0, 0.5) !important;
+    letter-spacing: 0.05em !important;
+}
+
+.carousel-nav {
+    border-radius: 0 !important;
+    border: 2px solid rgba(255, 255, 255, 0.6) !important;
+    font-family: monospace !important;
+}
+
+/* ===== 轮播图指示器 - 像素方块 ===== */
+.indicator {
+    border-radius: 0 !important;
+    width: 10px !important;
+    height: 10px !important;
+    border: 2px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+.indicator.active {
+    transform: scale(1.3) !important;
+}
+
+/* ===== 标签样式 ===== */
+.tag {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 1px 1px 0 0 #2c2c2c !important;
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+    font-size: 0.75rem !important;
+}
+
+.tag:hover {
+    transform: translate(-1px, -1px) !important;
+    box-shadow: 2px 2px 0 0 #2c2c2c !important;
+}
+
+/* ===== 像素风页脚 ===== */
+.footer {
+    border-top: 3px solid #2c2c2c !important;
+}
+
+/* ===== 像素艺术浮动装饰层 ===== */
+.pixel-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* ===== 浮动蘑菇 ===== */
+.pixel-sprite {
+    position: absolute;
+    image-rendering: pixelated;
+    opacity: 0.55;
+    will-change: transform;
+}
+
+/* 蘑菇1：从左侧缓慢飘过 */
+.pixel-mushroom-1 {
+    width: 48px;
+    height: 48px;
+    background: url('../images/pixel-mushroom.svg') no-repeat center/contain;
+    bottom: 15%;
+    left: -60px;
+    animation: float-right 30s linear infinite;
+    animation-delay: 0s;
+    opacity: 0.4;
+}
+
+/* 蘑菇2：从右侧缓慢飘过 */
+.pixel-mushroom-2 {
+    width: 36px;
+    height: 36px;
+    background: url('../images/pixel-mushroom.svg') no-repeat center/contain;
+    top: 20%;
+    right: -50px;
+    animation: float-left 25s linear infinite;
+    animation-delay: 8s;
+    opacity: 0.35;
+}
+
+/* 鱼1：从左游向右 */
+.pixel-fish-1 {
+    width: 64px;
+    height: 32px;
+    background: url('../images/pixel-fish.svg') no-repeat center/contain;
+    top: 35%;
+    left: -80px;
+    animation: float-right 20s linear infinite;
+    animation-delay: 3s;
+    opacity: 0.45;
+}
+
+/* 鱼2：从右游向左（翻转） */
+.pixel-fish-2 {
+    width: 48px;
+    height: 24px;
+    background: url('../images/pixel-fish.svg') no-repeat center/contain;
+    top: 60%;
+    right: -70px;
+    animation: float-left 18s linear infinite;
+    animation-delay: 12s;
+    transform: scaleX(-1);
+    opacity: 0.4;
+}
+
+/* 鱼3：从左游向右 */
+.pixel-fish-3 {
+    width: 40px;
+    height: 20px;
+    background: url('../images/pixel-fish.svg') no-repeat center/contain;
+    top: 75%;
+    left: -60px;
+    animation: float-right 22s linear infinite;
+    animation-delay: 6s;
+    opacity: 0.35;
+}
+
+/* 星星：在角落闪烁 */
+.pixel-star-1 {
+    width: 20px;
+    height: 20px;
+    background: url('../images/pixel-star.svg') no-repeat center/contain;
+    top: 10%;
+    left: 5%;
+    animation: twinkle 3s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.pixel-star-2 {
+    width: 16px;
+    height: 16px;
+    background: url('../images/pixel-star.svg') no-repeat center/contain;
+    top: 30%;
+    right: 8%;
+    animation: twinkle 2.5s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.pixel-star-3 {
+    width: 24px;
+    height: 24px;
+    background: url('../images/pixel-star.svg') no-repeat center/contain;
+    bottom: 25%;
+    left: 3%;
+    animation: twinkle 3.5s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.pixel-star-4 {
+    width: 18px;
+    height: 18px;
+    background: url('../images/pixel-star.svg') no-repeat center/contain;
+    bottom: 40%;
+    right: 5%;
+    animation: twinkle 2.8s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.pixel-star-5 {
+    width: 14px;
+    height: 14px;
+    background: url('../images/pixel-star.svg') no-repeat center/contain;
+    top: 55%;
+    left: 2%;
+    animation: twinkle 4s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+/* 云朵：缓慢漂移 */
+.pixel-cloud-1 {
+    width: 96px;
+    height: 48px;
+    background: url('../images/pixel-cloud.svg') no-repeat center/contain;
+    top: 8%;
+    left: -120px;
+    animation: float-right-slow 60s linear infinite;
+    animation-delay: 0s;
+    opacity: 0.5;
+}
+
+.pixel-cloud-2 {
+    width: 72px;
+    height: 36px;
+    background: url('../images/pixel-cloud.svg') no-repeat center/contain;
+    top: 18%;
+    left: -100px;
+    animation: float-right-slow 75s linear infinite;
+    animation-delay: 25s;
+    opacity: 0.4;
+}
+
+/* ===== 像素动画关键帧 ===== */
+
+/* 从左飞向右 */
+@keyframes float-right {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(calc(25vw + 60px)) translateY(-15px);
+    }
+    50% {
+        transform: translateX(calc(50vw + 60px)) translateY(10px);
+    }
+    75% {
+        transform: translateX(calc(75vw + 60px)) translateY(-8px);
+    }
+    100% {
+        transform: translateX(calc(100vw + 120px)) translateY(0);
+    }
+}
+
+/* 从右飞向左 */
+@keyframes float-left {
+    0% {
+        transform: scaleX(-1) translateX(0) translateY(0);
+    }
+    33% {
+        transform: scaleX(-1) translateX(calc(33vw + 60px)) translateY(-12px);
+    }
+    66% {
+        transform: scaleX(-1) translateX(calc(66vw + 60px)) translateY(8px);
+    }
+    100% {
+        transform: scaleX(-1) translateX(calc(100vw + 100px)) translateY(0);
+    }
+}
+
+/* 从左慢慢漂到右（云朵） */
+@keyframes float-right-slow {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px));
+    }
+}
+
+/* 星星闪烁 */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* 像素上下浮动 */
+@keyframes pixel-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ===== 像素风标题装饰 ===== */
+h1,
+h2 {
+    font-family: 'Courier New', 'Lucida Console', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+    letter-spacing: 0.05em;
+}
+
+/* ===== 像素风搜索框 ===== */
+.search-box {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 2px 2px 0 0 #2c2c2c !important;
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
+}
+
+.search-box:focus {
+    box-shadow: 4px 4px 0 0 #2c2c2c !important;
+    transform: translate(-1px, -1px);
+}
+
+/* ===== 像素风表单元素 ===== */
+input,
+textarea,
+select {
+    border-radius: 0 !important;
+}
+
+/* ===== 像素风滚动条 ===== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0e8ff;
+    border-left: 2px solid #2c2c2c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8b5cf6;
+    border: 2px solid #2c2c2c;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6d28d9;
+}
+
+/* ===== 像素风文字选中效果 ===== */
+::selection {
+    background: #ffd700;
+    color: #1a1a1a;
+}
+
+/* ===== 像素风图片渲染 ===== */
+img {
+    image-rendering: pixelated;
+}
+
+/* 但头像不要像素化 */
+.intro-avatar {
+    image-rendering: auto !important;
+    border-radius: 0 !important;
+    border: 4px solid #2c2c2c !important;
+    box-shadow: 4px 4px 0 0 #2c2c2c !important;
+}
+
+/* ===== 额外像素装饰：页面标题区域的像素边框 ===== */
+.pixel-banner {
+    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace;
+    background: #3d3d8f;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    border-bottom: 3px solid #2c2c2c;
+    box-shadow: 0 3px 0 0 #2c2c2c;
+    position: relative;
+    z-index: 999;
+}
+
+/* ===== 像素风技能条 ===== */
+.skill-category {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 3px 3px 0 0 #2c2c2c !important;
+}
+
+.skill-item {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 2px 2px 0 0 #2c2c2c !important;
+    transition: transform 0.1s steps(1), box-shadow 0.1s steps(1) !important;
+}
+
+.skill-item:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 4px 4px 0 0 #2c2c2c !important;
+}
+
+/* ===== 像素风文章卡片 ===== */
+.article-card {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 3px 3px 0 0 #2c2c2c !important;
+    transition: transform 0.1s steps(1), box-shadow 0.1s steps(1) !important;
+}
+
+.article-card:hover {
+    transform: translate(-3px, -3px) !important;
+    box-shadow: 6px 6px 0 0 #2c2c2c !important;
+}
+
+/* ===== 像素风留言板 ===== */
+.guestbook-entry {
+    border-radius: 0 !important;
+    border: 2px solid #2c2c2c !important;
+    box-shadow: 2px 2px 0 0 #2c2c2c !important;
+}
+
+/* ===== 加载/渐入动画 - 像素步进 ===== */
+.fade-in {
+    animation: pixel-fade-in 0.4s steps(8) both !important;
+}
+
+@keyframes pixel-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== 页面顶部装饰条（彩虹像素） ===== */
+body::before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        #e74c3c 0%, #e74c3c 14.28%,
+        #e67e22 14.28%, #e67e22 28.57%,
+        #f1c40f 28.57%, #f1c40f 42.86%,
+        #2ecc71 42.86%, #2ecc71 57.14%,
+        #3498db 57.14%, #3498db 71.43%,
+        #9b59b6 71.43%, #9b59b6 85.71%,
+        #e91e63 85.71%, #e91e63 100%
+    );
+    z-index: 9999;
+    image-rendering: pixelated;
+}
+
+/* ===== 暗黑模式下的像素调整 ===== */
+[data-theme='dark'] .pixel-layer {
+    opacity: 0.7;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track {
+    background: #1a1230;
+    border-left-color: #b8a4ff;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+    background: #7c3aed;
+    border-color: #b8a4ff;
+}
+
+/* ===== 响应式：小屏幕减少装饰 ===== */
+@media (max-width: 768px) {
+    .pixel-cloud-1,
+    .pixel-cloud-2 {
+        display: none;
+    }
+
+    .pixel-star-3,
+    .pixel-star-4,
+    .pixel-star-5 {
+        display: none;
+    }
+
+    .pixel-fish-2,
+    .pixel-fish-3 {
+        display: none;
+    }
+
+    .pixel-mushroom-2 {
+        display: none;
+    }
+}
