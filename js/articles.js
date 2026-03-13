@@ -105,6 +105,15 @@ class ArticlesManager {
                 tags: ['Docker', '容器化', '开发环境'],
                 excerpt: '使用 Docker Compose 快速搭建本地 Hadoop/Hive/Spark/Kafka 开发环境，告别繁琐的环境配置，一键启动大数据集群。',
                 category: '开发工具'
+            },
+            {
+                id: 13,
+                title: 'Shuffle 的魔法：MapReduce 工作原理逐步详解',
+                date: '2024-06-20',
+                tags: ['MapReduce', 'Hadoop', '大数据', 'Shuffle'],
+                excerpt: '深入 MapReduce 编程模型：Map 阶段、Shuffle 阶段与 Reduce 阶段的全流程解析，揭秘 Shuffle 如何实现跨节点数据重新分组与排序，助你彻底理解分布式计算核心机制。',
+                category: '计算引擎',
+                link: 'https://github.com/wyu215005/The-Magic-of-Shuffle-A-Step-by-Step-Guide-to-MapReduce'
             }
         ];
 
