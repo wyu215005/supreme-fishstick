@@ -745,40 +745,29 @@ body::before {
     position: fixed;
     pointer-events: none;
     z-index: 99999;
-    font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace;
-    font-size: 1rem;
-    font-weight: 900;
-    color: #ffd700;
-    text-shadow:
-        2px 2px 0 #b8860b,
-        -1px -1px 0 #b8860b,
-        1px -1px 0 #b8860b,
-        -1px 1px 0 #b8860b;
-    white-space: nowrap;
+    font-size: 1.5rem;
     user-select: none;
     transform: translate(-50%, -50%);
-    /* 0.9s duration with 12 discrete steps creates a pixel-art "chunky" float feel */
-    animation: coin-float-up 0.9s steps(12) forwards;
-    letter-spacing: 0.05em;
-    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.8));
+    animation: coin-float-up 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.95)) drop-shadow(0 2px 8px rgba(255, 160, 0, 0.6));
 }
 
 @keyframes coin-float-up {
     0% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.4);
+        transform: translate(-50%, -50%) scale(1.6);
     }
-    30% {
+    20% {
         opacity: 1;
-        transform: translate(-50%, -90px) scale(1.1);
+        transform: translate(-50%, calc(-50% - 30px)) scale(1.2);
     }
-    70% {
-        opacity: 0.7;
-        transform: translate(-50%, -140px) scale(0.9);
+    60% {
+        opacity: 0.85;
+        transform: translate(-50%, calc(-50% - 80px)) scale(1.0);
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -200px) scale(0.6);
+        transform: translate(-50%, calc(-50% - 130px)) scale(0.7);
     }
 }
 

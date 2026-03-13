@@ -13,10 +13,10 @@ class GachaponApp {
         this.storageKey = 'gachapon_dishes';
         this.dishes = this.loadDishes();
         this.isSpinning = false;
-        this.colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#70a1ff', '#ff6b81', '#a29bfe'];
-        this.spinDuration = 2200;
+        this.colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#70a1ff', '#ff6b81', '#a29bfe', '#fd79a8', '#00cec9'];
+        this.spinDuration = 2400;
         this.progressTimer = null;
-        this.CONFETTI_COUNT = 55;
+        this.CONFETTI_COUNT = 70;
 
         this.init();
     }
@@ -77,7 +77,7 @@ class GachaponApp {
         if (!dome) return;
         
         dome.innerHTML = '';
-        const count = 15;
+        const count = 16;
         
         for (let i = 0; i < count; i++) {
             const ball = document.createElement('div');
@@ -85,23 +85,26 @@ class GachaponApp {
 
             const row = Math.floor(i / 5);
             const col = i % 5;
-            const x = 30 + (col * 42) + (Math.random() * 12);
-            const y = 210 - (row * 34) + (Math.random() * 10);
+            const x = 28 + (col * 42) + (Math.random() * 14);
+            const y = 210 - (row * 36) + (Math.random() * 12);
 
             ball.style.backgroundColor = this.colors[i % this.colors.length];
             ball.style.left = `${x}px`;
+
+            const initRot = Math.round(Math.random() * 360);
+            ball.style.setProperty('--init-rot', `${initRot}deg`);
+            ball.style.transform = `rotate(${initRot}deg)`;
 
             if (isStatic) {
                 ball.style.top = `${y}px`;
             } else {
                 ball.style.top = `-50px`;
                 setTimeout(() => {
-                    ball.style.transition = 'top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    ball.style.transition = 'top 0.55s cubic-bezier(0.34, 1.56, 0.64, 1)';
                     ball.style.top = `${y}px`;
-                }, i * 40);
+                }, i * 45);
             }
 
-            ball.style.transform = `rotate(${Math.random() * 360}deg)`;
             dome.appendChild(ball);
         }
     }
@@ -145,25 +148,38 @@ class GachaponApp {
         this.setDisplay('◉ LOADING..');
         this.setLights('spinning');
         knob.style.transition = 'transform 0.3s ease-in-out';
-        knob.style.transform = 'rotate(90deg) scale(1.05)';
+        knob.style.transform = 'rotate(90deg) scale(1.08)';
         this.updateProgress(0);
 
-        // 阶段 2: 摇晃 (300ms-2000ms) - 机器摇晃，球乱飞
+        // 阶段 2: 摇晃 (300ms-2200ms) - 机器摇晃，球乱飞
         setTimeout(() => {
             this.setDisplay('▶ SPINNING..');
             machine.classList.add('machine-spinning');
-            knob.style.transition = 'transform 0.8s linear';
+            knob.style.transition = 'transform 0.9s linear';
             knob.style.transform = 'rotate(720deg)';
 
-            // 球开始随机运动
+            // 球开始随机运动 - 更混乱的运动轨迹
             balls.forEach((ball, i) => {
                 setTimeout(() => {
-                    ball.style.transition = 'all 0.35s ease-out';
-                    ball.style.left = `${Math.random() * 200 + 25}px`;
-                    ball.style.top = `${Math.random() * 180 + 35}px`;
-                    ball.style.transform = `rotate(${Math.random() * 1080}deg) scale(${0.85 + Math.random() * 0.3})`;
-                }, i * 25);
+                    ball.style.transition = 'all 0.3s ease-out';
+                    ball.style.animation = 'none';
+                    ball.style.left = `${Math.random() * 205 + 20}px`;
+                    ball.style.top = `${Math.random() * 185 + 30}px`;
+                    ball.style.transform = `rotate(${Math.random() * 1440}deg) scale(${0.8 + Math.random() * 0.4})`;
+                }, i * 22);
             });
+
+            // 中间阶段：球持续混乱运动
+            setTimeout(() => {
+                balls.forEach((ball, i) => {
+                    setTimeout(() => {
+                        ball.style.transition = 'all 0.28s ease-in-out';
+                        ball.style.left = `${Math.random() * 200 + 22}px`;
+                        ball.style.top = `${Math.random() * 180 + 35}px`;
+                        ball.style.transform = `rotate(${Math.random() * 2160}deg) scale(${0.75 + Math.random() * 0.5})`;
+                    }, i * 18);
+                });
+            }, 600);
 
             // 进度条动画
             const startTime = performance.now();
@@ -179,7 +195,7 @@ class GachaponApp {
             this.progressTimer = requestAnimationFrame(tick);
         }, 300);
 
-        // 阶段 3: 出结果 (2200ms) - 停止摇晃，弹出球，显示结果
+        // 阶段 3: 出结果 (2400ms) - 停止摇晃，弹出球，显示结果
         setTimeout(() => {
             if (this.progressTimer) {
                 cancelAnimationFrame(this.progressTimer);
@@ -187,7 +203,7 @@ class GachaponApp {
             this.updateProgress(1);
 
             machine.classList.remove('machine-spinning');
-            knob.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            knob.style.transition = 'transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)';
             knob.style.transform = 'rotate(0deg)';
 
             const result = this.dishes[Math.floor(Math.random() * this.dishes.length)];
@@ -207,7 +223,7 @@ class GachaponApp {
                     this.setDisplay('● READY');
                     this.setLights('ready');
                 }, 3000);
-            }, 700);
+            }, 800);
         }, this.spinDuration);
     }
 
@@ -227,40 +243,52 @@ class GachaponApp {
         ball.style.backgroundColor = this.colors[Math.floor(Math.random() * this.colors.length)];
         tray.appendChild(ball);
 
-        setTimeout(() => ball.remove(), 1500);
+        setTimeout(() => ball.remove(), 1800);
     }
 
     /**
-     * 显示彩带/烟花效果
+     * 显示彩带/烟花效果 - 更绚丽
      */
     showConfetti() {
-        const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#eccc68', '#ff6b81', '#7bed9f', '#a29bfe'];
+        const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#ffd700', '#ff6b81', '#7bed9f', '#a29bfe', '#fd79a8', '#00cec9', '#fdcb6e'];
+        const shapes = ['circle', 'square', 'star'];
         const count = this.CONFETTI_COUNT;
 
         for (let i = 0; i < count; i++) {
             setTimeout(() => {
                 const piece = document.createElement('div');
                 const color = colors[Math.floor(Math.random() * colors.length)];
-                const size = 6 + Math.random() * 7;
+                const size = 5 + Math.random() * 9;
                 const xStart = Math.random() * window.innerWidth;
-                const drift = (Math.random() - 0.5) * 160;
-                const duration = 1600 + Math.random() * 1800;
-                const isCircle = Math.random() > 0.45;
+                const drift = (Math.random() - 0.5) * 200;
+                const duration = 1400 + Math.random() * 2000;
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+                let borderRadius = '50%';
+                let extra = '';
+                if (shape === 'square') borderRadius = '2px';
+                if (shape === 'star') {
+                    borderRadius = '0';
+                    extra = 'clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);';
+                }
 
                 piece.style.cssText = `
                     position: fixed;
-                    top: 10px;
+                    top: -10px;
                     left: ${xStart}px;
                     width: ${size}px;
                     height: ${size}px;
                     background: ${color};
-                    border-radius: ${isCircle ? '50%' : '2px'};
+                    border-radius: ${borderRadius};
                     z-index: 20000;
                     pointer-events: none;
+                    ${extra}
                 `;
                 document.body.appendChild(piece);
 
                 const startT = performance.now();
+                const swingAmplitude = 30 + Math.random() * 40;
+                const swingFreq = 2 + Math.random() * 2;
                 const animate = (now) => {
                     const elapsed = now - startT;
                     const progress = elapsed / duration;
@@ -268,17 +296,18 @@ class GachaponApp {
                         piece.remove();
                         return;
                     }
-                    const y = progress * window.innerHeight * 1.1;
-                    const x = drift * progress;
-                    const rotation = progress * (isCircle ? 360 : 900);
-                    const scale = 1 - progress * 0.6;
-                    const opacity = progress > 0.75 ? (1 - progress) * 4 : 1;
+                    const y = progress * window.innerHeight * 1.15;
+                    const swing = Math.sin(progress * Math.PI * swingFreq) * swingAmplitude;
+                    const x = drift * progress + swing;
+                    const rotation = progress * (shape === 'circle' ? 360 : 1080);
+                    const scale = 1 - progress * 0.5;
+                    const opacity = progress > 0.7 ? (1 - progress) * 3.33 : 1;
                     piece.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`;
                     piece.style.opacity = opacity;
                     requestAnimationFrame(animate);
                 };
                 requestAnimationFrame(animate);
-            }, i * 20);
+            }, i * 18);
         }
     }
 
