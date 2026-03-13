@@ -38,7 +38,8 @@ class ArticlesManager {
                 date: '2024-02-15',
                 tags: ['Spark', 'PySpark', '大数据'],
                 excerpt: '从 RDD 底层原理到 DataFrame/Dataset API 高阶用法，深入理解 Spark 执行模型、宽窄依赖与 Shuffle 机制。',
-                category: '计算引擎'
+                category: '计算引擎',
+                link: 'https://github.com/wyu215005/PySpark-Big-Data-Processing-From-RDD-to-DataFrame?tab=readme-ov-file'
             },
             {
                 id: 5,
