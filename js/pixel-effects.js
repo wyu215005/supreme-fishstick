@@ -101,6 +101,15 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
                     io.unobserve(entry.target);
+                    // 入场动画播完后移除渐入类：pixel-reveal 的 opacity:0 基底若残留，
+                    // 之后任何替换 animation 的样式（如扭蛋机 machine-shake !important）
+                    // 都会让元素瞬间透明消失
+                    var el = entry.target;
+                    var delay = parseInt(el.style.animationDelay, 10) || 0;
+                    setTimeout(function () {
+                        el.classList.remove('pixel-reveal', 'in-view');
+                        el.style.animationDelay = '';
+                    }, delay + 500);
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });

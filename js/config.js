@@ -21,10 +21,10 @@ const SITE_CONFIG = {
 
   // 联系方式
   contact: [
-    { platform: 'Bilibili', emoji: '📺', info: 'B站：FishRain' },
-    { platform: 'GitHub', emoji: '💻', info: 'GitHub：FishRain' },
-    { platform: 'Email', emoji: '📧', info: '邮箱：fishrain@example.com' },
-    { platform: 'WeChat', emoji: '💬', info: '微信：FishRain2024' }
+    { platform: 'Bilibili', emoji: '📺', info: 'B站：49854183', url: 'https://space.bilibili.com/49854183' },
+    { platform: 'GitHub', emoji: '💻', info: 'GitHub：wyu215005', url: 'https://github.com/wyu215005' },
+    { platform: 'Email', emoji: '📧', info: '邮箱：wy03239@qq.com', url: 'mailto:wy03239@qq.com' },
+    { platform: 'Xiaohongshu', emoji: '📕', info: '小红书：3404187620' }
   ],
 
   // Supabase 数据库（留言板云端存储）

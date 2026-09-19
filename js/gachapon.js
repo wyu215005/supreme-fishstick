@@ -62,11 +62,19 @@ class GachaponApp {
     }
 
     /**
-     * 加载菜品列表
+     * 加载菜品列表（本地数据损坏时自动恢复默认菜单）
      */
     loadDishes() {
-        const saved = localStorage.getItem(this.storageKey);
-        return saved ? JSON.parse(saved) : [...this.defaultDishes];
+        try {
+            const saved = localStorage.getItem(this.storageKey);
+            const parsed = saved ? JSON.parse(saved) : null;
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                return parsed.filter(d => typeof d === 'string' && d.trim());
+            }
+        } catch (e) {
+            console.warn('本地菜品数据损坏，已恢复默认菜单', e);
+        }
+        return [...this.defaultDishes];
     }
 
     /**
@@ -129,12 +137,19 @@ class GachaponApp {
      * 开始转动 - 三阶段动画
      */
     spin() {
-        if (this.isSpinning || this.dishes.length === 0) {
+        if (this.isSpinning) {
+            UTILS.showToast('扭蛋机正在转动中，稍等一下下~ ⏳');
+            return;
+        }
+        if (this.dishes.length === 0) {
             UTILS.showToast('请先添加菜品！');
             return;
         }
 
         this.isSpinning = true;
+        // 转动会话标记：用于让上一轮的延迟重置在新的转动开始后自动失效
+        this.spinToken = (this.spinToken || 0) + 1;
+        const token = this.spinToken;
         // 清理可能残留的进度动画
         if (this.progressTimer) {
             cancelAnimationFrame(this.progressTimer);
@@ -218,8 +233,9 @@ class GachaponApp {
                 this.showResult(result);
                 this.createCapsules(false);
                 this.isSpinning = false;
-                // 延迟重置为 READY
+                // 延迟重置为 READY；若期间已开始新一轮转动则放弃，避免覆盖状态
                 setTimeout(() => {
+                    if (token !== this.spinToken) return;
                     this.setDisplay('● READY');
                     this.setLights('ready');
                 }, 3000);

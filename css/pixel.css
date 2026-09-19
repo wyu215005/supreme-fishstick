@@ -219,6 +219,12 @@ body {
     background-image: none !important;
 }
 
+/* 可点击的联系图标（B站/GitHub/邮箱外链） */
+a.contact-icon {
+    text-decoration: none;
+    color: inherit;
+}
+
 .contact-icon:hover {
     transform: translate(-2px, -2px) !important;
     box-shadow: 4px 4px 0 0 #2c2c2c !important;
@@ -927,6 +933,11 @@ body {
 
 .pixel-reveal.in-view {
     animation: pixel-fade-in 0.4s steps(8) both;
+}
+
+/* 保险：扭蛋机转动时强制不透明，防止渐入类残留与 machine-shake 冲突导致机器消失 */
+.machine-spinning {
+    opacity: 1;
 }
 
 /* ===== 技能条滚动触发阶梯填充 ===== */
