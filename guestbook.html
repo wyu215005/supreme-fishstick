@@ -6,7 +6,7 @@
     <meta name="description" content="FishRain 留言板 —— 欢迎留下你的想法、建议或问题。">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data: https:; font-src 'self' file:; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data: https:; font-src 'self' file:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta property="og:title" content="留言板 - FishRain">
     <meta property="og:description" content="欢迎留下你的想法、建议或问题。">
     <meta property="og:type" content="website">
@@ -70,6 +70,9 @@
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">提交留言</button>
             </form>
+
+            <!-- 数据库连接状态 -->
+            <div id="dbStatus" class="db-status" role="status" aria-live="polite">📡 正在连接数据库...</div>
 
             <!-- 留言列表 -->
             <div id="messageList" class="message-list" role="feed" aria-label="留言列表">

@@ -686,6 +686,17 @@ img {
     box-shadow: 2px 2px 0 0 #2c2c2c !important;
 }
 
+/* 数据库连接状态徽标 */
+.db-status {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 1.2rem 0;
+    letter-spacing: 0.02em;
+}
+.db-status[data-state="online"] { color: #27ae60; }
+.db-status[data-state="offline"] { color: #e67e22; }
+
 /* ===== 加载/渐入动画 - 像素步进 ===== */
 .fade-in {
     animation: pixel-fade-in 0.4s steps(8) both !important;

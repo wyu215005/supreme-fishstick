@@ -27,6 +27,14 @@ const SITE_CONFIG = {
     { platform: 'WeChat', emoji: '💬', info: '微信：FishRain2024' }
   ],
 
+  // Supabase 数据库（留言板云端存储）
+  // anon key 是设计上可公开的前端密钥，数据安全由数据库端 RLS 行级安全策略保障
+  supabase: {
+    url: 'https://mwfsxxniocpcvsvvwjvz.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13ZnN4eG5pb2NwY3ZzdnZ3anZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk3NTQ4MTQsImV4cCI6MjEwNTMzMDgxNH0.hUrc64-IudHsF6xcVDsdB68O5D14h6dnBQUGSdRsudE',
+    guestbookTable: 'guestbook_messages'
+  },
+
   // 打卡系统配置
   checkin: {
     storageKey: 'fishrain_checkin',
