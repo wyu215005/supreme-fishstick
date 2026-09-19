@@ -151,14 +151,15 @@ class ArticlesManager {
             return;
         }
 
-        container.innerHTML = this.filteredArticles.map(article => {
+        container.innerHTML = this.filteredArticles.map((article, index) => {
             const safeLink = article.link && /^https:\/\/github\.com\//.test(article.link)
                 ? article.link : null;
             const githubBadge = safeLink
                 ? `<span class="article-github-badge">🔗 查看 GitHub 项目</span>`
                 : '';
+            const cardDelay = `style="animation-delay: ${Math.min(index * 60, 360)}ms"`;
             const cardHtml = `
-                <div class="article-card fade-in${safeLink ? ' article-card-linked' : ''}" role="article"${safeLink ? '' : ' tabindex="0"'} aria-label="${article.title}">
+                <div class="article-card fade-in${safeLink ? ' article-card-linked' : ''}" ${cardDelay} role="article"${safeLink ? '' : ' tabindex="0"'} aria-label="${article.title}">
                     <div class="article-card-header">
                         <div class="article-card-title">${this.escapeHtml(article.title)}</div>
                     </div>

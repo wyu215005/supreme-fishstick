@@ -18,6 +18,7 @@ class FishingCheckin {
   init() {
     this.render();
     this.bindEvents();
+    this.startBubbles();
   }
 
   /**
@@ -103,47 +104,67 @@ class FishingCheckin {
   playAnimation() {
     const cat = document.querySelector('.cat-sprite');
     const scene = document.querySelector('.fishing-scene');
-    
-    if (cat && scene) {
-      // 小猫甩杆动画
-      cat.classList.add('casting');
-      scene.classList.add('casting');
-      
-      // 生成飞出的鱼
-      this.createFlyingFish();
-      
-      setTimeout(() => {
-        cat.classList.remove('casting');
-        scene.classList.remove('casting');
-        UTILS.showToast('🎉 钓到一条小鱼！');
-        this.render();
-      }, this.config.animationDuration);
+
+    if (!cat || !scene) return;
+
+    // 小猫甩杆动画
+    cat.classList.add('casting');
+    scene.classList.add('casting');
+
+    // 甩杆后 0.35s：水花四溅，鱼儿跃出
+    setTimeout(() => this.createCatchBurst(scene), 350);
+
+    setTimeout(() => {
+      cat.classList.remove('casting');
+      scene.classList.remove('casting');
+      // 小猫开心跳跃
+      cat.classList.add('happy');
+      setTimeout(() => cat.classList.remove('happy'), 900);
+      UTILS.showToast('🎉 钓到一条小鱼！');
+      this.render();
+    }, this.config.animationDuration);
+  }
+
+  /**
+   * 钓鱼成功的粒子爆发（鱼/爱心/水花）
+   */
+  createCatchBurst(scene) {
+    const emojis = ['🐟', '🐠', '💖', '✨', '💦'];
+    for (let i = 0; i < 7; i++) {
+      const p = document.createElement('div');
+      p.className = 'fx-particle';
+      p.textContent = emojis[i % emojis.length];
+      p.style.left = '50%';
+      p.style.top = '60%';
+      p.style.setProperty('--dx', (Math.random() * 180 - 90) + 'px');
+      p.style.setProperty('--dy', (-70 - Math.random() * 100) + 'px');
+      p.style.setProperty('--rot', (Math.random() * 160 - 80) + 'deg');
+      p.style.setProperty('--dur', (0.7 + Math.random() * 0.6) + 's');
+      p.style.fontSize = (1.2 + Math.random() * 0.8) + 'rem';
+      scene.appendChild(p);
+      setTimeout(() => p.remove(), 1400);
     }
   }
 
   /**
-   * 创建飞出的鱼动画
+   * 水族箱气泡：钓鱼场景内缓缓上浮
    */
-  createFlyingFish() {
+  startBubbles() {
     const scene = document.querySelector('.fishing-scene');
     if (!scene) return;
-
-    const fish = document.createElement('div');
-    fish.className = 'flying-fish';
-    fish.textContent = '🐟';
-    fish.style.cssText = `
-      position: absolute;
-      font-size: 2rem;
-      bottom: 40px;
-      left: 50px;
-      animation: fishFly 1s ease-out;
-      z-index: 10;
-      pointer-events: none;
-    `;
-    
-    scene.appendChild(fish);
-    
-    setTimeout(() => fish.remove(), 1000);
+    setInterval(() => {
+      if (document.hidden) return;
+      if (document.querySelectorAll('.fishing-bubble').length >= 8) return;
+      const bubble = document.createElement('div');
+      bubble.className = 'fishing-bubble';
+      const size = 4 + Math.random() * 8;
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+      bubble.style.left = (8 + Math.random() * 84) + '%';
+      bubble.style.animationDuration = (2.6 + Math.random() * 2.8) + 's';
+      scene.appendChild(bubble);
+      bubble.addEventListener('animationend', () => bubble.remove());
+    }, 850);
   }
 
   /**
@@ -250,15 +271,15 @@ class FishingCheckin {
     statsContainer.innerHTML = `
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;">
         <div class="stat-card">
-          <div class="stat-number">${this.data.totalDays}</div>
+          <div class="stat-number" data-target="${this.data.totalDays}">0</div>
           <div class="stat-label">总学习天数</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">${this.data.currentStreak}</div>
+          <div class="stat-number" data-target="${this.data.currentStreak}">0</div>
           <div class="stat-label">连续打卡</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">${(this.data.totalDays / 30).toFixed(1)}</div>
+          <div class="stat-number" data-target="${(this.data.totalDays / 30).toFixed(1)}" data-decimals="1">0.0</div>
           <div class="stat-label">月均学习</div>
         </div>
       </div>
@@ -266,6 +287,29 @@ class FishingCheckin {
         ${streakText}
       </div>
     `;
+
+    this.animateNumbers(statsContainer);
+  }
+
+  /**
+   * 统计数字滚动动画
+   */
+  animateNumbers(container) {
+    container.querySelectorAll('.stat-number').forEach(numEl => {
+      const target = parseFloat(numEl.dataset.target) || 0;
+      const decimals = parseInt(numEl.dataset.decimals || '0', 10);
+      const duration = 650;
+      const start = performance.now();
+      numEl.classList.add('bump');
+      const step = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        numEl.textContent = decimals ? val.toFixed(decimals) : String(Math.round(val));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
   }
 
   /**

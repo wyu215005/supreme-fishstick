@@ -1,6 +1,6 @@
 /**
  * 轮播图模块
- * 处理图片自动轮换、导航和指示器功能
+ * 处理图片自动轮换、导航、指示器、键盘与触摸滑动
  */
 
 class Carousel {
@@ -13,6 +13,7 @@ class Carousel {
         this.currentIndex = 0;
         this.autoPlayInterval = null;
         this.autoPlayDelay = 5000; // 5秒切换一次
+        this.touchStartX = null;
 
         this.init();
     }
@@ -38,6 +39,29 @@ class Carousel {
             indicator.addEventListener('click', () => this.goToSlide(index));
         });
 
+        // 键盘左右方向键切换
+        document.addEventListener('keydown', (e) => {
+            if (e.target && e.target.matches('input, textarea, select')) return;
+            if (e.key === 'ArrowLeft') this.prevSlide();
+            else if (e.key === 'ArrowRight') this.nextSlide();
+        });
+
+        // 触摸滑动切换
+        this.container.addEventListener('touchstart', (e) => {
+            this.touchStartX = e.touches[0].clientX;
+            this.stopAutoPlay();
+        }, { passive: true });
+
+        this.container.addEventListener('touchend', (e) => {
+            if (this.touchStartX === null) return;
+            const dx = e.changedTouches[0].clientX - this.touchStartX;
+            if (Math.abs(dx) > 45) {
+                dx < 0 ? this.nextSlide() : this.prevSlide();
+            }
+            this.touchStartX = null;
+            this.startAutoPlay();
+        }, { passive: true });
+
         // 自动播放
         this.startAutoPlay();
 
@@ -51,16 +75,14 @@ class Carousel {
      */
     showSlide(index) {
         // 隐藏所有幻灯片
-        this.slides.forEach(slide => slide.classList.remove('active'));
-        this.indicators.forEach(indicator => indicator.classList.remove('active'));
+        this.slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
 
-        // 显示当前幻灯片
-        if (this.slides[index]) {
-            this.slides[index].classList.add('active');
-        }
-        if (this.indicators[index]) {
-            this.indicators[index].classList.add('active');
-        }
+        this.indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
+            indicator.setAttribute('aria-selected', String(i === index));
+        });
 
         this.currentIndex = index;
     }
@@ -115,10 +137,3 @@ document.addEventListener('DOMContentLoaded', function() {
         new Carousel('carousel');
     }
 });
-
-
-
-
-
-
-

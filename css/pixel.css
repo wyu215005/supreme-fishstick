@@ -793,3 +793,287 @@ body::before {
         display: none;
     }
 }
+
+/* ============================================================
+   ✨ 可爱交互增强包 v2
+   跑马灯 / 轮播动画 / 滚动渐入 / 回顶按钮 / 气泡粒子
+   ============================================================ */
+
+/* ===== 顶部跑马灯横幅 ===== */
+.pixel-banner {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.pixel-banner-inner {
+    display: inline-block;
+    animation: banner-scroll 20s linear infinite;
+}
+
+.pixel-banner-inner:hover {
+    animation-play-state: paused;
+}
+
+@keyframes banner-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+[data-theme='dark'] .pixel-banner {
+    background: #2a1f4d;
+}
+
+/* ===== 主题切换平滑过渡 ===== */
+body {
+    transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+.dark-mode-toggle {
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.dark-mode-toggle:hover {
+    transform: rotate(20deg) scale(1.15) !important;
+}
+
+.dark-mode-toggle:active {
+    transform: rotate(180deg) scale(0.9) !important;
+}
+
+/* ===== 轮播图：缓慢缩放 + 文案弹跳入场 ===== */
+.carousel-slide {
+    transform: scale(1.06);
+    transition: opacity 0.7s ease, transform 6s ease;
+}
+
+.carousel-slide.active {
+    transform: scale(1);
+}
+
+.carousel-caption h2,
+.carousel-caption p {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.carousel-slide.active .carousel-caption h2 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.25s;
+}
+
+.carousel-slide.active .carousel-caption p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.42s;
+}
+
+/* 轮播图内漂浮像素装饰 */
+.carousel-float {
+    position: absolute;
+    image-rendering: pixelated;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: carousel-bob 3.2s ease-in-out infinite;
+}
+
+@keyframes carousel-bob {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+/* ===== 技术卡片 emoji 待机浮动 + 悬停摇摆 ===== */
+.tech-card .tech-emoji {
+    animation: emoji-idle 3s ease-in-out infinite;
+}
+
+.tech-card:nth-child(2) .tech-emoji { animation-delay: 0.2s; }
+.tech-card:nth-child(3) .tech-emoji { animation-delay: 0.4s; }
+.tech-card:nth-child(4) .tech-emoji { animation-delay: 0.6s; }
+.tech-card:nth-child(5) .tech-emoji { animation-delay: 0.8s; }
+.tech-card:nth-child(6) .tech-emoji { animation-delay: 1.0s; }
+
+@keyframes emoji-idle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.tech-card:hover .tech-emoji {
+    animation: emoji-wiggle 0.5s ease-in-out;
+}
+
+@keyframes emoji-wiggle {
+    0%, 100% { transform: rotate(0) scale(1); }
+    25% { transform: rotate(-14deg) scale(1.3); }
+    75% { transform: rotate(14deg) scale(1.3); }
+}
+
+/* ===== 滚动渐入（由 JS 添加 pixel-reveal / in-view） ===== */
+.pixel-reveal {
+    opacity: 0;
+}
+
+.pixel-reveal.in-view {
+    animation: pixel-fade-in 0.4s steps(8) both;
+}
+
+/* ===== 技能条滚动触发阶梯填充 ===== */
+html.js-anim .skill-bar-fill {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1.1s steps(14) 0.2s;
+}
+
+html.js-anim .skill-item.in-view .skill-bar-fill {
+    transform: scaleX(1);
+}
+
+/* ===== 回到顶部按钮（像素小鱼） ===== */
+.back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 26px;
+    width: 48px;
+    height: 48px;
+    background: #ffd166 url('../images/pixel-fish.svg') no-repeat center/62%;
+    image-rendering: pixelated;
+    border: 3px solid #2c2c2c;
+    box-shadow: 3px 3px 0 0 #2c2c2c;
+    cursor: url('../images/pixel-mushroom.svg') 4 2, pointer;
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s, box-shadow 0.1s steps(1), background-color 0.2s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: #ffe08a;
+    transform: translateY(-3px);
+    box-shadow: 5px 5px 0 0 #2c2c2c;
+}
+
+.back-to-top:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0 0 #2c2c2c;
+}
+
+[data-theme='dark'] .back-to-top {
+    border-color: #b8a4ff;
+    box-shadow: 3px 3px 0 0 #b8a4ff;
+}
+
+[data-theme='dark'] .back-to-top:hover {
+    box-shadow: 5px 5px 0 0 #b8a4ff;
+}
+
+/* ===== 小猫待机浮动 / 开心跳跃 ===== */
+.cat-sprite {
+    animation: cat-idle 2.4s ease-in-out infinite;
+}
+
+@keyframes cat-idle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+.cat-sprite.casting {
+    animation: catCasting 0.8s ease;
+}
+
+.cat-sprite.happy {
+    animation: cat-happy 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cat-happy {
+    0%, 100% { transform: translateY(0) scale(1); }
+    30% { transform: translateY(-20px) scale(1.18); }
+    60% { transform: translateY(-4px) scale(1.06); }
+}
+
+/* ===== 钓鱼场景：水族箱气泡 ===== */
+.fishing-scene {
+    overflow: hidden;
+}
+
+.fishing-bubble {
+    position: absolute;
+    bottom: -12px;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    animation: bubble-rise linear forwards;
+    pointer-events: none;
+}
+
+@keyframes bubble-rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    12% { opacity: 0.85; }
+    100% { transform: translateY(-230px) translateX(16px); opacity: 0; }
+}
+
+/* 钓鱼成功的粒子爆发（鱼/爱心/水花） */
+.fx-particle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 20;
+    user-select: none;
+    animation: fx-fly var(--dur, 0.9s) ease-out forwards;
+}
+
+@keyframes fx-fly {
+    0% { opacity: 1; transform: translate(0, 0) scale(0.5) rotate(0deg); }
+    100% { opacity: 0; transform: translate(var(--dx, 0px), var(--dy, -90px)) scale(1.2) rotate(var(--rot, 40deg)); }
+}
+
+/* 统计数字弹跳 */
+.stat-number.bump {
+    animation: stat-bump 0.55s ease;
+}
+
+@keyframes stat-bump {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.35); color: #ffd700; }
+    100% { transform: scale(1); }
+}
+
+/* ===== 鱼雨彩蛋（Konami） ===== */
+.pixel-fish-rain {
+    position: fixed;
+    top: -32px;
+    z-index: 99999;
+    pointer-events: none;
+    user-select: none;
+    animation: fish-rain-fall linear forwards;
+}
+
+@keyframes fish-rain-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(115vh) rotate(360deg); opacity: 0.85; }
+}
+
+/* ===== 减少动画偏好（无障碍） ===== */
+@media (prefers-reduced-motion: reduce) {
+    .pixel-banner-inner,
+    .pixel-sprite,
+    .cat-sprite,
+    .tech-card .tech-emoji,
+    .carousel-float,
+    .pixel-coin-fx,
+    .pixel-fish-rain,
+    .fishing-bubble {
+        animation: none !important;
+    }
+
+    .carousel-slide {
+        transition: opacity 0.3s ease;
+        transform: none;
+    }
+}

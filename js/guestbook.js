@@ -10,6 +10,7 @@ class Guestbook {
         this.MAX_NAME_LEN = 20;          // 名字最长 20 字
         this.MAX_CONTENT_LEN = 300;      // 留言最长 300 字
         this.RATE_LIMIT_MS = 60 * 1000;  // 每分钟最多 1 条
+        this.AVATAR_EMOJIS = ['🐟', '🐠', '🐡', '🐙', '🦐', '🦑', '🦞', '🐳', '🦈'];
         this.messages = this.loadMessages();
         this.init();
     }
@@ -151,12 +152,24 @@ class Guestbook {
         container.innerHTML = this.messages.map((message, index) => `
             <div class="message-item slide-in" style="animation-delay: ${Math.min(index * 0.05, 0.5)}s">
                 <div class="message-header">
-                    <div class="message-author">✨ ${this.escapeHtml(message.name)}</div>
+                    <div class="message-author">${this.avatarOf(message)} ${this.escapeHtml(message.name)}</div>
                     <div class="message-date">${this.escapeHtml(message.date)}</div>
                 </div>
                 <div class="message-content">${this.escapeHtml(message.content)}</div>
             </div>
         `).join('');
+    }
+
+    /**
+     * 根据留言生成固定的海洋生物头像（同一条留言头像不变）
+     */
+    avatarOf(message) {
+        const seed = String(message.id || message.name || '');
+        let hash = 0;
+        for (let i = 0; i < seed.length; i++) {
+            hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+        }
+        return this.AVATAR_EMOJIS[hash % this.AVATAR_EMOJIS.length];
     }
 
     /**
