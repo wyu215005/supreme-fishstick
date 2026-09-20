@@ -176,11 +176,13 @@ class ArticlesManager {
         // 更新文章数量显示
         const countElement = document.getElementById('articleCount');
         if (countElement) {
-            countElement.textContent = `共找到 ${this.filteredArticles.length} 篇文章`;
+            countElement.textContent = this.filteredArticles.length === this.articles.length
+                ? `书架上一共 ${this.filteredArticles.length} 篇，随便翻～`
+                : `帮你翻到了 ${this.filteredArticles.length} 篇`;
         }
 
         if (this.filteredArticles.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">没有找到相关文章，试试其他搜索条件吧</p>';
+            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">这里空空的～换个关键词或标签再试试？</p>';
             return;
         }
 

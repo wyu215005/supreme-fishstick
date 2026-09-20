@@ -142,7 +142,7 @@ class GachaponApp {
             return;
         }
         if (this.dishes.length === 0) {
-            UTILS.showToast('请先添加菜品！');
+            UTILS.showToast('菜单空空的，先加点想吃的吧！');
             return;
         }
 
@@ -385,22 +385,22 @@ class GachaponApp {
         const val = input.value.trim();
         
         if (!val) {
-            UTILS.showToast('请输入菜品名称！');
+            UTILS.showToast('还没写菜名呢～');
             return;
         }
 
         if (val.length > 20) {
-            UTILS.showToast('菜品名称不能超过 20 个字符！');
+            UTILS.showToast('菜名有点长啦，20 字以内就好～');
             return;
         }
 
         if (this.dishes.length >= 30) {
-            UTILS.showToast('菜品已达上限（30个），请先删除一些再添加！');
+            UTILS.showToast('菜单塞满啦（30 个），删掉几个再加吧～');
             return;
         }
 
         if (this.dishes.includes(val)) {
-            UTILS.showToast('该菜品已存在！');
+            UTILS.showToast('这道菜已经在菜单里啦！');
             return;
         }
 
@@ -408,7 +408,7 @@ class GachaponApp {
         this.save();
         this.renderDishList();
         input.value = '';
-        UTILS.showToast('✅ 添加成功！');
+        UTILS.showToast('✅ 加进菜单啦！');
     }
 
     /**
@@ -435,11 +435,11 @@ class GachaponApp {
      * 恢复默认菜单
      */
     reset() {
-        if (confirm('确定要恢复默认菜单吗？')) {
+        if (confirm('真的要把菜单换回默认款吗？')) {
             this.dishes = [...this.defaultDishes];
             this.save();
             this.renderDishList();
-            UTILS.showToast('🔄 已恢复默认菜单');
+            UTILS.showToast('🔄 默认菜单回来啦');
         }
     }
 

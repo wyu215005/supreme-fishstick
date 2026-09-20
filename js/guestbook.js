@@ -186,23 +186,23 @@ class Guestbook {
 
         // 校验非空
         if (!name || !content) {
-            UTILS.showToast('请填写完整信息！');
+            UTILS.showToast('名字和想说的话都要填哦～');
             return;
         }
 
         // 长度校验
         if (name.length > this.MAX_NAME_LEN) {
-            UTILS.showToast(`名字不能超过 ${this.MAX_NAME_LEN} 个字符！`);
+            UTILS.showToast(`名字有点长啦，${this.MAX_NAME_LEN} 字以内就好～`);
             return;
         }
         if (content.length > this.MAX_CONTENT_LEN) {
-            UTILS.showToast(`留言不能超过 ${this.MAX_CONTENT_LEN} 个字符！`);
+            UTILS.showToast(`话有点多啦，${this.MAX_CONTENT_LEN} 字以内就好～`);
             return;
         }
 
         // 频率限制
         if (this.isRateLimited()) {
-            UTILS.showToast('留言太频繁了，请稍等一分钟再试 😅');
+            UTILS.showToast('慢一点～喝口水，一分钟后再来留一次 😅');
             return;
         }
 
@@ -213,7 +213,7 @@ class Guestbook {
         try {
             if (this.online) {
                 saved = await this.submitToCloud(name, content);
-                UTILS.showToast('留言成功！已同步到云端 💌');
+                UTILS.showToast('到此一游成功！你的爪印上墙啦 🐾');
             } else {
                 saved = this.saveLocal({
                     id: Date.now(),
@@ -221,7 +221,7 @@ class Guestbook {
                     content: content,
                     date: new Date().toLocaleString('zh-CN')
                 });
-                UTILS.showToast('当前为本地模式，留言仅保存在本机 📴');
+                UTILS.showToast('爪印先记在小本本上啦 📴');
             }
         } catch (e) {
             console.error('云端写入失败，转为本地保存:', e);
@@ -231,7 +231,7 @@ class Guestbook {
                 content: content,
                 date: new Date().toLocaleString('zh-CN')
             });
-            UTILS.showToast('云端保存失败，已转为本地保存 😥');
+            UTILS.showToast('哎呀，墙暂时够不着，先记在小本本上 😥');
         }
 
         this.messages.unshift(saved);
@@ -261,7 +261,7 @@ class Guestbook {
         const btn = document.querySelector('#messageForm button[type="submit"]');
         if (!btn) return;
         btn.disabled = disabled;
-        btn.textContent = disabled ? '正在提交...' : '提交留言';
+        btn.textContent = disabled ? '正在上墙…' : '到此一游 🐾';
     }
 
     /**
@@ -286,9 +286,9 @@ class Guestbook {
         const el = document.getElementById('dbStatus');
         if (!el) return;
         const map = {
-            loading: '📡 正在连接数据库...',
-            online: '☁️ 云端同步已开启 · 留言全站共享',
-            offline: '📴 数据库暂不可达 · 本地模式（留言仅本机可见）'
+            loading: '🚪 正在开门…',
+            online: '📍 到此一游墙已开门 · 大家的爪印都挂在这啦',
+            offline: '📴 墙今天在打盹，爪印先记在小本本上（仅本机可见）'
         };
         el.textContent = map[state] || '';
         el.dataset.state = state;
@@ -302,7 +302,7 @@ class Guestbook {
         if (!container) return;
 
         if (this.messages.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">还没有留言，快来留下第一条吧！</p>';
+            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">墙上还空空的，来第一个到此一游吧！🐾</p>';
             return;
         }
 

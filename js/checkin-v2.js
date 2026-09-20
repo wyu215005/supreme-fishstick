@@ -264,9 +264,9 @@ class FishingCheckin {
     const statsContainer = document.querySelector('.checkin-stats');
     if (!statsContainer) return;
 
-    const streakText = this.data.currentStreak > 0 
-      ? `🔥 连续${this.data.currentStreak}天` 
-      : '开始打卡吧';
+    const streakText = this.data.currentStreak > 0
+      ? `🔥 已经连续钓 ${this.data.currentStreak} 天啦`
+      : '鱼塘还没开张，来钓第一条吧 🐟';
 
     statsContainer.innerHTML = `
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;">
