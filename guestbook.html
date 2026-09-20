@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FishRain 到此一游墙 —— 路过就留个爪印，想说什么都可以！">
+    <meta name="description" content="FishRain 到此一游墙 —— 留言一分钟，保存一辈子（服务器跑路除外）">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data: https:; font-src 'self' file:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self';">
     <meta property="og:title" content="到此一游墙 - FishRain">
-    <meta property="og:description" content="路过就留个爪印，想说什么都可以！">
+    <meta property="og:description" content="留言一分钟，保存一辈子（服务器跑路除外）">
     <meta property="og:type" content="website">
     <title>到此一游墙 - FishRain</title>
     <link rel="icon" type="image/svg+xml" href="images/pixel-fish.svg">
@@ -50,32 +50,32 @@
     <div class="container">
         <h1 style="text-align: center; margin: 2rem 0; font-size: 2rem; font-weight: 600;">📍 到此一游墙</h1>
         <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">
-            路过就留个爪印吧！想说啥都行，每一条我都会认真看～
+            留言一分钟，保存一辈子（服务器跑路除外）
         </p>
 
         <div class="guestbook-container">
             <!-- 留言表单 -->
             <form id="messageForm" class="message-form card" novalidate>
                 <div class="form-group">
-                    <label for="messageName" class="form-label">你是谁呀</label>
+                    <label for="messageName" class="form-label">尊姓大名</label>
                     <input type="text" id="messageName" class="form-input"
-                        placeholder="叫你什么好呢～（最多 20 字）"
+                        placeholder="江湖人称（限 20 字，本站不查户口）"
                         maxlength="20" required autocomplete="nickname">
                 </div>
                 <div class="form-group">
-                    <label for="messageContent" class="form-label">想说的话</label>
+                    <label for="messageContent" class="form-label">留点什么</label>
                     <textarea id="messageContent" class="form-textarea"
-                        placeholder="随便聊聊：夸夸我、提提建议、打个招呼都行～（最多 300 字）"
+                        placeholder="吐槽、彩虹屁、玄学祝福一律欢迎（限 300 字）"
                         maxlength="300" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">到此一游 🐾</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">到此一游</button>
             </form>
 
             <!-- 数据库连接状态 -->
-            <div id="dbStatus" class="db-status" role="status" aria-live="polite">🚪 正在开门…</div>
+            <div id="dbStatus" class="db-status" role="status" aria-live="polite">📡 正在敲服务器的门…</div>
 
             <!-- 留言列表 -->
-            <div id="messageList" class="message-list" role="feed" aria-label="到此一游爪印列表">
+            <div id="messageList" class="message-list" role="feed" aria-label="到此一游留言列表">
                 <!-- 留言将通过 JavaScript 动态生成 -->
             </div>
         </div>

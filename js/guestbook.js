@@ -186,23 +186,23 @@ class Guestbook {
 
         // 校验非空
         if (!name || !content) {
-            UTILS.showToast('名字和想说的话都要填哦～');
+            UTILS.showToast('名字和内容都得填，别让墙空着');
             return;
         }
 
         // 长度校验
         if (name.length > this.MAX_NAME_LEN) {
-            UTILS.showToast(`名字有点长啦，${this.MAX_NAME_LEN} 字以内就好～`);
+            UTILS.showToast(`名字太长了，户口本装不下（限 ${this.MAX_NAME_LEN} 字）`);
             return;
         }
         if (content.length > this.MAX_CONTENT_LEN) {
-            UTILS.showToast(`话有点多啦，${this.MAX_CONTENT_LEN} 字以内就好～`);
+            UTILS.showToast(`小作文收一收（限 ${this.MAX_CONTENT_LEN} 字）`);
             return;
         }
 
         // 频率限制
         if (this.isRateLimited()) {
-            UTILS.showToast('慢一点～喝口水，一分钟后再来留一次 😅');
+            UTILS.showToast('手速太快，服务器需要冷静 1 分钟');
             return;
         }
 
@@ -213,7 +213,7 @@ class Guestbook {
         try {
             if (this.online) {
                 saved = await this.submitToCloud(name, content);
-                UTILS.showToast('到此一游成功！你的爪印上墙啦 🐾');
+                UTILS.showToast('已上墙！多年后考古有据可查');
             } else {
                 saved = this.saveLocal({
                     id: Date.now(),
@@ -221,7 +221,7 @@ class Guestbook {
                     content: content,
                     date: new Date().toLocaleString('zh-CN')
                 });
-                UTILS.showToast('爪印先记在小本本上啦 📴');
+                UTILS.showToast('云端摸鱼中，先记本地小本本');
             }
         } catch (e) {
             console.error('云端写入失败，转为本地保存:', e);
@@ -231,7 +231,7 @@ class Guestbook {
                 content: content,
                 date: new Date().toLocaleString('zh-CN')
             });
-            UTILS.showToast('哎呀，墙暂时够不着，先记在小本本上 😥');
+            UTILS.showToast('云端罢工，已转存本地小本本');
         }
 
         this.messages.unshift(saved);
@@ -261,7 +261,7 @@ class Guestbook {
         const btn = document.querySelector('#messageForm button[type="submit"]');
         if (!btn) return;
         btn.disabled = disabled;
-        btn.textContent = disabled ? '正在上墙…' : '到此一游 🐾';
+        btn.textContent = disabled ? '正在盖戳…' : '到此一游';
     }
 
     /**
@@ -286,9 +286,9 @@ class Guestbook {
         const el = document.getElementById('dbStatus');
         if (!el) return;
         const map = {
-            loading: '🚪 正在开门…',
-            online: '📍 到此一游墙已开门 · 大家的爪印都挂在这啦',
-            offline: '📴 墙今天在打盹，爪印先记在小本本上（仅本机可见）'
+            loading: '📡 正在敲服务器的门…',
+            online: '📡 服务器活着 · 留言实时同步，欢迎考古',
+            offline: '📴 服务器摸鱼中 · 留言暂存本地，稍后自动补交'
         };
         el.textContent = map[state] || '';
         el.dataset.state = state;
@@ -302,7 +302,7 @@ class Guestbook {
         if (!container) return;
 
         if (this.messages.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">墙上还空空的，来第一个到此一游吧！🐾</p>';
+            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">整面墙就差你这条镇场子了</p>';
             return;
         }
 

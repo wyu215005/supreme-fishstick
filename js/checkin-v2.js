@@ -265,8 +265,8 @@ class FishingCheckin {
     if (!statsContainer) return;
 
     const streakText = this.data.currentStreak > 0
-      ? `🔥 已经连续钓 ${this.data.currentStreak} 天啦`
-      : '鱼塘还没开张，来钓第一条吧 🐟';
+      ? `🔥 连钓 ${this.data.currentStreak} 天，鱼塘快被你承包了`
+      : '鱼塘空空如也，开业就差你这一竿';
 
     statsContainer.innerHTML = `
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;">

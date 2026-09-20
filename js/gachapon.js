@@ -138,11 +138,11 @@ class GachaponApp {
      */
     spin() {
         if (this.isSpinning) {
-            UTILS.showToast('扭蛋机正在转动中，稍等一下下~ ⏳');
+            UTILS.showToast('正在摇，别催，机器会害羞');
             return;
         }
         if (this.dishes.length === 0) {
-            UTILS.showToast('菜单空空的，先加点想吃的吧！');
+            UTILS.showToast('菜单是空的，先加点想吃的');
             return;
         }
 
@@ -385,22 +385,22 @@ class GachaponApp {
         const val = input.value.trim();
         
         if (!val) {
-            UTILS.showToast('还没写菜名呢～');
+            UTILS.showToast('菜名还没填，报上菜名！');
             return;
         }
 
         if (val.length > 20) {
-            UTILS.showToast('菜名有点长啦，20 字以内就好～');
+            UTILS.showToast('菜名太长，老板记不住（限 20 字）');
             return;
         }
 
         if (this.dishes.length >= 30) {
-            UTILS.showToast('菜单塞满啦（30 个），删掉几个再加吧～');
+            UTILS.showToast('菜单满了（上限 30 道），先删后加');
             return;
         }
 
         if (this.dishes.includes(val)) {
-            UTILS.showToast('这道菜已经在菜单里啦！');
+            UTILS.showToast('这道菜已经在了，点重了');
             return;
         }
 
@@ -408,7 +408,7 @@ class GachaponApp {
         this.save();
         this.renderDishList();
         input.value = '';
-        UTILS.showToast('✅ 加进菜单啦！');
+        UTILS.showToast('✅ 已加入干饭豪华套餐');
     }
 
     /**
@@ -435,11 +435,11 @@ class GachaponApp {
      * 恢复默认菜单
      */
     reset() {
-        if (confirm('真的要把菜单换回默认款吗？')) {
+        if (confirm('确定恢复出厂菜单？私藏菜会全部清空！')) {
             this.dishes = [...this.defaultDishes];
             this.save();
             this.renderDishList();
-            UTILS.showToast('🔄 默认菜单回来啦');
+            UTILS.showToast('🔄 出厂菜单已就位');
         }
     }
 
