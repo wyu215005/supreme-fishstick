@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 网站全局配置
  * 统一管理网站的配置信息，避免代码重复
  */
@@ -16,7 +16,7 @@ const SITE_CONFIG = {
     { name: '文章', href: 'articles.html', emoji: '📚' },
     { name: '关于我', href: 'about.html', emoji: '👤' },
     { name: '扭蛋机', href: 'gachapon.html', emoji: '🎰' },
-    { name: '留言板', href: 'guestbook.html', emoji: '💬' }
+    { name: '留言墙', href: 'guestbook.html', emoji: '💬' }
   ],
 
   // 联系方式

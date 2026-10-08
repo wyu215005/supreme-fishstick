@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" data-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FishRain 到此一游墙 —— 留言一分钟，保存一辈子（服务器跑路除外）">
+    <meta name="description" content="FishRain 留言墙 —— 写下你的想法、建议或祝福，每一条留言都会保存下来。">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data: https:; font-src 'self' file:; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self';">
-    <meta property="og:title" content="到此一游墙 - FishRain">
-    <meta property="og:description" content="留言一分钟，保存一辈子（服务器跑路除外）">
+    <meta property="og:title" content="留言墙 - FishRain">
+    <meta property="og:description" content="写下你的想法、建议或祝福，每一条留言都会保存下来。">
     <meta property="og:type" content="website">
-    <title>到此一游墙 - FishRain</title>
+    <title>留言墙 - FishRain</title>
     <link rel="icon" type="image/svg+xml" href="images/pixel-fish.svg">
     <script src="js/theme-init.js"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -33,7 +33,7 @@
                 <li><a href="articles.html" class="nav-link">文章</a></li>
                 <li><a href="about.html" class="nav-link">关于我</a></li>
                 <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
-                <li><a href="guestbook.html" class="nav-link active">留言板</a></li>
+                <li><a href="guestbook.html" class="nav-link active">留言墙</a></li>
             </ul>
             <div class="nav-controls">
                 <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
@@ -48,35 +48,35 @@
 
     <!-- 主容器 -->
     <div class="container">
-        <h1 style="text-align: center; margin: 2rem 0; font-size: 2rem; font-weight: 600;">📍 到此一游墙</h1>
+        <h1 style="text-align: center; margin: 2rem 0; font-size: 2rem; font-weight: 600;">📌 留言墙</h1>
         <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">
-            留言一分钟，保存一辈子（服务器跑路除外）
+            写下你的想法、建议或祝福，每一张便签都会保存在这里
         </p>
 
         <div class="guestbook-container">
             <!-- 留言表单 -->
             <form id="messageForm" class="message-form card" novalidate>
                 <div class="form-group">
-                    <label for="messageName" class="form-label">尊姓大名</label>
+                    <label for="messageName" class="form-label">你的名字</label>
                     <input type="text" id="messageName" class="form-input"
-                        placeholder="江湖人称（限 20 字，本站不查户口）"
+                        placeholder="怎么称呼你（最多 20 字）"
                         maxlength="20" required autocomplete="nickname">
                 </div>
                 <div class="form-group">
-                    <label for="messageContent" class="form-label">留点什么</label>
+                    <label for="messageContent" class="form-label">便签内容</label>
                     <textarea id="messageContent" class="form-textarea"
-                        placeholder="吐槽、彩虹屁、玄学祝福一律欢迎（限 300 字）"
+                        placeholder="想说什么都可以，建议、想法或问候都欢迎（最多 300 字）"
                         maxlength="300" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">到此一游</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">贴上便签</button>
             </form>
 
             <!-- 数据库连接状态 -->
-            <div id="dbStatus" class="db-status" role="status" aria-live="polite">📡 正在敲服务器的门…</div>
+            <div id="dbStatus" class="db-status" role="status" aria-live="polite">📡 正在连接云端…</div>
 
-            <!-- 留言列表 -->
-            <div id="messageList" class="message-list" role="feed" aria-label="到此一游留言列表">
-                <!-- 留言将通过 JavaScript 动态生成 -->
+            <!-- 留言便签墙 -->
+            <div id="messageList" class="message-list" role="feed" aria-label="留言便签墙">
+                <!-- 便签将通过 JavaScript 动态生成 -->
             </div>
         </div>
     </div>

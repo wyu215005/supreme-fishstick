@@ -1099,3 +1099,270 @@ html.js-anim .skill-item.in-view .skill-bar-fill {
         transform: none;
     }
 }
+
+/* ============================================================
+   🌧️ FishRain 蓝紫雨色主题（Rain & Fish）
+   雨是蓝，鱼映紫 —— 全站统一蓝紫色调
+   ============================================================ */
+
+/* ===== 开源像素字体（Press Start 2P, OFL 协议，本地托管） ===== */
+@font-face {
+    font-family: 'PressStart2P';
+    src: url('../fonts/press-start-2p.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Logo 使用像素字体，蓝紫双色阴影 */
+.nav-logo a {
+    font-family: 'PressStart2P', 'Courier New', monospace !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0 !important;
+    color: #5b6ff0 !important;
+    text-shadow: 2px 2px 0 #b7a4f5 !important;
+}
+
+[data-theme='dark'] .nav-logo a {
+    color: #a5b4ff !important;
+    text-shadow: 2px 2px 0 #6d4fc4 !important;
+}
+
+/* 统计数字使用像素字体 */
+.stat-number,
+.stat-value,
+.checkin-days {
+    font-family: 'PressStart2P', 'Courier New', monospace !important;
+    letter-spacing: 0 !important;
+}
+
+/* ===== 轮播背景：蓝紫雨色渐变 ===== */
+.carousel-bg-1 {
+    background:
+        linear-gradient(rgba(20, 18, 60, 0.25), rgba(20, 18, 60, 0.25)),
+        repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(140, 160, 255, 0.09) 15px, rgba(140, 160, 255, 0.09) 16px),
+        repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(140, 160, 255, 0.09) 15px, rgba(140, 160, 255, 0.09) 16px),
+        linear-gradient(135deg, #3b4fd8 0%, #5f4fd0 55%, #8b5cd6 100%) !important;
+}
+
+.carousel-bg-2 {
+    background:
+        linear-gradient(rgba(15, 15, 55, 0.28), rgba(15, 15, 55, 0.28)),
+        repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(120, 200, 255, 0.08) 15px, rgba(120, 200, 255, 0.08) 16px),
+        repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(120, 200, 255, 0.08) 15px, rgba(120, 200, 255, 0.08) 16px),
+        linear-gradient(135deg, #2848b8 0%, #4a4fd0 50%, #7b52c9 100%) !important;
+}
+
+.carousel-bg-3 {
+    background:
+        linear-gradient(rgba(18, 16, 58, 0.26), rgba(18, 16, 58, 0.26)),
+        repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(190, 160, 255, 0.09) 15px, rgba(190, 160, 255, 0.09) 16px),
+        repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(190, 160, 255, 0.09) 15px, rgba(190, 160, 255, 0.09) 16px),
+        linear-gradient(135deg, #4a3fb8 0%, #6d4fc4 55%, #9b6ee0 100%) !important;
+}
+
+/* ===== 主要按钮：蓝紫渐变 ===== */
+.btn-primary,
+#messageForm button[type='submit'],
+.gachapon-spin-btn {
+    background: linear-gradient(135deg, #5b6ff0 0%, #8b6cf0 100%) !important;
+    color: #ffffff !important;
+    border: 3px solid #2c2c2c !important;
+    box-shadow: 4px 4px 0 0 #2c2c2c !important;
+}
+
+.btn-primary:hover,
+#messageForm button[type='submit']:hover,
+.gachapon-spin-btn:hover {
+    background: linear-gradient(135deg, #4c5fe8 0%, #7b5cd6 100%) !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0 0 #2c2c2c !important;
+}
+
+.btn-primary:active,
+#messageForm button[type='submit']:active,
+.gachapon-spin-btn:active {
+    transform: translate(1px, 1px) !important;
+    box-shadow: 2px 2px 0 0 #2c2c2c !important;
+}
+
+/* 次级按钮描边风格 */
+.btn:not(.btn-primary) {
+    border: 3px solid #4a3fb8 !important;
+    color: #4a3fb8 !important;
+    box-shadow: 4px 4px 0 0 rgba(74, 63, 184, 0.35) !important;
+}
+
+.btn:not(.btn-primary):hover {
+    background: #eeecff !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0 0 rgba(74, 63, 184, 0.45) !important;
+}
+
+[data-theme='dark'] .btn:not(.btn-primary) {
+    border-color: #b8a4ff !important;
+    color: #cabaff !important;
+    box-shadow: 4px 4px 0 0 rgba(184, 164, 255, 0.3) !important;
+}
+
+[data-theme='dark'] .btn:not(.btn-primary):hover {
+    background: #322a55 !important;
+}
+
+/* ===== 页脚：蓝紫渐变 ===== */
+.footer {
+    background: linear-gradient(135deg, #34348c 0%, #6d4fc4 100%) !important;
+    border-top: 3px solid #2c2c2c !important;
+}
+
+/* ===== 钓鱼打卡场景：深海蓝紫 ===== */
+.fishing-checkin {
+    background: linear-gradient(135deg, #26308f 0%, #4a3fb8 60%, #6d4fc4 100%) !important;
+}
+
+/* ===== 跑马灯：蓝紫底 ===== */
+.pixel-banner {
+    background: linear-gradient(90deg, #34348c, #6d4fc4, #34348c) !important;
+}
+
+/* ============================================================
+   📌 留言便签墙（每条留言 = 一张贴在墙上的便签）
+   ============================================================ */
+
+/* 便签墙容器：瀑布流多列 */
+.message-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    align-items: flex-start;
+}
+
+/* 便签本体 */
+.message-item.note {
+    flex: 1 1 250px;
+    max-width: 100%;
+    position: relative;
+    border: none !important;
+    border-radius: 2px;
+    padding: 1.7rem 1.35rem 1.4rem;
+    box-shadow: 0 6px 16px rgba(58, 47, 107, 0.18);
+    transform: rotate(var(--note-rotate, 0deg));
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    backdrop-filter: none;
+}
+
+.message-item.note:hover {
+    transform: rotate(0deg) translateY(-6px) !important;
+    box-shadow: 0 14px 28px rgba(58, 47, 107, 0.3) !important;
+    border: none !important;
+}
+
+/* 五种便签底色：雨蓝 / 鱼紫 / 浅海 / 珊瑚 / 星光 */
+.note-color-1 { background: #edf0ff !important; }
+.note-color-2 { background: #f1ecfd !important; }
+.note-color-3 { background: #e6f6fd !important; }
+.note-color-4 { background: #fdeee8 !important; }
+.note-color-5 { background: #fff9e6 !important; }
+
+/* 顶部半透明胶带（纯 CSS 绘制） */
+.note-tape {
+    position: absolute;
+    top: -12px;
+    width: 80px;
+    height: 24px;
+    background: rgba(139, 108, 240, 0.42);
+    background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 3px, transparent 3px 7px);
+    box-shadow: 0 1px 4px rgba(40, 30, 90, 0.18);
+    clip-path: polygon(3% 0, 97% 0, 100% 18%, 100% 82%, 97% 100%, 3% 100%, 0 82%, 0 18%);
+    pointer-events: none;
+}
+
+.note-tape.tape-left {
+    left: 20px;
+    transform: rotate(-4deg);
+}
+
+.note-tape.tape-right {
+    right: 20px;
+    transform: rotate(3deg);
+}
+
+/* 便签内文字 */
+.message-item.note .message-header {
+    border-bottom: 1px dashed rgba(58, 47, 107, 0.22) !important;
+    padding-bottom: 0.7rem !important;
+    margin-bottom: 0.8rem !important;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.message-item.note .message-author {
+    color: #3a2f6b !important;
+    font-weight: 700;
+}
+
+.message-item.note .message-date {
+    font-family: 'PressStart2P', 'Courier New', monospace;
+    font-size: 0.55rem !important;
+    color: #8578b8 !important;
+}
+
+.message-item.note .message-content {
+    color: #45406e !important;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+/* 暗色模式便签：夜雨配色 */
+[data-theme='dark'] .note-color-1 { background: #2a3050 !important; }
+[data-theme='dark'] .note-color-2 { background: #32295a !important; }
+[data-theme='dark'] .note-color-3 { background: #223a52 !important; }
+[data-theme='dark'] .note-color-4 { background: #4a2e3e !important; }
+[data-theme='dark'] .note-color-5 { background: #47402a !important; }
+
+[data-theme='dark'] .message-item.note .message-author { color: #d8d2ff !important; }
+[data-theme='dark'] .message-item.note .message-content { color: #c5c0e8 !important; }
+[data-theme='dark'] .message-item.note .message-date { color: #9a8fd0 !important; }
+[data-theme='dark'] .message-item.note .message-header {
+    border-bottom: 1px dashed rgba(200, 190, 255, 0.28) !important;
+}
+[data-theme='dark'] .note-tape {
+    background: rgba(184, 164, 255, 0.32);
+}
+
+/* 云端状态徽标 */
+.db-status {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #6d5fc0;
+    padding: 0.6rem 0.9rem;
+    border: 2px dashed rgba(109, 95, 192, 0.4);
+    border-radius: 4px;
+    background: rgba(139, 108, 240, 0.06);
+}
+
+[data-theme='dark'] .db-status {
+    color: #b8a4ff;
+    border-color: rgba(184, 164, 255, 0.35);
+    background: rgba(184, 164, 255, 0.07);
+}
+
+/* 表单输入框聚焦：蓝紫光圈 */
+.form-input:focus,
+.form-textarea:focus {
+    outline: none !important;
+    border-color: #8b6cf0 !important;
+    box-shadow: 3px 3px 0 0 rgba(139, 108, 240, 0.35) !important;
+}
+
+/* 标签 hover 统一蓝紫 */
+.tag:hover {
+    background: #eeecff !important;
+    color: #4a3fb8 !important;
+}
+
+[data-theme='dark'] .tag:hover {
+    background: #322a55 !important;
+    color: #cabaff !important;
+}

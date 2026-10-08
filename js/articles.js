@@ -177,12 +177,12 @@ class ArticlesManager {
         const countElement = document.getElementById('articleCount');
         if (countElement) {
             countElement.textContent = this.filteredArticles.length === this.articles.length
-                ? `共 ${this.filteredArticles.length} 篇，含坑量 100%`
-                : `筛出 ${this.filteredArticles.length} 篇，请查收`;
+                ? `共 ${this.filteredArticles.length} 篇文章`
+                : `找到 ${this.filteredArticles.length} 篇相关文章`;
         }
 
         if (this.filteredArticles.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">搜了个寂寞，换个词试试？</p>';
+            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">没有找到相关文章，试试其他搜索条件吧</p>';
             return;
         }
 

@@ -186,23 +186,23 @@ class Guestbook {
 
         // 校验非空
         if (!name || !content) {
-            UTILS.showToast('名字和内容都得填，别让墙空着');
+            UTILS.showToast('请填写名字和留言内容');
             return;
         }
 
         // 长度校验
         if (name.length > this.MAX_NAME_LEN) {
-            UTILS.showToast(`名字太长了，户口本装不下（限 ${this.MAX_NAME_LEN} 字）`);
+            UTILS.showToast(`名字不能超过 ${this.MAX_NAME_LEN} 字`);
             return;
         }
         if (content.length > this.MAX_CONTENT_LEN) {
-            UTILS.showToast(`小作文收一收（限 ${this.MAX_CONTENT_LEN} 字）`);
+            UTILS.showToast(`留言不能超过 ${this.MAX_CONTENT_LEN} 字`);
             return;
         }
 
         // 频率限制
         if (this.isRateLimited()) {
-            UTILS.showToast('手速太快，服务器需要冷静 1 分钟');
+            UTILS.showToast('操作太频繁了，请一分钟后再试');
             return;
         }
 
@@ -213,7 +213,7 @@ class Guestbook {
         try {
             if (this.online) {
                 saved = await this.submitToCloud(name, content);
-                UTILS.showToast('已上墙！多年后考古有据可查');
+                UTILS.showToast('留言成功，便签已上墙 📌');
             } else {
                 saved = this.saveLocal({
                     id: Date.now(),
@@ -221,7 +221,7 @@ class Guestbook {
                     content: content,
                     date: new Date().toLocaleString('zh-CN')
                 });
-                UTILS.showToast('云端摸鱼中，先记本地小本本');
+                UTILS.showToast('云端暂不可用，已保存在本浏览器');
             }
         } catch (e) {
             console.error('云端写入失败，转为本地保存:', e);
@@ -231,7 +231,7 @@ class Guestbook {
                 content: content,
                 date: new Date().toLocaleString('zh-CN')
             });
-            UTILS.showToast('云端罢工，已转存本地小本本');
+            UTILS.showToast('云端保存失败，已转为本地保存');
         }
 
         this.messages.unshift(saved);
@@ -261,7 +261,7 @@ class Guestbook {
         const btn = document.querySelector('#messageForm button[type="submit"]');
         if (!btn) return;
         btn.disabled = disabled;
-        btn.textContent = disabled ? '正在盖戳…' : '到此一游';
+        btn.textContent = disabled ? '正在提交…' : '贴上便签';
     }
 
     /**
@@ -286,46 +286,63 @@ class Guestbook {
         const el = document.getElementById('dbStatus');
         if (!el) return;
         const map = {
-            loading: '📡 正在敲服务器的门…',
-            online: '📡 服务器活着 · 留言实时同步，欢迎考古',
-            offline: '📴 服务器摸鱼中 · 留言暂存本地，稍后自动补交'
+            loading: '📡 正在连接云端…',
+            online: '📡 云端同步已开启 · 留言全站可见',
+            offline: '📴 云端暂不可用 · 便签先保存在本浏览器'
         };
         el.textContent = map[state] || '';
         el.dataset.state = state;
     }
 
     /**
-     * 渲染留言列表
+     * 渲染留言便签墙
      */
     renderMessages() {
         const container = document.getElementById('messageList');
         if (!container) return;
 
         if (this.messages.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">整面墙就差你这条镇场子了</p>';
+            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">还没有留言，来贴第一张便签吧</p>';
             return;
         }
 
-        container.innerHTML = this.messages.map((message, index) => `
-            <div class="message-item slide-in" style="animation-delay: ${Math.min(index * 0.05, 0.5)}s">
+        container.innerHTML = this.messages.map((message, index) => {
+            const hash = this.hashOf(String(message.id || message.name || ''));
+            const color = `note-color-${hash % 5 + 1}`;
+            const rotate = ((hash >>> 3) % 11 - 5) * 0.6;
+            const tape = ((hash >>> 6) & 1) ? 'tape-right' : 'tape-left';
+            return `
+            <div class="message-item note ${color} slide-in" style="animation-delay: ${Math.min(index * 0.05, 0.5)}s; --note-rotate: ${rotate}deg">
+                <div class="note-tape ${tape}"></div>
                 <div class="message-header">
                     <div class="message-author">${this.avatarOf(message)} ${this.escapeHtml(message.name)}</div>
                     <div class="message-date">${this.escapeHtml(message.date)}</div>
                 </div>
                 <div class="message-content">${this.escapeHtml(message.content)}</div>
-            </div>
-        `).join('');
+            </div>`;
+        }).join('');
+    }
+
+    /**
+     * 字符串转固定哈希（同一条留言刷新后颜色/角度不变）
+     * 末尾做雪崩混合，保证连续小 id 的低位也有足够差异
+     */
+    hashOf(seed) {
+        let hash = 5381;
+        for (let i = 0; i < seed.length; i++) {
+            hash = ((hash * 33) ^ seed.charCodeAt(i)) >>> 0;
+        }
+        hash ^= hash >>> 16;
+        hash = Math.imul(hash, 2246822507) >>> 0;
+        hash ^= hash >>> 13;
+        return hash >>> 0;
     }
 
     /**
      * 根据留言生成固定的海洋生物头像（同一条留言头像不变）
      */
     avatarOf(message) {
-        const seed = String(message.id || message.name || '');
-        let hash = 0;
-        for (let i = 0; i < seed.length; i++) {
-            hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-        }
+        const hash = this.hashOf(String(message.id || message.name || ''));
         return this.AVATAR_EMOJIS[hash % this.AVATAR_EMOJIS.length];
     }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" data-theme="">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +33,7 @@
                 <li><a href="articles.html" class="nav-link">文章</a></li>
                 <li><a href="about.html" class="nav-link">关于我</a></li>
                 <li><a href="gachapon.html" class="nav-link active">扭蛋机</a></li>
-                <li><a href="guestbook.html" class="nav-link">留言板</a></li>
+                <li><a href="guestbook.html" class="nav-link">留言墙</a></li>
             </ul>
             <div class="nav-controls">
                 <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
@@ -95,9 +95,9 @@
 
             <!-- 菜品管理面板 -->
             <div class="dish-manager">
-                <h2 style="font-size: 1.1rem; margin-bottom: 18px; font-weight: 700; letter-spacing: -0.01em;">🍽️ 干饭清单</h2>
+                <h2 style="font-size: 1.1rem; margin-bottom: 18px; font-weight: 700; letter-spacing: -0.01em;">🍽️ 菜品管理</h2>
                 <div style="display: flex; gap: 8px; margin-bottom: 1.25rem;">
-                    <input type="text" id="dishInput" placeholder="报菜名！（限 20 字）"
+                    <input type="text" id="dishInput" placeholder="输入菜品名称（最多 20 字）"
                         maxlength="20"
                         style="flex:1; padding:10px 14px; border-radius:8px; border:1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;"
                         aria-label="菜品名称">
@@ -106,7 +106,7 @@
 
                 <div id="dishList" class="dish-grid"></div>
 
-                <button id="resetBtn" style="margin-top: 24px; width: 100%; background: none; border: 1px dashed var(--border-color); padding: 10px; cursor: pointer; color: var(--text-muted); border-radius: 8px; font-size: 0.85rem; transition: all 0.2s;">后悔药：恢复出厂菜单</button>
+                <button id="resetBtn" style="margin-top: 24px; width: 100%; background: none; border: 1px dashed var(--border-color); padding: 10px; cursor: pointer; color: var(--text-muted); border-radius: 8px; font-size: 0.85rem; transition: all 0.2s;">恢复默认菜单</button>
             </div>
         </div>
     </div>

@@ -265,8 +265,8 @@ class FishingCheckin {
     if (!statsContainer) return;
 
     const streakText = this.data.currentStreak > 0
-      ? `🔥 连钓 ${this.data.currentStreak} 天，鱼塘快被你承包了`
-      : '鱼塘空空如也，开业就差你这一竿';
+      ? `🔥 已连续打卡 ${this.data.currentStreak} 天`
+      : '还没有打卡记录，从今天开始吧';
 
     statsContainer.innerHTML = `
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;">
