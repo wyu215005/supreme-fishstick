@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" shape-rendering="crispEdges" viewBox="0 0 20 20">
+  <!-- FishRain 像素小水母：蓝紫主题（雨是蓝，鱼映紫） -->
+  <style>
+    .jelly { animation: bob 3.4s ease-in-out infinite; }
+    .bell { transform-origin: 10px 6px; animation: squeeze 3.4s ease-in-out infinite; }
+    .tent { animation: sway 3.4s ease-in-out infinite; }
+    .t2, .t3 { animation-delay: -0.6s; }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(0.5px); } }
+    @keyframes squeeze { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.05, 0.95); } }
+    @keyframes sway { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(0.4px); } }
+    @media (prefers-reduced-motion: reduce) { .jelly, .bell, .tent { animation: none; } }
+  </style>
+
+  <g class="jelly">
+    <g class="bell">
+      <!-- 伞盖主体 -->
+      <rect x="6" y="2" width="8" height="1" fill="#7b6cf0"/>
+      <rect x="7" y="3" width="8" height="1" fill="#7b6cf0"/>
+      <rect x="7" y="4" width="9" height="1" fill="#7b6cf0"/>
+      <rect x="7" y="5" width="9" height="1" fill="#7b6cf0"/>
+      <rect x="6" y="6" width="11" height="1" fill="#7b6cf0"/>
+      <rect x="3" y="7" width="14" height="1" fill="#7b6cf0"/>
+      <rect x="2" y="8" width="15" height="1" fill="#7b6cf0"/>
+      <rect x="2" y="9" width="15" height="1" fill="#7b6cf0"/>
+      <rect x="2" y="10" width="15" height="1" fill="#7b6cf0"/>
+      <!-- 高光 -->
+      <rect x="5" y="3" width="2" height="1" fill="#d8d2ff"/>
+      <rect x="4" y="4" width="3" height="1" fill="#d8d2ff"/>
+      <rect x="4" y="5" width="3" height="1" fill="#d8d2ff"/>
+      <rect x="4" y="6" width="2" height="1" fill="#d8d2ff"/>
+      <!-- 轮廓 -->
+      <rect x="6" y="1" width="8" height="1" fill="#3a2f8f"/>
+      <rect x="5" y="2" width="1" height="1" fill="#3a2f8f"/>
+      <rect x="14" y="2" width="1" height="1" fill="#3a2f8f"/>
+      <rect x="4" y="3" width="1" height="1" fill="#3a2f8f"/>
+      <rect x="15" y="3" width="1" height="1" fill="#3a2f8f"/>
+      <rect x="3" y="4" width="1" height="2" fill="#3a2f8f"/>
+      <rect x="16" y="4" width="1" height="2" fill="#3a2f8f"/>
+      <rect x="2" y="6" width="1" height="2" fill="#3a2f8f"/>
+      <rect x="17" y="6" width="1" height="2" fill="#3a2f8f"/>
+      <rect x="1" y="8" width="1" height="3" fill="#3a2f8f"/>
+      <rect x="18" y="8" width="1" height="3" fill="#3a2f8f"/>
+      <rect x="1" y="11" width="18" height="1" fill="#3a2f8f"/>
+      <!-- 眼睛 -->
+      <rect x="5" y="8" width="2" height="2" fill="#2c2450"/>
+      <rect x="12" y="8" width="2" height="2" fill="#2c2450"/>
+      <!-- 微笑 -->
+      <rect x="8" y="10" width="1" height="1" fill="#2c2450"/>
+      <rect x="9" y="9" width="2" height="1" fill="#2c2450"/>
+      <rect x="11" y="10" width="1" height="1" fill="#2c2450"/>
+      <!-- 腮红 -->
+      <rect x="3" y="9" width="2" height="1" fill="#f2a0c4"/>
+      <rect x="14" y="9" width="2" height="1" fill="#f2a0c4"/>
+      <!-- 小星星点缀 -->
+      <rect x="6" y="3" width="1" height="1" fill="#ffd76a"/>
+      <rect x="5" y="4" width="3" height="1" fill="#ffd76a"/>
+      <rect x="6" y="5" width="1" height="1" fill="#ffd76a"/>
+      <rect x="6" y="4" width="1" height="1" fill="#fff3c4"/>
+    </g>
+
+    <g class="tent t1">
+      <rect x="3" y="12" width="2" height="2" fill="#7b6cf0"/>
+      <rect x="2" y="15" width="2" height="2" fill="#7b6cf0"/>
+      <rect x="2" y="17" width="2" height="1" fill="#c5b8ff"/>
+    </g>
+    <g class="tent t2">
+      <rect x="7" y="12" width="2" height="3" fill="#7b6cf0"/>
+      <rect x="8" y="15" width="2" height="2" fill="#7b6cf0"/>
+      <rect x="8" y="17" width="2" height="2" fill="#c5b8ff"/>
+    </g>
+    <g class="tent t3">
+      <rect x="10" y="12" width="2" height="3" fill="#7b6cf0"/>
+      <rect x="9" y="15" width="2" height="2" fill="#7b6cf0"/>
+      <rect x="9" y="17" width="2" height="2" fill="#c5b8ff"/>
+    </g>
+    <g class="tent t4">
+      <rect x="14" y="12" width="2" height="2" fill="#7b6cf0"/>
+      <rect x="15" y="15" width="2" height="2" fill="#7b6cf0"/>
+      <rect x="15" y="17" width="2" height="1" fill="#c5b8ff"/>
+    </g>
+  </g>
+</svg>
