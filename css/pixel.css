@@ -237,68 +237,9 @@ a.contact-icon {
     font-size: 0.75rem !important;
 }
 
-/* ===== 轮播图 - 像素风背景 ===== */
-.carousel-bg-1 {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 15px,
-            rgba(255, 200, 100, 0.08) 15px,
-            rgba(255, 200, 100, 0.08) 16px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 15px,
-            rgba(255, 200, 100, 0.08) 15px,
-            rgba(255, 200, 100, 0.08) 16px
-        ),
-        linear-gradient(135deg, #6c3483 0%, #1a5276 40%, #0e6655 70%, #1a5276 100%) !important;
-    image-rendering: pixelated;
-}
-
-.carousel-bg-2 {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 15px,
-            rgba(100, 200, 255, 0.08) 15px,
-            rgba(100, 200, 255, 0.08) 16px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 15px,
-            rgba(100, 200, 255, 0.08) 15px,
-            rgba(100, 200, 255, 0.08) 16px
-        ),
-        linear-gradient(135deg, #154360 0%, #1a5276 40%, #2874a6 100%) !important;
-    image-rendering: pixelated;
-}
-
-.carousel-bg-3 {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 15px,
-            rgba(100, 255, 150, 0.08) 15px,
-            rgba(100, 255, 150, 0.08) 16px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 15px,
-            rgba(100, 255, 150, 0.08) 15px,
-            rgba(100, 255, 150, 0.08) 16px
-        ),
-        linear-gradient(135deg, #0b5345 0%, #117a65 40%, #1abc9c 100%) !important;
-    image-rendering: pixelated;
+/* ===== 轮播图 - 水母摄影图背景 ===== */
+.carousel-bg {
+    object-fit: cover;
 }
 
 .carousel-caption h2 {
@@ -1134,31 +1075,6 @@ html.js-anim .skill-item.in-view .skill-bar-fill {
 .checkin-days {
     font-family: 'PressStart2P', 'Courier New', monospace !important;
     letter-spacing: 0 !important;
-}
-
-/* ===== 轮播背景：蓝紫雨色渐变 ===== */
-.carousel-bg-1 {
-    background:
-        linear-gradient(rgba(20, 18, 60, 0.25), rgba(20, 18, 60, 0.25)),
-        repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(140, 160, 255, 0.09) 15px, rgba(140, 160, 255, 0.09) 16px),
-        repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(140, 160, 255, 0.09) 15px, rgba(140, 160, 255, 0.09) 16px),
-        linear-gradient(135deg, #3b4fd8 0%, #5f4fd0 55%, #8b5cd6 100%) !important;
-}
-
-.carousel-bg-2 {
-    background:
-        linear-gradient(rgba(15, 15, 55, 0.28), rgba(15, 15, 55, 0.28)),
-        repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(120, 200, 255, 0.08) 15px, rgba(120, 200, 255, 0.08) 16px),
-        repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(120, 200, 255, 0.08) 15px, rgba(120, 200, 255, 0.08) 16px),
-        linear-gradient(135deg, #2848b8 0%, #4a4fd0 50%, #7b52c9 100%) !important;
-}
-
-.carousel-bg-3 {
-    background:
-        linear-gradient(rgba(18, 16, 58, 0.26), rgba(18, 16, 58, 0.26)),
-        repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(190, 160, 255, 0.09) 15px, rgba(190, 160, 255, 0.09) 16px),
-        repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(190, 160, 255, 0.09) 15px, rgba(190, 160, 255, 0.09) 16px),
-        linear-gradient(135deg, #4a3fb8 0%, #6d4fc4 55%, #9b6ee0 100%) !important;
 }
 
 /* ===== 主要按钮：蓝紫渐变 ===== */

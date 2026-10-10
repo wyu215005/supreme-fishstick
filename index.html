@@ -14,7 +14,8 @@
     <title>FishRain - 数据开发学习博客</title>
     <link rel="icon" type="image/svg+xml" href="images/pixel-fish.svg">
     <script src="js/theme-init.js"></script>
-    <!-- 预加载首屏像素精灵，加快首屏渲染 -->
+    <!-- 预加载首屏像素精灵与轮播主图，加快首屏渲染 -->
+    <link rel="preload" as="image" href="images/carousel-jelly-1.jpg" fetchpriority="high">
     <link rel="preload" as="image" href="images/pixel-fish.svg">
     <link rel="preload" as="image" href="images/pixel-star.svg">
     <link rel="preload" as="image" href="images/pixel-cloud.svg">
@@ -55,7 +56,7 @@
     <!-- 轮播图（全宽，独立于容器之外） -->
     <div class="carousel-container" id="carousel" aria-label="轮播图" role="region">
         <div class="carousel-slide active">
-            <div class="carousel-bg carousel-bg-1"></div>
+            <img class="carousel-bg" src="images/carousel-jelly-1.jpg" alt="深海中发光的蓝色海月水母群" fetchpriority="high">
             <div class="carousel-float" style="top:18%; left:10%; width:64px; height:32px; background:url('images/pixel-fish.svg') no-repeat center/contain;"></div>
             <div class="carousel-float" style="top:32%; right:14%; width:20px; height:20px; background:url('images/pixel-star.svg') no-repeat center/contain; animation-delay:0.7s;"></div>
             <div class="carousel-float" style="top:12%; right:32%; width:84px; height:42px; background:url('images/pixel-cloud.svg') no-repeat center/contain; animation-delay:1.4s; opacity:0.5;"></div>
@@ -65,7 +66,7 @@
             </div>
         </div>
         <div class="carousel-slide">
-            <div class="carousel-bg carousel-bg-2"></div>
+            <img class="carousel-bg" src="images/carousel-jelly-2.jpg" alt="紫光下成群发光的紫色水母" loading="lazy">
             <div class="carousel-float" style="top:24%; left:16%; width:52px; height:26px; background:url('images/pixel-fish.svg') no-repeat center/contain; animation-delay:0.3s;"></div>
             <div class="carousel-float" style="top:16%; right:12%; width:22px; height:22px; background:url('images/pixel-star.svg') no-repeat center/contain;"></div>
             <div class="carousel-float" style="top:38%; left:38%; width:18px; height:18px; background:url('images/pixel-star.svg') no-repeat center/contain; animation-delay:1.1s;"></div>
@@ -75,7 +76,7 @@
             </div>
         </div>
         <div class="carousel-slide">
-            <div class="carousel-bg carousel-bg-3"></div>
+            <img class="carousel-bg" src="images/carousel-jelly-3.jpg" alt="蓝紫色灯光下漂浮的水母群" loading="lazy">
             <div class="carousel-float" style="top:26%; left:20%; width:44px; height:44px; background:url('images/pixel-mushroom.svg') no-repeat center/contain; animation-delay:0.5s;"></div>
             <div class="carousel-float" style="top:32%; right:18%; width:56px; height:28px; background:url('images/pixel-fish.svg') no-repeat center/contain; animation-delay:1s;"></div>
             <div class="carousel-float" style="top:14%; left:46%; width:20px; height:20px; background:url('images/pixel-star.svg') no-repeat center/contain; animation-delay:0.8s;"></div>
