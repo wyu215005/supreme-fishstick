@@ -1186,8 +1186,9 @@ html.js-anim .skill-item.in-view .skill-bar-fill {
     box-shadow: 2px 2px 0 0 #2c2c2c !important;
 }
 
-/* 次级按钮描边风格 */
+/* 次级按钮描边风格：浅紫底 + 紫字，保证对比度可读 */
 .btn:not(.btn-primary) {
+    background: #f4f1ff !important;
     border: 3px solid #4a3fb8 !important;
     color: #4a3fb8 !important;
     box-shadow: 4px 4px 0 0 rgba(74, 63, 184, 0.35) !important;
