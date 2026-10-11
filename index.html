@@ -53,8 +53,22 @@
         </div>
     </nav>
 
-    <!-- 轮播图（全宽，独立于容器之外） -->
-    <div class="carousel-container" id="carousel" aria-label="轮播图" role="region">
+    <!-- 轮播图（16:9 卡片 + 两侧像素装饰带） -->
+    <section class="carousel-band" aria-label="轮播展示区">
+        <!-- 两侧漂浮精灵与像素雨滴（窄屏自动隐藏） -->
+        <div class="carousel-deco deco-fish-l" aria-hidden="true"></div>
+        <div class="carousel-deco deco-star-l" aria-hidden="true"></div>
+        <div class="carousel-deco deco-cloud-l" aria-hidden="true"></div>
+        <div class="carousel-deco deco-fish-r" aria-hidden="true"></div>
+        <div class="carousel-deco deco-star-r" aria-hidden="true"></div>
+        <div class="carousel-deco deco-star-r2" aria-hidden="true"></div>
+        <div class="carousel-deco rain-drop" style="left: calc(50% - 535px); animation-duration: 3.1s;" aria-hidden="true"></div>
+        <div class="carousel-deco rain-drop" style="left: calc(50% - 500px); animation-duration: 2.6s; animation-delay: 1.1s;" aria-hidden="true"></div>
+        <div class="carousel-deco rain-drop" style="left: calc(50% - 575px); animation-duration: 3.5s; animation-delay: 0.5s;" aria-hidden="true"></div>
+        <div class="carousel-deco rain-drop" style="left: calc(50% + 480px); animation-duration: 2.8s; animation-delay: 0.8s;" aria-hidden="true"></div>
+        <div class="carousel-deco rain-drop" style="left: calc(50% + 545px); animation-duration: 3.3s; animation-delay: 1.7s;" aria-hidden="true"></div>
+        <div class="carousel-deco rain-drop" style="left: calc(50% + 590px); animation-duration: 2.5s; animation-delay: 0.3s;" aria-hidden="true"></div>
+        <div class="carousel-container" id="carousel" aria-label="轮播图" role="region">
         <div class="carousel-slide active">
             <img class="carousel-bg" src="images/carousel-jelly-1.jpg" alt="深海中发光的蓝色海月水母群" fetchpriority="high">
             <div class="carousel-float" style="top:18%; left:10%; width:64px; height:32px; background:url('images/pixel-fish.svg') no-repeat center/contain;"></div>
@@ -93,6 +107,7 @@
             <span class="indicator" role="tab" aria-selected="false" aria-label="第3张"></span>
         </div>
     </div>
+    </section>
 
     <!-- 主容器 -->
     <div class="container">

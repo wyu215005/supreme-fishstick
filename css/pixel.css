@@ -242,6 +242,144 @@ a.contact-icon {
     object-fit: cover;
 }
 
+/* ===== 16:9 轮播卡片外的装饰带 ===== */
+.carousel-band {
+    position: relative;
+    padding: 2.5rem 1.25rem 2rem;
+    background:
+        radial-gradient(50% 85% at 15% 20%, rgba(91, 111, 240, 0.10), transparent 70%),
+        radial-gradient(50% 85% at 85% 30%, rgba(139, 108, 240, 0.12), transparent 70%),
+        linear-gradient(180deg, rgba(91, 111, 240, 0.05), rgba(139, 108, 240, 0.02) 70%, transparent);
+    overflow: hidden;
+}
+
+.carousel-deco {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    image-rendering: pixelated;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.deco-fish-l {
+    left: calc(50% - 560px);
+    top: 32%;
+    width: 56px;
+    height: 28px;
+    background-image: url('../images/pixel-fish.svg');
+    animation: deco-sway 6s ease-in-out infinite;
+}
+
+.deco-fish-r {
+    left: calc(50% + 492px);
+    top: 56%;
+    width: 44px;
+    height: 22px;
+    background-image: url('../images/pixel-fish.svg');
+    animation: deco-sway 5s ease-in-out infinite 1.2s;
+}
+
+.deco-star-l {
+    left: calc(50% - 585px);
+    top: 16%;
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/pixel-star.svg');
+    animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.deco-star-r {
+    left: calc(50% + 522px);
+    top: 22%;
+    width: 15px;
+    height: 15px;
+    background-image: url('../images/pixel-star.svg');
+    animation: twinkle 3.1s ease-in-out infinite 0.7s;
+}
+
+.deco-star-r2 {
+    left: calc(50% + 552px);
+    top: 74%;
+    width: 12px;
+    height: 12px;
+    background-image: url('../images/pixel-star.svg');
+    animation: twinkle 2.4s ease-in-out infinite 1.4s;
+}
+
+.deco-cloud-l {
+    left: calc(50% - 618px);
+    top: 60%;
+    width: 64px;
+    height: 32px;
+    background-image: url('../images/pixel-cloud.svg');
+    opacity: 0.55;
+    animation: deco-drift 9s ease-in-out infinite;
+}
+
+/* 像素雨滴：呼应 FishRain（雨是蓝，鱼映紫） */
+.rain-drop {
+    top: -16px;
+    width: 3px;
+    height: 13px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(122, 156, 255, 0), rgba(122, 156, 255, 0.85));
+    animation: rain-fall 3s linear infinite;
+}
+
+@keyframes rain-fall {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.9;
+    }
+    80% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(620px);
+        opacity: 0;
+    }
+}
+
+@keyframes deco-sway {
+    0%, 100% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(10px) translateY(-6px);
+    }
+}
+
+@keyframes deco-drift {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(18px);
+    }
+}
+
+/* 侧边空间不足时收起装饰 */
+@media (max-width: 1239px) {
+    .carousel-deco {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-deco {
+        animation: none;
+    }
+
+    .rain-drop {
+        display: none;
+    }
+}
+
 .carousel-caption h2 {
     font-family: 'Courier New', 'Noto Sans CJK SC', 'Microsoft YaHei', monospace !important;
     text-shadow:
