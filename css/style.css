@@ -192,14 +192,12 @@ body {
 /* 轮播图样式 */
 .carousel-container {
     position: relative;
-    width: min(920px, 100%);
-    aspect-ratio: 16 / 9;
-    height: auto;
+    width: 100%;
+    height: 520px;
     overflow: hidden;
-    border-radius: 14px;
-    box-shadow: 0 16px 40px rgba(74, 63, 184, 0.22), 0 4px 12px rgba(43, 72, 184, 0.10);
-    border: 3px solid rgba(255, 255, 255, 0.55);
-    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
 }
 
 .carousel-slide {
@@ -227,12 +225,12 @@ body {
     right: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
     color: white;
-    padding: 2.25rem 2rem 1.6rem;
+    padding: 3rem 3rem 2.5rem;
     text-align: center;
 }
 
 .carousel-caption h2 {
-    font-size: 1.75rem;
+    font-size: 2.2rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     text-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -1703,16 +1701,8 @@ body {
         height: 150px;
     }
 
-    .carousel-caption h2 {
-        font-size: 1.2rem;
-    }
-
-    .carousel-caption p {
-        font-size: 0.85rem;
-    }
-
-    .carousel-caption {
-        padding: 1.3rem 1rem 1rem;
+    .carousel-container {
+        height: 300px;
     }
 
     .article-list {
