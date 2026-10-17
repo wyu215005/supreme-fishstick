@@ -1055,6 +1055,32 @@ img {
     gap: 0.45rem;
 }
 
+/* 精选项目卡片 / 项目经历里的仓库链接 */
+.feature-note a,
+.project-item .repo-link {
+    color: var(--mint-deep);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px dashed currentColor;
+    transition: var(--transition-fast);
+}
+
+.feature-note a:hover,
+.project-item .repo-link:hover {
+    border-bottom-style: solid;
+}
+
+[data-theme="ocean"] .feature-note a,
+[data-theme="ocean"] .project-item .repo-link {
+    color: var(--mint);
+}
+
+.project-item .repo-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+}
+
 /* ============================================================
    文章模块
    ============================================================ */
