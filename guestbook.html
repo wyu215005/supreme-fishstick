@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="">
+<html lang="zh-CN" data-theme="ocean">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>留言墙 - FishRain</title>
     <meta name="description" content="在 FishRain 的留言墙留下你的想法 —— 便签会保存在云端，随时回来看看。">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self' https://pxlnhthkckhurubvebfu.supabase.co; base-uri 'self'; form-action 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self' https://mwfsxxniocpcvsvvwjvz.supabase.co; base-uri 'self'; form-action 'self'">
     <link rel="icon" type="image/svg+xml" href="images/logo-fish.svg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/ocean.css">
@@ -22,14 +22,38 @@
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">首页</a></li>
-                <li><a href="articles.html" class="nav-link">文章</a></li>
-                <li><a href="about.html" class="nav-link">关于我</a></li>
-                <li><a href="guestbook.html" class="nav-link active">留言墙</a></li>
-                <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
+                <li><a href="index.html" class="nav-link"><span class="icon icon-fish" aria-hidden="true"></span>首页</a></li>
+                <li><a href="articles.html" class="nav-link"><span class="icon icon-book" aria-hidden="true"></span>文章</a></li>
+                <li><a href="about.html" class="nav-link"><span class="icon icon-jelly" aria-hidden="true"></span>关于我</a></li>
+                <li><a href="guestbook.html" class="nav-link active"><span class="icon icon-bottle" aria-hidden="true"></span>留言墙</a></li>
+                <li><a href="gachapon.html" class="nav-link"><span class="icon icon-chest" aria-hidden="true"></span>扭蛋机</a></li>
             </ul>
             <div class="nav-controls">
-                <button class="dark-mode-toggle" id="darkModeToggle" title="切换深浅主题" aria-label="切换深浅主题">🌙</button>
+                <div class="wardrobe">
+                    <button class="theme-toggle" id="themeToggle" aria-haspopup="true" aria-expanded="false" aria-controls="themePanel" title="主题衣橱" aria-label="打开主题衣橱">
+                        <span class="icon icon-hanger" aria-hidden="true"></span>
+                    </button>
+                    <div class="theme-panel" id="themePanel" hidden>
+                        <p class="theme-panel-title">主题衣橱</p>
+                        <div class="theme-options" role="radiogroup" aria-label="选择主题">
+                            <button type="button" class="theme-option" data-theme-value="ocean" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-ocean" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>深海夜航</strong><em>OCEAN</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="paper" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-paper" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>晴天手账</strong><em>SKETCHBOOK</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="play" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-play" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>怪趣实验室</strong><em>PLAYGROUND</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
                     <div class="bar"></div>
                     <div class="bar"></div>
@@ -41,7 +65,7 @@
 
     <main class="guestbook-container">
         <header class="page-header" style="text-align: center; padding-bottom: 0;">
-            <h1>&#x1F48C; 留言墙</h1>
+            <h1><span class="icon icon-bottle icon-lg" aria-hidden="true"></span> 留言墙</h1>
             <p class="page-sub">路过就留张便签吧 —— 你的话会被贴在墙上，风吹不走。</p>
         </header>
 
@@ -62,7 +86,7 @@
 
         <!-- 留言展示 -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0 1rem;">
-            <h2 style="font-size: 1.15rem;">📌 便签墙</h2>
+            <h2 style="font-size: 1.15rem;">便签墙</h2>
         </div>
         <div class="message-list" id="messageList" aria-live="polite"></div>
     </main>

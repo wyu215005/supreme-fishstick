@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- FishRain 图标 · 宝箱（扭蛋机）· 手绘占位稿，可整体替换 -->
+  <path d="M4.4 11.2v7.2c0 .9.7 1.6 1.6 1.6h12c.9 0 1.6-.7 1.6-1.6v-7.2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M4.4 11.2a7.6 5.8 0 0 1 15.2 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M12 12.6v2.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M10 12.8h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>
