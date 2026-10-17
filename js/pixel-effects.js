@@ -1,6 +1,8 @@
 /* ============================================================
-   🎮 FishRain 像素互动特效引擎 v2
-   点击粒子 / 跑马灯横幅 / 回到顶部 / 滚动渐入 / 鱼雨彩蛋
+   FishRain 互动特效引擎 v3 · 克制版
+   滚动渐入 / 回到顶部 / 定点彩蛋粒子 / 鱼雨彩蛋
+   粒子只出现在特定彩蛋交互（Logo、换主题、回到顶部），
+   普通阅读、表单与导航点击不再产生任何粒子
    ============================================================ */
 
 (function () {
@@ -9,15 +11,14 @@
     // 标记 JS 可用，供 CSS 决定是否启用动画（无 JS 时内容直接可见）
     document.documentElement.classList.add('js-anim');
 
-    /* ---------- 1. 点击粒子（金币/星星/爱心随机弹出） ---------- */
-    var CLICK_EMOJIS = ['🪙', '⭐', '✨', '💖'];
+    /* ---------- 1. 彩蛋粒子（定点触发，非全局点击） ---------- */
     var MAX_PARTICLES = 14;
 
     function spawnParticle(x, y, emoji) {
         if (document.querySelectorAll('.pixel-coin-fx').length >= MAX_PARTICLES) return;
         var el = document.createElement('div');
         el.className = 'pixel-coin-fx';
-        el.textContent = emoji || CLICK_EMOJIS[Math.floor(Math.random() * CLICK_EMOJIS.length)];
+        el.textContent = emoji || '✨';
         el.style.left = x + 'px';
         el.style.top = y + 'px';
         document.body.appendChild(el);
@@ -26,27 +27,27 @@
         });
     }
 
-    // 只监听 click（移动端 tap 同样触发 click，避免旧版 touch+click 双粒子）
-    document.addEventListener('click', function (e) {
-        spawnParticle(e.clientX, e.clientY);
-    });
-
-    /* ---------- 2. 顶部跑马灯横幅 ---------- */
-    function setupBanner() {
-        var banners = document.querySelectorAll('.pixel-banner');
-        banners.forEach(function (banner) {
-            var text = banner.textContent.trim();
-            if (!text) return;
-            var inner = document.createElement('div');
-            inner.className = 'pixel-banner-inner';
-            // 复制 4 份，translateX(-50%) 实现无缝循环
-            inner.textContent = new Array(4).fill(text).join('  ★  ');
-            banner.textContent = '';
-            banner.appendChild(inner);
+    // ① 点击小鱼 Logo：游出一小群鱼
+    var logo = document.querySelector('.nav-logo');
+    if (logo) {
+        logo.addEventListener('click', function (e) {
+            spawnParticle(e.clientX - 8, e.clientY, '🐟');
+            spawnParticle(e.clientX + 18, e.clientY + 12, '🐠');
         });
     }
 
-    /* ---------- 3. 回到顶部按钮（像素小鱼） ---------- */
+    // ② 换装反馈：主题切换瞬间，衣橱按钮旁闪几下星光
+    window.addEventListener('fishrain:themechange', function () {
+        var btn = document.getElementById('themeToggle');
+        if (!btn) return;
+        var r = btn.getBoundingClientRect();
+        if (!r.width) return; // 按钮不可见（如打印模式）时跳过
+        spawnParticle(r.left + r.width / 2, r.top - 2, '✨');
+        spawnParticle(r.left - 4, r.top + r.height / 2, '⭐');
+        spawnParticle(r.right + 4, r.top + r.height / 2, '✨');
+    });
+
+    /* ---------- 2. 回到顶部按钮（像素小鱼） ---------- */
     function setupBackToTop() {
         var btn = document.createElement('button');
         btn.className = 'back-to-top';
@@ -67,7 +68,7 @@
         });
     }
 
-    /* ---------- 4. 滚动渐入 + 技能条触发 ---------- */
+    /* ---------- 3. 滚动渐入 ---------- */
     var REVEAL_SELECTOR = [
         '.card',
         '.intro-section',
@@ -119,7 +120,7 @@
         els.forEach(function (el) { io.observe(el); });
     }
 
-    /* ---------- 5. Konami 秘籍 → 鱼雨彩蛋 🐟 ---------- */
+    /* ---------- 4. Konami 秘籍 → 鱼雨彩蛋 🐟 ---------- */
     var KONAMI = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown',
         'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
     var konamiIndex = 0;
@@ -162,7 +163,6 @@
     function boot() {
         if (booted) return;
         booted = true;
-        setupBanner();
         setupBackToTop();
         setupReveal();
     }

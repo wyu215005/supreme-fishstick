@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="">
+<html lang="zh-CN" data-theme="ocean">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,14 +22,38 @@
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">首页</a></li>
-                <li><a href="articles.html" class="nav-link">文章</a></li>
-                <li><a href="about.html" class="nav-link">关于我</a></li>
-                <li><a href="guestbook.html" class="nav-link">留言墙</a></li>
-                <li><a href="gachapon.html" class="nav-link active">扭蛋机</a></li>
+                <li><a href="index.html" class="nav-link"><span class="icon icon-fish" aria-hidden="true"></span>首页</a></li>
+                <li><a href="articles.html" class="nav-link"><span class="icon icon-book" aria-hidden="true"></span>文章</a></li>
+                <li><a href="about.html" class="nav-link"><span class="icon icon-jelly" aria-hidden="true"></span>关于我</a></li>
+                <li><a href="guestbook.html" class="nav-link"><span class="icon icon-bottle" aria-hidden="true"></span>留言墙</a></li>
+                <li><a href="gachapon.html" class="nav-link active"><span class="icon icon-chest" aria-hidden="true"></span>扭蛋机</a></li>
             </ul>
             <div class="nav-controls">
-                <button class="dark-mode-toggle" id="darkModeToggle" title="切换深浅主题" aria-label="切换深浅主题">🌙</button>
+                <div class="wardrobe">
+                    <button class="theme-toggle" id="themeToggle" aria-haspopup="true" aria-expanded="false" aria-controls="themePanel" title="主题衣橱" aria-label="打开主题衣橱">
+                        <span class="icon icon-hanger" aria-hidden="true"></span>
+                    </button>
+                    <div class="theme-panel" id="themePanel" hidden>
+                        <p class="theme-panel-title">主题衣橱</p>
+                        <div class="theme-options" role="radiogroup" aria-label="选择主题">
+                            <button type="button" class="theme-option" data-theme-value="ocean" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-ocean" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>深海夜航</strong><em>OCEAN</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="paper" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-paper" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>晴天手账</strong><em>SKETCHBOOK</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="play" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-play" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>怪趣实验室</strong><em>PLAYGROUND</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
                     <div class="bar"></div>
                     <div class="bar"></div>
@@ -41,7 +65,7 @@
 
     <main class="container">
         <header class="page-header" style="text-align: center;">
-            <h1>🎰 深海扭蛋机</h1>
+            <h1><span class="icon icon-chest icon-lg" aria-hidden="true"></span> 深海扭蛋机</h1>
             <p class="page-sub">选择困难症拯救计划 —— 转一下，今天吃什么就交给命运吧</p>
         </header>
     </main>
@@ -77,7 +101,7 @@
 
         <!-- 菜单管理 -->
         <div class="dish-manager">
-            <h3 style="font-size: 1.2rem; margin-bottom: 0.4rem;">&#x1F371; 菜单管理</h3>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.4rem;">菜单管理</h3>
             <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.2rem;">
                 扭蛋里装什么你说了算 —— 添加你纠结的选项，数据保存在浏览器本地。
             </p>

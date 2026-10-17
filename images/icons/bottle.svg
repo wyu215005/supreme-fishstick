@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- FishRain 图标 · 漂流瓶（留言墙）· 手绘占位稿，可整体替换 -->
+  <path d="M9.6 3.6h4.8v2.9l1.7 2.3c.5.7.8 1.6.8 2.5v7.2c0 .9-.7 1.6-1.6 1.6H8.7c-.9 0-1.6-.7-1.6-1.6v-7.2c0-.9.3-1.8.8-2.5l1.7-2.3V3.6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M9.6 5.8h4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M9.9 13.6c1.3-1.1 2.9-1.1 4.2 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

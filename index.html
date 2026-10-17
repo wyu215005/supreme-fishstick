@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="">
+<html lang="zh-CN" data-theme="ocean">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,14 +27,38 @@
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">首页</a></li>
-                <li><a href="articles.html" class="nav-link">文章</a></li>
-                <li><a href="about.html" class="nav-link">关于我</a></li>
-                <li><a href="guestbook.html" class="nav-link">留言墙</a></li>
-                <li><a href="gachapon.html" class="nav-link">扭蛋机</a></li>
+                <li><a href="index.html" class="nav-link active"><span class="icon icon-fish" aria-hidden="true"></span>首页</a></li>
+                <li><a href="articles.html" class="nav-link"><span class="icon icon-book" aria-hidden="true"></span>文章</a></li>
+                <li><a href="about.html" class="nav-link"><span class="icon icon-jelly" aria-hidden="true"></span>关于我</a></li>
+                <li><a href="guestbook.html" class="nav-link"><span class="icon icon-bottle" aria-hidden="true"></span>留言墙</a></li>
+                <li><a href="gachapon.html" class="nav-link"><span class="icon icon-chest" aria-hidden="true"></span>扭蛋机</a></li>
             </ul>
             <div class="nav-controls">
-                <button class="dark-mode-toggle" id="darkModeToggle" title="切换深浅主题" aria-label="切换深浅主题">🌙</button>
+                <div class="wardrobe">
+                    <button class="theme-toggle" id="themeToggle" aria-haspopup="true" aria-expanded="false" aria-controls="themePanel" title="主题衣橱" aria-label="打开主题衣橱">
+                        <span class="icon icon-hanger" aria-hidden="true"></span>
+                    </button>
+                    <div class="theme-panel" id="themePanel" hidden>
+                        <p class="theme-panel-title">主题衣橱</p>
+                        <div class="theme-options" role="radiogroup" aria-label="选择主题">
+                            <button type="button" class="theme-option" data-theme-value="ocean" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-ocean" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>深海夜航</strong><em>OCEAN</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="paper" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-paper" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>晴天手账</strong><em>SKETCHBOOK</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="play" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-play" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong>怪趣实验室</strong><em>PLAYGROUND</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
                     <div class="bar"></div>
                     <div class="bar"></div>
@@ -63,64 +87,45 @@
                 </div>
             </div>
             <div class="hero-visual" aria-hidden="true">
-                <svg viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                    <defs>
-                        <linearGradient id="jellyGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#62C8BD" stop-opacity="0.45"/>
-                            <stop offset="1" stop-color="#315D78" stop-opacity="0.2"/>
-                        </linearGradient>
-                    </defs>
-                    <!-- 数据加工链路：业务库 → ODS → DWD → DWS → ADS → 报表 -->
-                    <path class="flow-line" d="M140 94 H228"/>
-                    <path class="flow-line" d="M332 94 H420"/>
-                    <path class="flow-line" d="M472 118 C472 162, 376 148, 376 190"/>
-                    <path class="flow-line" d="M376 238 C376 282, 280 268, 280 310"/>
-                    <path class="flow-line" d="M228 334 H140"/>
+                <svg viewBox="0 0 540 340" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                    <!-- 数据加工链路：一条上升的流线（业务库 → ODS → DWD → DWS → ADS） -->
+                    <path class="flow-line" d="M40 300 C150 300, 160 170, 270 170 C380 170, 370 50, 490 50"/>
+                    <!-- 业务库：起点 -->
                     <g>
-                        <rect class="flow-node flow-node-sink" x="36" y="70" width="104" height="48" rx="10"/>
-                        <text class="flow-label" x="88" y="91">业务库</text>
-                        <text class="flow-sub" x="88" y="108">SOURCE</text>
+                        <circle class="flow-dot-outer" cx="40" cy="300" r="8"/>
+                        <circle class="flow-dot-inner" cx="40" cy="300" r="2.6"/>
+                        <text class="flow-label" x="40" y="328">业务库</text>
                     </g>
+                    <!-- ODS：贴源层 -->
                     <g>
-                        <rect class="flow-node" x="228" y="70" width="104" height="48" rx="10"/>
-                        <text class="flow-label" x="280" y="91">ODS</text>
-                        <text class="flow-sub" x="280" y="108">贴源层</text>
+                        <circle class="flow-dot-outer" cx="155" cy="235" r="8"/>
+                        <circle class="flow-dot-inner" cx="155" cy="235" r="2.6"/>
+                        <text class="flow-label" x="155" y="262">ODS</text>
                     </g>
+                    <!-- DWD：明细层 -->
                     <g>
-                        <rect class="flow-node" x="420" y="70" width="104" height="48" rx="10"/>
-                        <text class="flow-label" x="472" y="91">DWD</text>
-                        <text class="flow-sub" x="472" y="108">明细层</text>
+                        <circle class="flow-dot-outer" cx="270" cy="170" r="8"/>
+                        <circle class="flow-dot-inner" cx="270" cy="170" r="2.6"/>
+                        <text class="flow-label" x="270" y="197">DWD</text>
                     </g>
+                    <!-- DWS：汇总层 -->
                     <g>
-                        <rect class="flow-node" x="324" y="190" width="104" height="48" rx="10"/>
-                        <text class="flow-label" x="376" y="211">DWS</text>
-                        <text class="flow-sub" x="376" y="228">汇总层</text>
+                        <circle class="flow-dot-outer" cx="376" cy="110" r="8"/>
+                        <circle class="flow-dot-inner" cx="376" cy="110" r="2.6"/>
+                        <text class="flow-label" x="376" y="137">DWS</text>
                     </g>
+                    <!-- ADS：应用层 -->
                     <g>
-                        <rect class="flow-node" x="228" y="310" width="104" height="48" rx="10"/>
-                        <text class="flow-label" x="280" y="331">ADS</text>
-                        <text class="flow-sub" x="280" y="348">应用层</text>
+                        <circle class="flow-dot-outer" cx="490" cy="50" r="8"/>
+                        <circle class="flow-dot-inner" cx="490" cy="50" r="2.6"/>
+                        <text class="flow-label" x="487" y="28">ADS</text>
                     </g>
-                    <g>
-                        <rect class="flow-node flow-node-sink" x="36" y="310" width="104" height="48" rx="10"/>
-                        <text class="flow-label" x="88" y="331">报表看板</text>
-                        <text class="flow-sub" x="88" y="348">BI</text>
+                    <!-- 小鱼：数据游向应用 -->
+                    <g class="hero-fish" opacity="0.85">
+                        <ellipse cx="512" cy="88" rx="13" ry="7.5" fill="var(--flow-accent)"/>
+                        <path d="M523 88l9-5v10z" fill="var(--flow-accent)"/>
+                        <circle cx="506" cy="86" r="1.6" fill="var(--flow-text)"/>
                     </g>
-                    <!-- 水母 -->
-                    <g class="hero-jelly">
-                        <path d="M486 298c-26 0-42 17-42 38 0 19 16 29 42 29s42-10 42-29c0-21-16-38-42-38z" fill="url(#jellyGrad)"/>
-                        <path d="M466 336q3 18-5 32M482 338q5 22-2 38M500 338q1 20 6 32M516 334q7 16 3 30" stroke="#62C8BD" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
-                    </g>
-                    <!-- 小鱼 -->
-                    <g class="hero-fish" opacity="0.6">
-                        <ellipse cx="510" cy="180" rx="14" ry="8" fill="#62C8BD"/>
-                        <path d="M522 180l10-6v12z" fill="#62C8BD"/>
-                        <circle cx="503" cy="178" r="1.8" fill="#101C2C"/>
-                    </g>
-                    <!-- 气泡 -->
-                    <circle class="hero-bubble" cx="455" cy="286" r="4" stroke="#62C8BD" stroke-opacity="0.5"/>
-                    <circle class="hero-bubble b2" cx="525" cy="270" r="3" stroke="#62C8BD" stroke-opacity="0.4"/>
-                    <circle class="hero-bubble b3" cx="490" cy="292" r="2.5" stroke="#62C8BD" stroke-opacity="0.45"/>
                 </svg>
             </div>
         </div>
@@ -133,7 +138,7 @@
         <!-- 精选项目 -->
         <section class="section" id="projects">
             <div class="section-head">
-                <h2>🧭 精选项目</h2>
+                <h2><span class="icon icon-starfish icon-lg" aria-hidden="true"></span> 精选项目</h2>
             </div>
             <div class="feature-grid">
                 <article class="feature-card">
@@ -173,7 +178,7 @@
         <!-- 最新文章 -->
         <section class="section" id="articles">
             <div class="section-head">
-                <h2>📝 最新笔记</h2>
+                <h2><span class="icon icon-book icon-lg" aria-hidden="true"></span> 最新笔记</h2>
                 <a href="articles.html" class="section-more">查看全部文章 →</a>
             </div>
             <div class="home-article-grid" id="latestArticles">
@@ -186,7 +191,7 @@
         <!-- 技术成长 -->
         <section class="section" id="growth">
             <div class="section-head">
-                <h2>🌊 技术成长</h2>
+                <h2><span class="icon icon-sprout icon-lg" aria-hidden="true"></span> 技术成长</h2>
             </div>
             <div class="growth-grid">
                 <div class="tech-card">
