@@ -101,7 +101,7 @@
 
     --text-color: #EAF5F5;
     --text-secondary: #A8C3CD;
-    --text-muted: #7A93A3;
+    --text-muted: #93ADBD;
 
     --bg-color: #101C2C;
     --bg-subtle: #14212F;
@@ -1756,7 +1756,7 @@ img {
 [data-theme="ocean"] .message-item.note .message-author { color: #DCE8F2; }
 
 .message-item.note .message-date { font-size: 0.66rem; color: #7C8FA0; }
-[data-theme="ocean"] .message-item.note .message-date { color: #93A5B5; }
+[data-theme="ocean"] .message-item.note .message-date { color: #ABBFCD; }
 
 .message-item.note .message-content {
     color: #3A4A5C;
