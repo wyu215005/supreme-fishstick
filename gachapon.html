@@ -1,148 +1,128 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN" data-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FishRain 扭蛋机 —— 今天吃什么？让随机来决定！">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file:; style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data: https:; font-src 'self' file:; object-src 'none'; base-uri 'self'; form-action 'self';">
-    <meta property="og:title" content="扭蛋机 - FishRain">
-    <meta property="og:description" content="今天吃什么？让扭蛋机来决定！">
-    <meta property="og:type" content="website">
-    <title>美食大放送 - FishRain</title>
-    <link rel="icon" type="image/svg+xml" href="images/pixel-fish.svg">
-    <script src="js/theme-init.js"></script>
+    <title>今天吃什么？ - FishRain 扭蛋机</title>
+    <meta name="description" content="FishRain 的小玩具 —— 深海扭蛋机，帮我决定今天吃什么。">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'">
+    <link rel="icon" type="image/svg+xml" href="images/logo-fish.svg">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/pixel.css">
+    <link rel="stylesheet" href="css/ocean.css">
+    <script src="js/theme-init.js"></script>
 </head>
 <body>
-    <!-- 像素风彩虹顶部横幅 -->
-    <div class="pixel-banner" aria-hidden="true">
-        🎰 GACHAPON WORLD ★ 扭蛋乐园 ★ 今天吃什么？让命运决定！🎰 GACHAPON WORLD ★ 扭蛋乐园 ★ 今天吃什么？让命运决定！
-    </div>
-
     <!-- 导航栏 -->
-    <nav class="navbar" role="navigation" aria-label="主导航">
+    <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">🐟 FishRain</a>
+                <a href="index.html">
+                    <img src="images/logo-fish.svg" alt="FishRain Logo" class="logo-fish">
+                    <span>FishRain</span>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">首页</a></li>
                 <li><a href="articles.html" class="nav-link">文章</a></li>
                 <li><a href="about.html" class="nav-link">关于我</a></li>
-                <li><a href="gachapon.html" class="nav-link active">扭蛋机</a></li>
                 <li><a href="guestbook.html" class="nav-link">留言墙</a></li>
+                <li><a href="gachapon.html" class="nav-link active">扭蛋机</a></li>
             </ul>
             <div class="nav-controls">
-                <button class="dark-mode-toggle" aria-label="切换暗黑模式">🌙</button>
-                <button class="nav-toggle" aria-label="切换导航菜单" aria-expanded="false">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <button class="dark-mode-toggle" id="darkModeToggle" title="切换深浅主题" aria-label="切换深浅主题">🌙</button>
+                <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- 主容器 -->
-    <div class="container">
-        <h1 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em;">🎰 今天吃什么？</h1>
+    <main class="container">
+        <header class="page-header" style="text-align: center;">
+            <h1>🎰 深海扭蛋机</h1>
+            <p class="page-sub">选择困难症拯救计划 —— 转一下，今天吃什么就交给命运吧</p>
+        </header>
+    </main>
 
-        <div class="gachapon-page-container">
-            <!-- 扭蛋机 -->
-            <div class="gachapon-machine-v3" id="machineBody">
-                <!-- 顶部品牌栏 + 指示灯 -->
-                <div class="machine-header">
-                    <div class="machine-brand">🎰 GACHAPON</div>
-                    <div class="machine-lights">
-                        <span class="machine-light lit-red" id="lightRed"></span>
-                        <span class="machine-light lit-yellow" id="lightYellow"></span>
-                        <span class="machine-light lit-green" id="lightGreen"></span>
-                    </div>
-                </div>
-
-                <!-- 玻璃罩 -->
-                <div class="glass-dome" id="dome"></div>
-
-                <!-- 控制面板 -->
-                <div class="machine-control">
-                    <!-- 状态显示屏 -->
-                    <div class="machine-display" id="machineDisplay">
-                        <span id="displayText">● READY</span>
-                    </div>
-
-                    <!-- 旋钮（带进度圆环） -->
-                    <div class="spin-progress-wrap">
-                        <div class="knob-v3" id="spinBtn" role="button" tabindex="0" aria-label="转动扭蛋机">
-                            <div class="knob-line"></div>
-                        </div>
-                        <svg class="spin-progress-svg" id="spinProgressSvg" viewBox="0 0 100 100">
-                            <circle class="spin-progress-circle" id="spinProgressCircle" cx="50" cy="50" r="45"/>
-                        </svg>
-                    </div>
-
-                    <p style="color: var(--gold); font-weight: 800; font-size: 0.72rem; letter-spacing: 3px; margin-top: 4px; text-shadow: 0 0 8px rgba(255,209,102,0.5);">SPIN TO DECIDE</p>
-                </div>
-
-                <!-- 出球托盘 -->
-                <div class="machine-tray">
-                    <div class="tray-label">OUTPUT</div>
-                    <div class="tray-opening" id="trayOpening"></div>
+    <div class="gachapon-page-container">
+        <!-- 扭蛋机 -->
+        <div class="gachapon-machine-v3" id="machineBody">
+            <div class="machine-header">
+                <span class="machine-brand">FISHRAIN</span>
+                <div class="machine-lights">
+                    <span class="machine-light" id="lightRed"></span>
+                    <span class="machine-light" id="lightYellow"></span>
+                    <span class="machine-light" id="lightGreen"></span>
                 </div>
             </div>
-
-            <!-- 菜品管理面板 -->
-            <div class="dish-manager">
-                <h2 style="font-size: 1.1rem; margin-bottom: 18px; font-weight: 700; letter-spacing: -0.01em;">🍽️ 菜品管理</h2>
-                <div style="display: flex; gap: 8px; margin-bottom: 1.25rem;">
-                    <input type="text" id="dishInput" placeholder="输入菜品名称（最多 20 字）"
-                        maxlength="20"
-                        style="flex:1; padding:10px 14px; border-radius:8px; border:1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;"
-                        aria-label="菜品名称">
-                    <button class="btn" id="addBtn" style="padding: 0 18px; font-size: 0.85rem;">添加</button>
+            <div class="glass-dome" id="dome"></div>
+            <div class="machine-control">
+                <div class="machine-display" id="displayText">&#9679; READY</div>
+                <div class="spin-progress-wrap">
+                    <svg class="spin-progress-svg" id="spinProgressSvg" viewBox="0 0 100 100" aria-hidden="true">
+                        <circle class="spin-progress-circle" id="spinProgressCircle" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <div class="knob-v3" id="spinBtn" role="button" tabindex="0" aria-label="转动旋钮抽奖">
+                        <div class="knob-line"></div>
+                    </div>
                 </div>
-
-                <div id="dishList" class="dish-grid"></div>
-
-                <button id="resetBtn" style="margin-top: 24px; width: 100%; background: none; border: 1px dashed var(--border-color); padding: 10px; cursor: pointer; color: var(--text-muted); border-radius: 8px; font-size: 0.85rem; transition: all 0.2s;">恢复默认菜单</button>
             </div>
+            <div class="machine-tray">
+                <div class="tray-label">TAKE OUT</div>
+                <div class="tray-opening" id="trayOpening"></div>
+            </div>
+        </div>
+
+        <!-- 菜单管理 -->
+        <div class="dish-manager">
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.4rem;">&#x1F371; 菜单管理</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.2rem;">
+                扭蛋里装什么你说了算 —— 添加你纠结的选项，数据保存在浏览器本地。
+            </p>
+            <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                <input type="text" id="dishInput" class="form-input" style="flex: 1; min-width: 180px; margin: 0;" placeholder="输入一个选项，例如：螺蛳粉 🍜" aria-label="添加选项">
+                <button class="btn btn-primary" id="addBtn" style="white-space: nowrap;">添加</button>
+            </div>
+            <div class="dish-grid" id="dishList"></div>
+            <button id="resetBtn" class="btn" style="margin-top: 1.2rem; width: 100%; color: var(--text-muted);">&#x1F504; 恢复默认菜单</button>
         </div>
     </div>
 
     <!-- 结果弹窗 -->
-    <div class="result-overlay" id="resultOverlay" role="dialog" aria-modal="true" aria-labelledby="resultDish">
+    <div class="result-overlay" id="resultOverlay">
         <div class="result-card" id="resultCard">
-            <p class="result-label">🎉 今天就吃这个了！</p>
-            <div class="result-dish" id="resultDish">---</div>
-            <button class="btn" id="closeResultBtn" style="padding: 12px 40px; border-radius: 30px;">太棒了！开吃！</button>
+            <p class="result-label">今天吃</p>
+            <div class="result-dish" id="resultDish"></div>
+            <button class="btn btn-primary" id="closeResultBtn">就决定是你了！</button>
         </div>
     </div>
 
     <!-- 页脚 -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2026 FishRain. 记录学习，分享成长。</p>
+            <div class="footer-brand">
+                <img src="images/logo-fish.svg" alt="" aria-hidden="true" class="logo-fish">
+                <span class="footer-brand-name">FishRain</span>
+            </div>
+            <p class="footer-motto">慢慢来，比较快。</p>
+            <div class="footer-links">
+                <a class="footer-link" href="https://github.com/wyu215005" target="_blank" rel="noopener">🐙 GitHub</a>
+                <a class="footer-link" href="https://space.bilibili.com/1938108705" target="_blank" rel="noopener">📺 哔哩哔哩</a>
+                <a class="footer-link" href="mailto:3492403678@qq.com">📧 邮箱</a>
+                <a class="footer-link" href="https://xhslink.cn/o/5xlS9WNlUCt" target="_blank" rel="noopener">📕 小红书</a>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 FishRain · 从业务逻辑到数据模型</span>
+                <span>Powered by GitHub Pages</span>
+            </div>
         </div>
     </footer>
 
-    <script src="js/config.js" defer></script>
-    <script src="js/navbar.js" defer></script>
-    <script src="js/gachapon.js" defer></script>
-    <script src="js/pixel-effects.js" defer></script>
-
-    <!-- 像素艺术浮动装饰层 -->
-    <div class="pixel-layer" aria-hidden="true">
-        <div class="pixel-sprite pixel-mushroom-1"></div>
-        <div class="pixel-sprite pixel-mushroom-2"></div>
-        <div class="pixel-sprite pixel-fish-1"></div>
-        <div class="pixel-sprite pixel-fish-2"></div>
-        <div class="pixel-sprite pixel-star-1"></div>
-        <div class="pixel-sprite pixel-star-2"></div>
-        <div class="pixel-sprite pixel-star-3"></div>
-        <div class="pixel-sprite pixel-cloud-1"></div>
-        <div class="pixel-sprite pixel-cloud-2"></div>
-    </div>
+    <script src="js/config.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/gachapon.js"></script>
+    <script src="js/pixel-effects.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- FishRain 品牌小鱼 -->
+  <ellipse cx="28" cy="34" rx="20" ry="13" fill="currentColor"/>
+  <path d="M46 34l13-9v18z" fill="currentColor"/>
+  <circle cx="19" cy="31" r="2.8" fill="#101C2C"/>
+  <path d="M15 23.5c6.5-4.2 15-4.4 21.5-.5" stroke="#62C8BD" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="10" cy="15" r="2.6" fill="#62C8BD"/>
+  <circle cx="18" cy="10" r="1.8" fill="#62C8BD" opacity="0.6"/>
+</svg>

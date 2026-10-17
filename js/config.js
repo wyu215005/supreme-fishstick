@@ -7,7 +7,7 @@ const SITE_CONFIG = {
   // 基本信息
   siteName: 'FishRain',
   siteEmoji: '🐟',
-  description: '记录学习与成长的地方',
+  description: '从业务逻辑到数据模型，从 SQL 加工到数据工程，记录真实实践与持续成长。',
   year: new Date().getFullYear(),
   
   // 导航菜单

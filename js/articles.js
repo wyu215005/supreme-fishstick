@@ -1,317 +1,276 @@
 /**
  * 文章管理模块
- * 处理文章显示、搜索和标签过滤
+ * 处理文章显示、搜索、分类与标签过滤
+ *
+ * 数据说明（真实性原则）：
+ *  - articles：已发布的学习笔记，全部对应真实存在的公开 GitHub 仓库，
+ *    date 为仓库实际创建日期（2026-03-13），不使用动态伪造日期。
+ *  - topics：写作计划中的选题，明确标注"计划中"，与已发布文章分开渲染，
+ *    不计入文章统计，不伪装成已发布内容。
  */
-
-/**
- * 生成 N 天前的日期字符串（YYYY-MM-DD），文章时间随当天日期自动前移
- */
-function dateDaysAgo(days) {
-    const d = new Date();
-    d.setDate(d.getDate() - days);
-    const pad = n => String(n).padStart(2, '0');
-    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-}
 
 class ArticlesManager {
     constructor() {
-        // 文章数据 —— 聚焦数据开发方向（dateDaysAgo(N) 让日期始终显示为近期）
+        // 已发布：真实存在的学习笔记仓库
         this.articles = [
             {
-                id: 1,
-                title: '数据仓库分层架构：ODS/DWD/DWS/ADS 实践',
-                date: dateDaysAgo(2),
-                tags: ['数据仓库', '架构设计', '数据工程'],
-                excerpt: '深入解析数仓分层架构设计原则，每层的职责定义、命名规范与数据流转最佳实践，助你构建可维护的企业级数仓。',
-                category: '数据工程',
+                title: '数据仓库分层架构：ODS / DWD / DWS / ADS 实践笔记',
+                brief: '围绕 ODS/DWD/DWS/ADS 四层结构整理的数仓分层学习笔记：每层的职责边界、命名规范与数据流转方式，并结合实际项目中的分层开发经验进行梳理。',
+                category: '数据仓库',
+                tags: ['数仓分层', 'ODS', 'DWD', 'DWS', 'ADS'],
+                date: '2026-03-13',
                 link: 'https://github.com/wyu215005/DataWarehouse-Layered-Architecture-ODS-DWD-DWM-DWS-ADS-'
             },
             {
-                id: 2,
-                title: 'SQL 性能调优：从慢查询到毫秒级响应',
-                date: dateDaysAgo(9),
-                tags: ['SQL', '性能优化', '数据库'],
-                excerpt: '系统梳理索引设计、执行计划分析、分区裁剪、物化视图等核心优化手段，结合真实业务场景的调优案例讲解。',
-                category: '数据库'
-            },
-            {
-                id: 3,
-                title: 'Apache Airflow：数据管道编排实战',
-                date: dateDaysAgo(16),
-                tags: ['Airflow', 'ETL', '任务调度'],
-                excerpt: '使用 Airflow DAG 构建可靠的数据管道：任务依赖、重试策略、SLA 监控与动态任务生成，踩坑经验全记录。',
-                category: '数据工程'
-            },
-            {
-                id: 4,
-                title: 'PySpark 大数据处理：RDD 到 DataFrame',
-                date: dateDaysAgo(23),
-                tags: ['Spark', 'PySpark', '大数据'],
-                excerpt: '从 RDD 底层原理到 DataFrame/Dataset API 高阶用法，深入理解 Spark 执行模型、宽窄依赖与 Shuffle 机制。',
-                category: '计算引擎',
-                link: 'https://github.com/wyu215005/PySpark-Big-Data-Processing-From-RDD-to-DataFrame?tab=readme-ov-file'
-            },
-            {
-                id: 5,
                 title: 'Hive 维度建模：星型模式与雪花模式',
-                date: dateDaysAgo(30),
-                tags: ['Hive', '维度建模', '数据仓库'],
-                excerpt: '探讨维度建模核心方法论：事实表与维度表设计、缓慢变化维（SCD）处理、代理键策略在 Hive 中的落地实践。',
-                category: '数据工程',
+                brief: '维度建模学习笔记：事实表与维度表的设计要点、星型与雪花模式的取舍，以及缓慢变化维（SCD）的常见处理方式。',
+                category: '数据仓库',
+                tags: ['Hive', '维度建模', '星型模型', '雪花模型'],
+                date: '2026-03-13',
                 link: 'https://github.com/wyu215005/Hive-Dimensional-Modeling-Mastering-Star-and-Snowflake-Schemas'
             },
             {
-                id: 6,
-                title: 'Kafka 消息队列：生产者消费者与数据一致性',
-                date: dateDaysAgo(37),
-                tags: ['Kafka', '消息队列', '实时计算'],
-                excerpt: '详解 Kafka Topic/Partition/Offset 核心概念、消息丢失与重复消费场景分析，以及 Python 实战消费者示例。',
-                category: '实时计算'
-            },
-            {
-                id: 7,
-                title: 'ClickHouse OLAP 查询优化实践',
-                date: dateDaysAgo(44),
-                tags: ['ClickHouse', 'OLAP', '查询优化'],
-                excerpt: '深入 ClickHouse MergeTree 存储引擎、主键稀疏索引与跳数索引的工作原理，以及 JOIN 优化与物化视图使用技巧。',
-                category: '数据库'
-            },
-            {
-                id: 8,
-                title: 'Python 数据分析：Pandas 高阶操作',
-                date: dateDaysAgo(51),
-                tags: ['Python', 'Pandas', '数据分析'],
-                excerpt: '超越入门的 Pandas 使用技巧：groupby 聚合、pivot_table、窗口函数、内存优化与千万行数据处理方案。',
-                category: '数据分析'
-            },
-            {
-                id: 9,
                 title: '数据质量治理：从发现到修复的全流程',
-                date: dateDaysAgo(58),
-                tags: ['数据质量', '数据治理', '数据工程'],
-                excerpt: '构建数据质量监控体系：完整性、准确性、一致性、及时性四个维度的检测规则设计，以及异常告警与修复流程。',
-                category: '数据治理',
+                brief: '数据质量学习笔记：完整性、准确性、一致性、及时性四类检测规则的设计思路，以及异常发现、定位与修复的流程整理。',
+                category: '数据质量',
+                tags: ['数据质量', '数据治理', '核验规则'],
+                date: '2026-03-13',
                 link: 'https://github.com/wyu215005/Data-Quality-Governance-The-End-to-End-Lifecycle-from-Discovery-to-Remediation'
             },
             {
-                id: 10,
-                title: 'ETL vs ELT：现代数仓的架构选择',
-                date: dateDaysAgo(65),
-                tags: ['ETL', 'ELT', '数据仓库', '架构设计'],
-                excerpt: '对比 ETL 和 ELT 在不同业务场景下的取舍：云数仓时代 ELT 的优势、dbt 工具链实践与数据变换层设计。',
-                category: '数据工程'
+                title: 'PySpark 大数据处理：从 RDD 到 DataFrame',
+                brief: 'PySpark 学习笔记：从 RDD 基础 API 到 DataFrame 与 Spark SQL，梳理执行模型、宽窄依赖与 Shuffle 机制的理解。',
+                category: '大数据基础',
+                tags: ['PySpark', 'Spark', 'RDD', 'DataFrame'],
+                date: '2026-03-13',
+                link: 'https://github.com/wyu215005/PySpark-Big-Data-Processing-From-RDD-to-DataFrame'
             },
             {
-                id: 11,
-                title: 'Linux 常用命令速查：数据工程师必备',
-                date: dateDaysAgo(72),
-                tags: ['Linux', '运维', '工具'],
-                excerpt: '数据工程师高频 Linux 场景：文件处理、进程管理、日志分析、Shell 脚本、定时任务与网络排查命令汇总。',
-                category: '开发工具'
-            },
-            {
-                id: 12,
-                title: 'Docker 容器化大数据开发环境搭建',
-                date: dateDaysAgo(79),
-                tags: ['Docker', '容器化', '开发环境'],
-                excerpt: '使用 Docker Compose 快速搭建本地 Hadoop/Hive/Spark/Kafka 开发环境，告别繁琐的环境配置，一键启动大数据集群。',
-                category: '开发工具'
-            },
-            {
-                id: 13,
                 title: 'Shuffle 的魔法：MapReduce 工作原理逐步详解',
-                date: dateDaysAgo(86),
-                tags: ['MapReduce', 'Hadoop', '大数据', 'Shuffle'],
-                excerpt: '深入 MapReduce 编程模型：Map 阶段、Shuffle 阶段与 Reduce 阶段的全流程解析，揭秘 Shuffle 如何实现跨节点数据重新分组与排序，助你彻底理解分布式计算核心机制。',
-                category: '计算引擎',
+                brief: 'MapReduce 学习笔记：Map、Shuffle、Reduce 三个阶段的流程拆解，重点理解 Shuffle 如何完成跨节点的数据重分区与排序。',
+                category: '大数据基础',
+                tags: ['MapReduce', 'Shuffle', 'Hadoop'],
+                date: '2026-03-13',
                 link: 'https://github.com/wyu215005/The-Magic-of-Shuffle-A-Step-by-Step-Guide-to-MapReduce'
             }
         ];
 
+        // 写作计划：真实方向的选题，尚未发布
+        this.topics = [
+            { name: 'T-SQL 窗口函数实战笔记', tags: ['SQL Server', '窗口函数'] },
+            { name: '存储过程开发与重构', tags: ['T-SQL', '存储过程'] },
+            { name: '业务指标口径拆解方法', tags: ['数仓', '指标口径'] },
+            { name: '主题宽表设计笔记', tags: ['DWS', '宽表'] },
+            { name: 'SSIS 批次编排与异常日志', tags: ['SSIS', 'ETL'] },
+            { name: '数据质量核验方案', tags: ['数据质量', '核验'] },
+            { name: 'Power BI 指标迁移与 DAX', tags: ['Power BI', 'DAX'] },
+            { name: '静态数据血缘梳理方法', tags: ['血缘', '元数据'] },
+            { name: 'Hadoop / HDFS / YARN 基础实验复盘', tags: ['Hadoop', 'HDFS', 'YARN'] },
+            { name: 'Spark 入门学习路线', tags: ['Spark', '学习中'] },
+            { name: 'Hive 基础与湖仓概念', tags: ['Hive', 'Lakehouse'] }
+        ];
+
         this.filteredArticles = [...this.articles];
         this.activeTags = new Set();
+        this.activeCategory = null;
         this.init();
     }
 
-    /**
-     * 初始化
-     */
     init() {
         this.renderArticles();
         this.renderTags();
+        this.renderCategories();
         this.renderLatest();
+        this.renderTopics();
         this.setupSearch();
         this.setupTagFilter();
+        this.setupCategoryFilter();
     }
 
-    /**
-     * 首页：渲染最新文章预览（取前 3 篇，与其他页面共用同一数据源）
-     */
-    renderLatest() {
-        const container = document.getElementById('latestArticles');
-        if (!container) return;
-
-        container.innerHTML = this.articles.slice(0, 3).map(article => {
-            const brief = article.excerpt.length > 42
-                ? article.excerpt.slice(0, 42) + '...' : article.excerpt;
-            return `
-                <a href="articles.html" class="article-preview" aria-label="阅读文章：${this.escapeHtml(article.title)}">
-                    <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color); font-size: 0.95rem;">${this.escapeHtml(article.title)}</div>
-                    <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">${this.escapeHtml(brief)}</div>
-                    <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <span>📅 ${article.date}</span>
-                        <span style="display: inline-block; padding: 0.15rem 0.5rem; background: var(--bg-subtle); border-radius: 4px; font-size: 0.72rem; border: 1px solid var(--border-color);">${this.escapeHtml(article.category)}</span>
-                    </div>
-                </a>`;
-        }).join('');
-    }
-
-    /**
-     * 渲染文章列表
-     */
+    // 渲染文章列表（文章页）
     renderArticles() {
         const container = document.getElementById('articleList');
         if (!container) return;
 
-        // 更新文章数量显示
-        const countElement = document.getElementById('articleCount');
-        if (countElement) {
-            countElement.textContent = this.filteredArticles.length === this.articles.length
-                ? `共 ${this.filteredArticles.length} 篇文章`
-                : `找到 ${this.filteredArticles.length} 篇相关文章`;
-        }
-
         if (this.filteredArticles.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">没有找到相关文章，试试其他搜索条件吧</p>';
+            container.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+                    <div style="font-size: 2.2rem; margin-bottom: 0.8rem;">🐟</div>
+                    <p>没有找到匹配的文章，换个关键词试试～</p>
+                </div>`;
+            this.updateCount();
             return;
         }
 
-        container.innerHTML = this.filteredArticles.map((article, index) => {
-            const safeLink = article.link && /^https:\/\/github\.com\//.test(article.link)
-                ? article.link : null;
-            const githubBadge = safeLink
-                ? `<span class="article-github-badge">🔗 查看 GitHub 项目</span>`
-                : '';
-            const cardDelay = `style="animation-delay: ${Math.min(index * 60, 360)}ms"`;
-            const cardHtml = `
-                <div class="article-card fade-in${safeLink ? ' article-card-linked' : ''}" ${cardDelay} role="article"${safeLink ? '' : ' tabindex="0"'} aria-label="${article.title}">
+        container.innerHTML = this.filteredArticles.map(article => `
+            <div class="article-card">
+                <a href="${article.link}" target="_blank" rel="noopener" class="article-card-link">
                     <div class="article-card-header">
-                        <div class="article-card-title">${this.escapeHtml(article.title)}</div>
+                        <h3 class="article-card-title">${article.title}</h3>
                     </div>
                     <div class="article-card-body">
                         <div class="article-card-meta">
-                            📅 ${article.date} | 📁 ${article.category}
+                            <span>📅 ${article.date}</span>
+                            <span class="meta-cat">${article.category}</span>
                         </div>
-                        <div class="article-card-excerpt">${this.escapeHtml(article.excerpt)}</div>
+                        <p class="article-card-excerpt">${article.brief}</p>
                         <div class="article-card-tags">
-                            ${article.tags.map(tag => `<span class="tag">${this.escapeHtml(tag)}</span>`).join('')}
+                            ${article.tags.map(tag => `<span class="tag" data-tag="${tag}">${tag}</span>`).join('')}
                         </div>
-                        ${githubBadge}
+                        <span class="article-github-badge">📄 GitHub 仓库</span>
                     </div>
-                </div>`;
-            if (safeLink) {
-                return `<a href="${this.escapeHtml(safeLink)}" target="_blank" rel="noopener noreferrer" class="article-card-link" aria-label="${this.escapeHtml(article.title)} - 在 GitHub 中打开">${cardHtml}</a>`;
-            }
-            return cardHtml;
-        }).join('');
+                </a>
+            </div>
+        `).join('');
+
+        this.updateCount();
     }
 
-    /**
-     * 渲染标签筛选
-     */
+    // 渲染分类筛选（文章页）
+    renderCategories() {
+        const container = document.getElementById('categoryContainer');
+        if (!container) return;
+
+        const categories = [...new Set(this.articles.map(a => a.category))];
+        container.innerHTML = `
+            <button class="cat-chip ${this.activeCategory === null ? 'active' : ''}" data-category="">全部</button>
+            ${categories.map(cat => `
+                <button class="cat-chip ${this.activeCategory === cat ? 'active' : ''}" data-category="${cat}">${cat}</button>
+            `).join('')}`;
+    }
+
+    // 渲染标签筛选（文章页）
     renderTags() {
         const container = document.getElementById('tagContainer');
         if (!container) return;
 
-        // 收集所有标签并统计文章数
-        const tagCount = {};
-        this.articles.forEach(article => {
-            article.tags.forEach(tag => {
-                tagCount[tag] = (tagCount[tag] || 0) + 1;
-            });
-        });
-
-        // 按文章数降序排列
-        const sortedTags = Object.entries(tagCount)
-            .sort((a, b) => b[1] - a[1])
-            .map(([tag]) => tag);
-
-        container.innerHTML = sortedTags.map(tag => `
-            <span class="tag" data-tag="${this.escapeHtml(tag)}">${this.escapeHtml(tag)}</span>
+        const allTags = [...new Set(this.articles.flatMap(a => a.tags))];
+        container.innerHTML = allTags.map(tag => `
+            <span class="tag ${this.activeTags.has(tag) ? 'active' : ''}" data-tag="${tag}">${tag}</span>
         `).join('');
     }
 
-    /**
-     * 设置搜索框事件
-     */
-    setupSearch() {
-        const searchBox = document.getElementById('searchBox');
-        if (!searchBox) return;
-
-        searchBox.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            this.filterArticles(query);
-        });
-    }
-
-    /**
-     * 设置标签过滤事件
-     */
-    setupTagFilter() {
-        const container = document.getElementById('tagContainer');
+    // 渲染最新文章（首页）
+    renderLatest() {
+        const container = document.getElementById('latestArticles');
         if (!container) return;
 
-        container.addEventListener('click', (e) => {
-            if (e.target.classList.contains('tag')) {
-                const tag = e.target.getAttribute('data-tag');
-                this.toggleTag(tag, e.target);
-            }
-        });
+        const latest = [...this.articles]
+            .sort((a, b) => b.date.localeCompare(a.date))
+            .slice(0, 3);
+
+        container.innerHTML = latest.map(article => {
+            const href = article.link || 'articles.html';
+            const ext = article.link ? ' target="_blank" rel="noopener"' : '';
+            return `
+            <a href="${href}"${ext} class="article-preview">
+                <div class="article-card-meta">
+                    <span>📅 ${article.date}</span>
+                    <span class="meta-cat">${article.category}</span>
+                </div>
+                <h3 class="article-card-title">${article.title}</h3>
+                <p class="article-card-excerpt">${article.brief}</p>
+            </a>`;
+        }).join('');
     }
 
-    /**
-     * 切换标签选中状态
-     */
-    toggleTag(tag, el) {
-        if (this.activeTags.has(tag)) {
-            this.activeTags.delete(tag);
-        } else {
-            this.activeTags.add(tag);
+    // 渲染选题池（文章页底部，明确标注为计划）
+    renderTopics() {
+        const container = document.getElementById('topicList');
+        if (!container) return;
+
+        container.innerHTML = this.topics.map(topic => `
+            <div class="topic-item">
+                <span class="topic-name">${topic.name}</span>
+                <span class="topic-status">${topic.tags.join(' · ')} · 计划中</span>
+            </div>
+        `).join('');
+    }
+
+    // 搜索
+    setupSearch() {
+        const searchBox = document.getElementById('searchBox');
+        if (searchBox) {
+            searchBox.addEventListener('input', (e) => {
+                this.search(e.target.value);
+            });
         }
-        el.classList.toggle('active');
-        this.filterArticles(document.getElementById('searchBox')?.value?.toLowerCase().trim() || '');
     }
 
-    /**
-     * 过滤文章
-     */
-    filterArticles(query) {
+    search(query) {
+        this.currentQuery = query.toLowerCase();
+        this.applyFilters();
+    }
+
+    // 标签筛选
+    setupTagFilter() {
+        const container = document.getElementById('tagContainer');
+        if (container) {
+            container.addEventListener('click', (e) => {
+                const tagEl = e.target.closest('.tag');
+                if (!tagEl) return;
+                const tag = tagEl.dataset.tag;
+                if (this.activeTags.has(tag)) {
+                    this.activeTags.delete(tag);
+                } else {
+                    this.activeTags.add(tag);
+                }
+                this.renderTags();
+                this.applyFilters();
+            });
+        }
+    }
+
+    // 分类筛选
+    setupCategoryFilter() {
+        const container = document.getElementById('categoryContainer');
+        if (container) {
+            container.addEventListener('click', (e) => {
+                const chipEl = e.target.closest('.cat-chip');
+                if (!chipEl) return;
+                this.activeCategory = chipEl.dataset.category || null;
+                this.renderCategories();
+                this.applyFilters();
+            });
+        }
+    }
+
+    // 应用全部筛选条件
+    applyFilters() {
         this.filteredArticles = this.articles.filter(article => {
-            const matchesQuery = !query ||
-                article.title.toLowerCase().includes(query) ||
-                article.excerpt.toLowerCase().includes(query) ||
-                article.tags.some(tag => tag.toLowerCase().includes(query));
-
-            const matchesTags = this.activeTags.size === 0 ||
-                Array.from(this.activeTags).some(tag => article.tags.includes(tag));
-
-            return matchesQuery && matchesTags;
+            // 分类匹配
+            if (this.activeCategory && article.category !== this.activeCategory) return false;
+            // 标签匹配（选中的标签需全部命中）
+            for (const tag of this.activeTags) {
+                if (!article.tags.includes(tag)) return false;
+            }
+            // 搜索匹配
+            if (this.currentQuery) {
+                const haystack = (article.title + article.brief + article.category + article.tags.join(' ')).toLowerCase();
+                if (!haystack.includes(this.currentQuery)) return false;
+            }
+            return true;
         });
-
         this.renderArticles();
     }
 
-    /**
-     * 转义 HTML，防止 XSS
-     */
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
+    updateCount() {
+        const countEl = document.getElementById('articleCount');
+        if (countEl) {
+            countEl.textContent = `共 ${this.filteredArticles.length} 篇`;
+        }
+    }
+
+    escapeHtml(str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
     }
 }
 
 // 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     new ArticlesManager();
 });

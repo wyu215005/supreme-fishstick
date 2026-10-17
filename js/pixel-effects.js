@@ -76,6 +76,8 @@
         '.project-item',
         '.tech-card',
         '.article-card',
+        '.article-preview',
+        '.feature-card',
         '.message-item',
         '.fishing-checkin',
         '.gachapon-machine-v3',
