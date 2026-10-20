@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/ocean.css">
     <script src="js/theme-init.js"></script>
+    <script src="js/i18n/dict-zh-CN.js"></script>
+    <script src="js/i18n/dict-en.js"></script>
+    <script src="js/i18n/dict-fr.js"></script>
+    <script src="js/i18n/i18n.js"></script>
 </head>
-<body>
+<body data-i18n-doc="about">
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
@@ -23,39 +27,61 @@
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link"><span class="icon icon-fish" aria-hidden="true"></span>首页</a></li>
-                <li><a href="articles.html" class="nav-link"><span class="icon icon-book" aria-hidden="true"></span>文章</a></li>
-                <li><a href="about.html" class="nav-link active"><span class="icon icon-jelly" aria-hidden="true"></span>关于我</a></li>
-                <li><a href="guestbook.html" class="nav-link"><span class="icon icon-bottle" aria-hidden="true"></span>留言墙</a></li>
-                <li><a href="gachapon.html" class="nav-link"><span class="icon icon-chest" aria-hidden="true"></span>扭蛋机</a></li>
+                <li><a href="index.html" class="nav-link"><span class="icon icon-fish" aria-hidden="true"></span><span data-i18n="nav.home">首页</span></a></li>
+                <li><a href="articles.html" class="nav-link"><span class="icon icon-book" aria-hidden="true"></span><span data-i18n="nav.articles">文章</span></a></li>
+                <li><a href="about.html" class="nav-link active"><span class="icon icon-jelly" aria-hidden="true"></span><span data-i18n="nav.about">关于我</span></a></li>
+                <li><a href="guestbook.html" class="nav-link"><span class="icon icon-bottle" aria-hidden="true"></span><span data-i18n="nav.guestbook">留言墙</span></a></li>
+                <li><a href="gachapon.html" class="nav-link"><span class="icon icon-chest" aria-hidden="true"></span><span data-i18n="nav.gachapon">扭蛋机</span></a></li>
             </ul>
             <div class="nav-controls">
-                <div class="wardrobe">
-                    <button class="theme-toggle" id="themeToggle" aria-haspopup="true" aria-expanded="false" aria-controls="themePanel" title="主题衣橱" aria-label="打开主题衣橱">
-                        <span class="icon icon-hanger" aria-hidden="true"></span>
+                <div class="wardrobe lang-wardrobe">
+                    <button class="theme-toggle lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-controls="langPanel" aria-label="切换语言" data-i18n-attr="aria-label:lang.switchAria">
+                        <span class="icon icon-globe" aria-hidden="true"></span><span class="lang-code" id="langCode">中</span>
                     </button>
-                    <div class="theme-panel" id="themePanel" hidden>
-                        <p class="theme-panel-title">主题衣橱</p>
-                        <div class="theme-options" role="radiogroup" aria-label="选择主题">
-                            <button type="button" class="theme-option" data-theme-value="ocean" role="radio" aria-checked="false">
-                                <span class="theme-swatch swatch-ocean" aria-hidden="true"><i></i><i></i><i></i></span>
-                                <span class="theme-option-info"><strong>深海夜航</strong><em>OCEAN</em></span>
+                    <div class="theme-panel lang-panel" id="langPanel" hidden>
+                        <p class="theme-panel-title" data-i18n="lang.panelTitle">语言 / Language</p>
+                        <div class="theme-options" role="radiogroup" aria-label="切换语言" data-i18n-attr="aria-label:lang.switchAria">
+                            <button type="button" class="theme-option lang-option" data-lang-value="zh-CN" role="radio" aria-checked="false">
+                                <span class="theme-option-info"><strong>简体中文</strong><em>CHINESE</em></span>
                                 <span class="theme-check" aria-hidden="true"></span>
                             </button>
-                            <button type="button" class="theme-option" data-theme-value="paper" role="radio" aria-checked="false">
-                                <span class="theme-swatch swatch-paper" aria-hidden="true"><i></i><i></i><i></i></span>
-                                <span class="theme-option-info"><strong>晴天手账</strong><em>SKETCHBOOK</em></span>
+                            <button type="button" class="theme-option lang-option" data-lang-value="en" role="radio" aria-checked="false">
+                                <span class="theme-option-info"><strong>English</strong><em>ENGLISH</em></span>
                                 <span class="theme-check" aria-hidden="true"></span>
                             </button>
-                            <button type="button" class="theme-option" data-theme-value="play" role="radio" aria-checked="false">
-                                <span class="theme-swatch swatch-play" aria-hidden="true"><i></i><i></i><i></i></span>
-                                <span class="theme-option-info"><strong>怪趣实验室</strong><em>PLAYGROUND</em></span>
+                            <button type="button" class="theme-option lang-option" data-lang-value="fr" role="radio" aria-checked="false">
+                                <span class="theme-option-info"><strong>Français</strong><em>FRANÇAIS</em></span>
                                 <span class="theme-check" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+                <div class="wardrobe">
+                    <button class="theme-toggle" id="themeToggle" aria-haspopup="true" aria-expanded="false" aria-controls="themePanel" title="主题衣橱" aria-label="打开主题衣橱" data-i18n-attr="title:nav.wardrobeTitle;aria-label:nav.openWardrobe">
+                        <span class="icon icon-hanger" aria-hidden="true"></span>
+                    </button>
+                    <div class="theme-panel" id="themePanel" hidden>
+                        <p class="theme-panel-title" data-i18n="nav.wardrobeTitle">主题衣橱</p>
+                        <div class="theme-options" role="radiogroup" aria-label="选择主题" data-i18n-attr="aria-label:nav.selectTheme">
+                            <button type="button" class="theme-option" data-theme-value="ocean" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-ocean" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong data-i18n="nav.ocean">深海夜航</strong><em>OCEAN</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="paper" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-paper" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong data-i18n="nav.paper">晴天手账</strong><em>SKETCHBOOK</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="play" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-play" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong data-i18n="nav.play">怪趣实验室</strong><em>PLAYGROUND</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" data-i18n-attr="aria-label:nav.openMenu">
                     <div class="bar"></div>
                     <div class="bar"></div>
                     <div class="bar"></div>
@@ -66,57 +92,57 @@
 
     <main class="container">
         <header class="page-header">
-            <h1><span class="icon icon-jelly icon-lg" aria-hidden="true"></span> 关于我</h1>
-            <p class="page-sub">一名正在成长的数据开发者</p>
+            <h1><span class="icon icon-jelly icon-lg" aria-hidden="true"></span> <span data-i18n="about.title">关于我</span></h1>
+            <p class="page-sub" data-i18n="about.sub">一名正在成长的数据开发者</p>
         </header>
 
         <!-- 个人介绍 -->
         <section class="intro-section">
-            <img src="images/avatar-jellyfish.jpg" alt="FishRain 的头像" class="intro-avatar">
+            <img src="images/avatar-jellyfish.jpg" alt="FishRain 的头像" class="intro-avatar" data-i18n-attr="alt:about.avatarAlt">
             <div class="intro-content">
-                <h2 class="intro-title">你好，我是 FishRain 🐟</h2>
-                <p class="intro-text">
+                <h2 class="intro-title" data-i18n="about.hello">你好，我是 FishRain 🐟</h2>
+                <p class="intro-text" data-i18n="about.intro1">
                     目前是一名<strong>数据科学与大数据技术专业的本科生</strong>。
                 </p>
-                <p class="intro-text">
+                <p class="intro-text" data-i18n="about.intro2">
                     我关注<strong>数据开发与数据仓库</strong>方向，在实际项目中积累了 SQL 数据加工、业务指标逻辑拆解、数仓分层开发、ETL 编排与数据质量核验的经验。
                 </p>
-                <p class="intro-text">
+                <p class="intro-text" data-i18n="about.intro3">
                     我相信数据开发不仅是编写 SQL，更重要的是<strong>理解业务数据、明确加工粒度，并构建可维护、可验证的数据链路</strong>。
                 </p>
-                <p class="intro-text">
+                <p class="intro-text" data-i18n="about.intro4">
                     目前正在进一步学习 Spark 与湖仓技术，希望将已有的数仓开发经验拓展到更广泛的数据工程场景。
                 </p>
-                <span class="intro-motto">🐢 慢慢来，比较快。</span>
+                <span class="intro-motto" data-i18n="about.motto">🐢 慢慢来，比较快。</span>
             </div>
         </section>
 
         <!-- 技术成长 -->
         <section class="card">
-            <h2 style="font-size: 1.25rem; margin-bottom: 1.5rem;"><span class="icon icon-sprout" aria-hidden="true"></span> 技术成长</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">
+            <h2 style="font-size: 1.25rem; margin-bottom: 1.5rem;"><span class="icon icon-sprout" aria-hidden="true"></span> <span data-i18n="about.growthTitle">技术成长</span></h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;" data-i18n="about.growthNote">
                 如实标注每项技术的实践程度 —— 不堆砌名词，不夸大熟练度。
             </p>
             <div class="growth-grid">
                 <div class="tech-card">
-                    <h3 class="tech-card-title"><span class="tech-dot dot-practice"></span>实际实践</h3>
-                    <p class="tech-card-desc">在真实项目中反复使用的技术</p>
+                    <h3 class="tech-card-title"><span class="tech-dot dot-practice"></span><span data-i18n="home.practice">实际实践</span></h3>
+                    <p class="tech-card-desc" data-i18n="about.practiceDesc">在真实项目中反复使用的技术</p>
                     <div class="tech-card-tags">
                         <span class="tag">SQL / T-SQL</span>
-                        <span class="tag">窗口函数</span>
-                        <span class="tag">存储过程</span>
-                        <span class="tag">数仓分层</span>
-                        <span class="tag">指标口径拆解</span>
-                        <span class="tag">宽表开发</span>
+                        <span class="tag" data-i18n="articles.tags.窗口函数">窗口函数</span>
+                        <span class="tag" data-i18n="articles.tags.存储过程">存储过程</span>
+                        <span class="tag" data-i18n="articles.tags.数仓分层">数仓分层</span>
+                        <span class="tag" data-i18n="articles.tags.指标口径拆解">指标口径拆解</span>
+                        <span class="tag" data-i18n="articles.tags.宽表开发">宽表开发</span>
                         <span class="tag">Python ETL</span>
                         <span class="tag">SSIS</span>
                         <span class="tag">Power BI / DAX</span>
-                        <span class="tag">数据血缘梳理</span>
+                        <span class="tag" data-i18n="articles.tags.数据血缘梳理">数据血缘梳理</span>
                     </div>
                 </div>
                 <div class="tech-card">
-                    <h3 class="tech-card-title"><span class="tech-dot dot-explore"></span>基础探索</h3>
-                    <p class="tech-card-desc">通过课程与实验建立基础认知</p>
+                    <h3 class="tech-card-title"><span class="tech-dot dot-explore"></span><span data-i18n="home.explore">基础探索</span></h3>
+                    <p class="tech-card-desc" data-i18n="about.exploreDesc">通过课程与实验建立基础认知</p>
                     <div class="tech-card-tags">
                         <span class="tag">Hadoop</span>
                         <span class="tag">HDFS</span>
@@ -125,13 +151,13 @@
                     </div>
                 </div>
                 <div class="tech-card">
-                    <h3 class="tech-card-title"><span class="tech-dot dot-learn"></span>正在学习</h3>
-                    <p class="tech-card-desc">当前正在补齐与深入的方向</p>
+                    <h3 class="tech-card-title"><span class="tech-dot dot-learn"></span><span data-i18n="home.learning">正在学习</span></h3>
+                    <p class="tech-card-desc" data-i18n="about.learningDesc">当前正在补齐与深入的方向</p>
                     <div class="tech-card-tags">
                         <span class="tag">Spark</span>
                         <span class="tag">Hive</span>
-                        <span class="tag">湖仓一体</span>
-                        <span class="tag">数据平台</span>
+                        <span class="tag" data-i18n="articles.tags.湖仓一体">湖仓一体</span>
+                        <span class="tag" data-i18n="articles.tags.数据平台">数据平台</span>
                     </div>
                 </div>
             </div>
@@ -139,17 +165,17 @@
 
         <!-- 项目经历 -->
         <section class="card">
-            <h2 style="font-size: 1.25rem; margin-bottom: 0.4rem;"><span class="icon icon-starfish" aria-hidden="true"></span> 项目经历</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+            <h2 style="font-size: 1.25rem; margin-bottom: 0.4rem;"><span class="icon icon-starfish" aria-hidden="true"></span> <span data-i18n="about.projectsTitle">项目经历</span></h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;" data-i18n="about.projectsNote">
                 真实的业务项目 —— 后续将以脱敏数据和示意结构整理成可公开的案例。
             </p>
             <div class="project-list">
                 <div class="project-item">
                     <div class="project-header">
-                        <h3 class="project-title">运营数据仓库建设与 ETL 加工链路重构</h3>
-                        <span class="project-badge">案例整理中</span>
+                        <h3 class="project-title" data-i18n="home.p1Title">运营数据仓库建设与 ETL 加工链路重构</h3>
+                        <span class="project-badge" data-i18n="home.caseBadge">案例整理中</span>
                     </div>
-                    <p class="project-desc">
+                    <p class="project-desc" data-i18n="about.a1Desc">
                         围绕业务指标口径拆解、ODS/DWD/DWS/ADS 分层加工、ETL 任务编排及数据质量验证展开的实际数仓开发实践：使用 SQL Server / T-SQL 完成复杂 SQL 加工与存储过程开发，Python 编写数据抽取脚本，SSIS 负责批次编排、异常日志与数据质量核验。
                     </p>
                     <div class="project-tech">
@@ -161,10 +187,10 @@
                 </div>
                 <div class="project-item">
                     <div class="project-header">
-                        <h3 class="project-title">数据血缘可视化与依赖追踪</h3>
-                        <span class="project-badge">案例整理中</span>
+                        <h3 class="project-title" data-i18n="home.p2Title">数据血缘可视化与依赖追踪</h3>
+                        <span class="project-badge" data-i18n="home.caseBadge">案例整理中</span>
                     </div>
-                    <p class="project-desc">
+                    <p class="project-desc" data-i18n="about.a2Desc">
                         通过梳理表、存储过程与调度批次的上下游关系，构建静态交互式血缘查询页面，辅助理解数据加工链路与依赖影响范围。
                     </p>
                     <div class="project-tech">
@@ -179,15 +205,15 @@
         <!-- 钓鱼打卡 -->
         <section class="card fishing-checkin" id="fishingCheckin">
             <div class="checkin-header">
-                <h3>🎣 摸鱼钓鱼打卡</h3>
-                <span style="opacity: 0.75; font-size: 0.85rem;">坚持学习，偶尔摸鱼</span>
+                <h3 data-i18n="about.checkinTitle">🎣 摸鱼钓鱼打卡</h3>
+                <span style="opacity: 0.75; font-size: 0.85rem;" data-i18n="about.checkinNote">坚持学习，偶尔摸鱼</span>
             </div>
             <div class="fishing-scene" id="fishingScene" aria-hidden="true">
                 <div class="cat-sprite">🐱</div>
             </div>
             <div class="week-stats"></div>
             <div style="text-align: center; margin: 1.5rem 0;">
-                <button class="checkin-btn" id="checkinBtn">今日打卡</button>
+                <button class="checkin-btn" id="checkinBtn" data-i18n="about.checkinBtn">今日打卡</button>
             </div>
             <div class="checkin-stats" id="checkinStats"></div>
         </section>
@@ -200,16 +226,16 @@
                 <img src="images/logo-fish.svg" alt="" aria-hidden="true" class="logo-fish">
                 <span class="footer-brand-name">FishRain</span>
             </div>
-            <p class="footer-motto">慢慢来，比较快。</p>
+            <p class="footer-motto" data-i18n="footer.motto">慢慢来，比较快。</p>
             <div class="footer-links">
                 <a class="footer-link" href="https://github.com/wyu215005" target="_blank" rel="noopener">🐙 GitHub</a>
-                <a class="footer-link" href="https://space.bilibili.com/1938108705" target="_blank" rel="noopener">📺 哔哩哔哩</a>
-                <a class="footer-link" href="mailto:3492403678@qq.com">📧 邮箱</a>
-                <a class="footer-link" href="https://xhslink.cn/o/5xlS9WNlUCt" target="_blank" rel="noopener">📕 小红书</a>
+                <a class="footer-link" href="https://space.bilibili.com/1938108705" target="_blank" rel="noopener">📺 <span data-i18n="footer.bilibili">哔哩哔哩</span></a>
+                <a class="footer-link" href="mailto:3492403678@qq.com">📧 <span data-i18n="footer.email">邮箱</span></a>
+                <a class="footer-link" href="https://xhslink.cn/o/5xlS9WNlUCt" target="_blank" rel="noopener">📕 <span data-i18n="footer.xhs">小红书</span></a>
             </div>
             <div class="footer-bottom">
-                <span>© 2026 FishRain · 从业务逻辑到数据模型</span>
-                <span>Powered by GitHub Pages</span>
+                <span data-i18n="footer.copyright">© 2026 FishRain · 从业务逻辑到数据模型</span>
+                <span data-i18n="footer.poweredBy">Powered by GitHub Pages</span>
             </div>
         </div>
     </footer>
