@@ -3,8 +3,8 @@
  * 处理文章显示、搜索、分类与标签过滤
  *
  * 数据说明（真实性原则）：
- *  - articles：已发布的学习笔记，全部对应真实存在的公开 GitHub 仓库，
- *    date 为仓库实际创建日期（2026-03-13），不使用动态伪造日期。
+ *  - articles：已发布的学习笔记/工程复盘，全部对应真实存在的公开 GitHub 仓库，
+ *    date 为对应仓库的实际创建日期，不使用动态伪造日期。
  *  - topics：写作计划中的选题，明确标注"计划中"，与已发布文章分开渲染，
  *    不计入文章统计，不伪装成已发布内容。
  *
@@ -17,8 +17,20 @@
 
 class ArticlesManager {
     constructor() {
-        // 已发布：真实存在的学习笔记仓库
+        // 已发布：真实存在的学习笔记/复盘仓库
         this.articles = [
+            {
+                title: 'BI 数仓迁移与分层加工重构：真实项目工程复盘',
+                brief: '面向 BI 的 SQL Server 数仓迁移与加工链路重构的脱敏复盘：业务指标口径与数据粒度、ODS/DWD/DWS/ADS 分层加工、17 个依赖批次的 ETL 编排、Check List 故障复盘与 BI 换源对账验证。',
+                titleEn: 'BI Warehouse Migration & Layered Processing Refactor: A Real-Project Engineering Retrospective',
+                briefEn: 'A sanitized retrospective of a BI-oriented SQL Server warehouse migration and processing pipeline refactor: business metric definitions and data granularity, ODS/DWD/DWS/ADS layered processing, ETL orchestration across 17 dependent batches, check-list incident reviews, and reconciliation when switching BI to the new source.',
+                titleFr: 'Migration de data warehouse BI et refonte du traitement en couches : rétrospective d\u2019ingénierie sur un projet réel',
+                briefFr: 'Rétrospective anonymisée d\u2019une migration de data warehouse SQL Server orientée BI et de la refonte de sa chaîne de traitement : définitions des indicateurs métier et granularité des données, traitement en couches ODS/DWD/DWS/ADS, orchestration ETL de 17 lots dépendants, revues d\u2019incidents par check-list et réconciliation lors du basculement du BI vers la nouvelle source.',
+                category: '工程复盘',
+                tags: ['数仓迁移', 'T-SQL', 'SSIS', 'Power BI', '数据质量'],
+                date: '2026-10-17',
+                link: 'https://github.com/wyu215005/bi-warehouse-migration-case-study'
+            },
             {
                 title: '数据仓库分层架构：ODS / DWD / DWS / ADS 实践笔记',
                 brief: '围绕 ODS/DWD/DWS/ADS 四层结构整理的数仓分层学习笔记：每层的职责边界、命名规范与数据流转方式，并结合实际项目中的分层开发经验进行梳理。',
@@ -143,7 +155,7 @@ class ArticlesManager {
 
     // 分类显示层翻译（内部键保持中文，不破坏筛选逻辑）
     catLabel(cat) {
-        const map = { '数据仓库': 'articles.catDw', '数据质量': 'articles.catDq', '大数据基础': 'articles.catBd' };
+        const map = { '数据仓库': 'articles.catDw', '数据质量': 'articles.catDq', '大数据基础': 'articles.catBd', '工程复盘': 'articles.catCase' };
         return map[cat] ? this.t(map[cat]) : cat;
     }
 
