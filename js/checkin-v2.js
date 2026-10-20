@@ -10,6 +10,22 @@ class FishingCheckin {
     this.weekDay = UTILS.getWeekDay();
     this.data = this.loadData();
     this.init();
+    this.bindLangChange();
+  }
+
+  /* ---------- 多语言辅助 ---------- */
+
+  lang() {
+    return window.FishRainI18n ? FishRainI18n.get() : 'zh-CN';
+  }
+
+  t(key, vars) {
+    return window.FishRainI18n ? FishRainI18n.t(key, vars) : key;
+  }
+
+  // 语言切换后整体重渲染（月份/周标签/统计文案随语言变化）
+  bindLangChange() {
+    window.addEventListener('fishrain:langchange', () => this.render());
   }
 
   /**
@@ -63,7 +79,7 @@ class FishingCheckin {
   checkin() {
     // 检查是否已打卡
     if (this.data.lastCheckIn === this.today) {
-      UTILS.showToast('🐟 今天已经钓过鱼啦！明天再来吧');
+      UTILS.showToast(this.t('about.checkedToast'));
       return false;
     }
 
@@ -120,7 +136,7 @@ class FishingCheckin {
       // 小猫开心跳跃
       cat.classList.add('happy');
       setTimeout(() => cat.classList.remove('happy'), 900);
-      UTILS.showToast('🎉 钓到一条小鱼！');
+      UTILS.showToast(this.t('about.caughtToast'));
       this.render();
     }, this.config.animationDuration);
   }
@@ -186,15 +202,16 @@ class FishingCheckin {
 
     const monthKey = this.today.substring(0, 7);
     const monthDays = this.data.monthData[monthKey] || [];
-    
+
     const now = new Date();
-    const monthName = `${now.getFullYear()}年${now.getMonth() + 1}月`;
+    // 月份标题随语言本地化（2026年10月 / October 2026 / octobre 2026）
+    const monthName = new Intl.DateTimeFormat(this.lang(), { year: 'numeric', month: 'long' }).format(now);
 
     header.innerHTML = `
-      <h3 style="margin: 0; font-size: 1.2rem;">🎣 钓鱼打卡</h3>
+      <h3 style="margin: 0; font-size: 1.2rem;">${this.t('about.checkinLiveTitle')}</h3>
       <div style="text-align: right; font-size: 0.9rem;">
         <div>${monthName}</div>
-        <div style="color: var(--text-secondary);">本月 ${monthDays.length} 天</div>
+        <div style="color: var(--text-secondary);">${this.t('about.monthDays', { n: monthDays.length })}</div>
       </div>
     `;
   }
@@ -206,22 +223,24 @@ class FishingCheckin {
     const container = document.querySelector('.week-stats');
     if (!container) return;
 
-    const days = SITE_CONFIG.checkin.weekDays;
     const emojis = SITE_CONFIG.checkin.weekEmoji;
-    
+    // 周标签随语言本地化（周一 / Mon / lun.）
+    const weekdayFmt = new Intl.DateTimeFormat(this.lang(), { weekday: 'short' });
+
     let html = '<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.8rem; margin-top: 1.5rem;">';
-    
+
     for (let i = 0; i < 7; i++) {
       const dayDate = this.getDateOfWeekDay(i + 1);
       const dateKey = UTILS.formatDate(dayDate);
       const isCheckedIn = this.data.checkinDates.includes(dateKey);
       const isToday = dateKey === this.today;
-      
+      const dayLabel = weekdayFmt.format(dayDate);
+
       html += `
-        <div class="week-day-item ${isCheckedIn ? 'active' : ''} ${isToday ? 'today' : ''}" 
-             title="${days[i]} ${dayDate.getDate()}日">
+        <div class="week-day-item ${isCheckedIn ? 'active' : ''} ${isToday ? 'today' : ''}"
+             title="${dayLabel} ${dayDate.getDate()}">
           <div class="week-day-emoji">${emojis[i]}</div>
-          <div class="week-day-label">${days[i]}</div>
+          <div class="week-day-label">${dayLabel}</div>
           <div class="week-day-date">${dayDate.getDate()}</div>
         </div>
       `;
@@ -253,7 +272,7 @@ class FishingCheckin {
 
     const isCheckedInToday = this.data.lastCheckIn === this.today;
     btn.disabled = isCheckedInToday;
-    btn.textContent = isCheckedInToday ? '🎣 今天已打卡' : '🎣 立即甩杆';
+    btn.textContent = this.t(isCheckedInToday ? 'about.checkedBtn' : 'about.castBtn');
     btn.className = `checkin-btn ${isCheckedInToday ? 'disabled' : ''}`;
   }
 
@@ -265,22 +284,22 @@ class FishingCheckin {
     if (!statsContainer) return;
 
     const streakText = this.data.currentStreak > 0
-      ? `🔥 已连续打卡 ${this.data.currentStreak} 天`
-      : '还没有打卡记录，从今天开始吧';
+      ? this.t('about.streakMsg', { n: this.data.currentStreak })
+      : this.t('about.noRecord');
 
     statsContainer.innerHTML = `
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;">
         <div class="stat-card">
           <div class="stat-number" data-target="${this.data.totalDays}">0</div>
-          <div class="stat-label">总学习天数</div>
+          <div class="stat-label">${this.t('about.totalDays')}</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" data-target="${this.data.currentStreak}">0</div>
-          <div class="stat-label">连续打卡</div>
+          <div class="stat-label">${this.t('about.streak')}</div>
         </div>
         <div class="stat-card">
           <div class="stat-number" data-target="${(this.data.totalDays / 30).toFixed(1)}" data-decimals="1">0.0</div>
-          <div class="stat-label">月均学习</div>
+          <div class="stat-label">${this.t('about.monthly')}</div>
         </div>
       </div>
       <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">

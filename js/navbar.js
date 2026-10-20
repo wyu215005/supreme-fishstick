@@ -1,14 +1,16 @@
 /**
  * 导航栏模块
- * 导航链接激活状态、响应式汉堡菜单、主题衣橱（三主题切换面板）
+ * 导航链接激活状态、响应式汉堡菜单、主题衣橱与语言菜单（弹层面板交互）
  * 主题状态的读写统一走 js/theme-init.js 的 FishRainTheme，
- * 本文件只负责衣橱面板的 UI 交互，避免重复监听与状态冲突
+ * 语言状态的读写统一走 js/i18n/i18n.js 的 FishRainI18n，
+ * 本文件只负责面板的 UI 交互，避免重复监听与状态冲突
  */
 
 document.addEventListener('DOMContentLoaded', function () {
   setActiveNavLink();
   setupHamburgerMenu();
   setupWardrobe();
+  setupLangMenu();
 });
 
 /**
@@ -66,22 +68,27 @@ function setupHamburgerMenu() {
 }
 
 /**
- * 主题衣橱：三主题选择面板
- * 点击立即切换（无需刷新）、点击外部关闭、Esc 关闭、
+ * 弹层面板通用交互（主题衣橱与语言菜单共用）：
+ * 点击开关、点击外部关闭、Esc 关闭、
  * 上下方向键在选项间移动、关闭后焦点归还按钮
+ * @param {Object} cfg
+ *   toggle   开关按钮
+ *   panel    面板容器
+ *   options  选项按钮数组
+ *   valueOf  (opt) => 选项的值
+ *   current  () => 当前值
+ *   select   (value) => 选中某值（由对应状态引擎持久化）
  */
-function setupWardrobe() {
-  const toggle = document.getElementById('themeToggle');
-  const panel = document.getElementById('themePanel');
-  if (!toggle || !panel || !window.FishRainTheme) return;
+function setupPanelMenu(cfg) {
+  const { toggle, panel, options, valueOf, current, select } = cfg;
+  if (!toggle || !panel || options.length === 0) return;
 
-  const options = Array.from(panel.querySelectorAll('.theme-option'));
   const TRANSITION_MS = 180; // 与 .theme-panel 的过渡时长一致
 
   function syncChecked() {
-    const current = FishRainTheme.get();
+    const cur = current();
     options.forEach(opt => {
-      const selected = opt.dataset.themeValue === current;
+      const selected = valueOf(opt) === cur;
       opt.classList.toggle('active', selected);
       opt.setAttribute('aria-checked', String(selected));
     });
@@ -92,8 +99,8 @@ function setupWardrobe() {
     // 下一帧再加 open 类，让过渡动画有机会触发
     requestAnimationFrame(() => panel.classList.add('open'));
     toggle.setAttribute('aria-expanded', 'true');
-    const current = options.find(o => o.dataset.themeValue === FishRainTheme.get());
-    (current || options[0]).focus();
+    const cur = options.find(o => valueOf(o) === current());
+    (cur || options[0]).focus();
   }
 
   function closePanel(returnFocus) {
@@ -114,7 +121,7 @@ function setupWardrobe() {
     isOpen() ? closePanel(true) : openPanel();
   });
 
-  // 点击衣橱以外的区域关闭
+  // 点击面板以外的区域关闭
   document.addEventListener('click', e => {
     if (!isOpen()) return;
     if (!panel.contains(e.target) && !toggle.contains(e.target)) closePanel(false);
@@ -137,11 +144,42 @@ function setupWardrobe() {
 
   options.forEach(opt => {
     opt.addEventListener('click', () => {
-      FishRainTheme.set(opt.dataset.themeValue);
+      select(valueOf(opt));
       syncChecked();
       closePanel(true);
     });
   });
 
   syncChecked();
+}
+
+/**
+ * 主题衣橱：三主题选择面板（状态由 FishRainTheme 管理）
+ */
+function setupWardrobe() {
+  if (!window.FishRainTheme) return;
+  setupPanelMenu({
+    toggle: document.getElementById('themeToggle'),
+    panel: document.getElementById('themePanel'),
+    options: Array.from(document.querySelectorAll('#themePanel .theme-option')),
+    valueOf: opt => opt.dataset.themeValue,
+    current: () => FishRainTheme.get(),
+    select: value => FishRainTheme.set(value)
+  });
+}
+
+/**
+ * 语言菜单：中英法切换面板（状态由 FishRainI18n 管理）
+ * 选中后 FishRainI18n.set 会重翻译页面并广播 fishrain:langchange
+ */
+function setupLangMenu() {
+  if (!window.FishRainI18n) return;
+  setupPanelMenu({
+    toggle: document.getElementById('langToggle'),
+    panel: document.getElementById('langPanel'),
+    options: Array.from(document.querySelectorAll('#langPanel .lang-option')),
+    valueOf: opt => opt.dataset.langValue,
+    current: () => FishRainI18n.get(),
+    select: value => FishRainI18n.set(value)
+  });
 }

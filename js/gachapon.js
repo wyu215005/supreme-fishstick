@@ -19,6 +19,18 @@ class GachaponApp {
         this.CONFETTI_COUNT = 70;
 
         this.init();
+        this.bindLangChange();
+    }
+
+    /* ---------- 多语言辅助 ---------- */
+
+    t(key, vars) {
+        return window.FishRainI18n ? FishRainI18n.t(key, vars) : key;
+    }
+
+    // 语言切换后重渲染菜品列表（删除按钮的 aria-label 需要换语言）
+    bindLangChange() {
+        window.addEventListener('fishrain:langchange', () => this.renderDishList());
     }
 
     /**
@@ -138,11 +150,11 @@ class GachaponApp {
      */
     spin() {
         if (this.isSpinning) {
-            UTILS.showToast('正在转动中，请稍候');
+            UTILS.showToast(this.t('gachapon.tSpinning'));
             return;
         }
         if (this.dishes.length === 0) {
-            UTILS.showToast('请先添加菜品');
+            UTILS.showToast(this.t('gachapon.tNoDish'));
             return;
         }
 
@@ -363,7 +375,7 @@ class GachaponApp {
         list.innerHTML = this.dishes.map((dish, i) => `
             <div class="dish-item">
                 <span style="font-weight:500; font-size: 0.88rem;">${this.escapeDishName(dish)}</span>
-                <span class="dish-delete" data-index="${i}" style="color: var(--text-muted); cursor:pointer; font-size:1.1rem; line-height:1; padding: 2px; border-radius: 4px; transition: all 0.15s; flex-shrink: 0;" aria-label="删除 ${this.escapeDishName(dish)}" role="button" tabindex="0">&times;</span>
+                <span class="dish-delete" data-index="${i}" style="color: var(--text-muted); cursor:pointer; font-size:1.1rem; line-height:1; padding: 2px; border-radius: 4px; transition: all 0.15s; flex-shrink: 0;" aria-label="${this.escapeDishName(this.t('gachapon.deleteAria', { name: dish }))}" role="button" tabindex="0">&times;</span>
             </div>
         `).join('');
     }
@@ -385,22 +397,22 @@ class GachaponApp {
         const val = input.value.trim();
         
         if (!val) {
-            UTILS.showToast('请输入菜品名称');
+            UTILS.showToast(this.t('gachapon.tEmptyName'));
             return;
         }
 
         if (val.length > 20) {
-            UTILS.showToast('菜品名称不能超过 20 字');
+            UTILS.showToast(this.t('gachapon.tNameMax'));
             return;
         }
 
         if (this.dishes.length >= 30) {
-            UTILS.showToast('菜品已达上限（30 道），请先删除部分菜品');
+            UTILS.showToast(this.t('gachapon.tMaxDish'));
             return;
         }
 
         if (this.dishes.includes(val)) {
-            UTILS.showToast('该菜品已存在');
+            UTILS.showToast(this.t('gachapon.tDup'));
             return;
         }
 
@@ -408,7 +420,7 @@ class GachaponApp {
         this.save();
         this.renderDishList();
         input.value = '';
-        UTILS.showToast('✅ 添加成功');
+        UTILS.showToast(this.t('gachapon.tAdded'));
     }
 
     /**
@@ -421,7 +433,7 @@ class GachaponApp {
         this.dishes.splice(index, 1);
         this.save();
         this.renderDishList();
-        UTILS.showToast(`🗑️ 已删除 "${dish}"`);
+        UTILS.showToast(this.t('gachapon.tDeleted', { name: dish }));
     }
 
     /**
@@ -435,11 +447,11 @@ class GachaponApp {
      * 恢复默认菜单
      */
     reset() {
-        if (confirm('确定恢复默认菜单吗？当前菜品列表将被替换。')) {
+        if (confirm(this.t('gachapon.confirmReset'))) {
             this.dishes = [...this.defaultDishes];
             this.save();
             this.renderDishList();
-            UTILS.showToast('🔄 已恢复默认菜单');
+            UTILS.showToast(this.t('gachapon.tReset'));
         }
     }
 

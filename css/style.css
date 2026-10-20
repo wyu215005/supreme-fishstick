@@ -433,6 +433,7 @@ img {
 .icon-starfish { --icon-src: url('../images/icons/starfish.svg'); }
 .icon-sprout   { --icon-src: url('../images/icons/sprout.svg'); }
 .icon-hanger   { --icon-src: url('../images/icons/hanger.svg'); }
+.icon-globe    { --icon-src: url('../images/icons/globe.svg'); }
 
 /* ============================================================
    主题衣橱：导航栏小衣橱与主题选择面板
@@ -460,6 +461,30 @@ img {
     background: var(--bg-subtle);
     border-color: var(--border-strong);
     color: var(--text-color);
+}
+
+/* 语言切换器：复用衣橱的面板结构，仅增加语言代码徽标 */
+.lang-toggle {
+    gap: 0.35rem;
+    padding: 0.4rem 0.5rem;
+}
+
+.lang-code {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    padding: 0.2rem 0.34rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.lang-toggle:hover .lang-code {
+    color: var(--text-color);
+    border-color: var(--border-strong);
 }
 
 .theme-panel {

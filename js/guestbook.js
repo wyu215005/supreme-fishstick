@@ -2,6 +2,9 @@
  * 留言板模块
  * 云端模式：留言存入 Supabase 数据库，全站访客共享
  * 本地模式：数据库不可达时降级为 localStorage（仅当前浏览器可见）
+ *
+ * 多语言：状态徽标 / 表单提示 / toast / 日期格式均走 FishRainI18n，
+ * 语言切换（fishrain:langchange）时按当前状态重渲染
  */
 
 class Guestbook {
@@ -20,7 +23,26 @@ class Guestbook {
         this.online = false;
         this.submitting = false;
         this.messages = [];
+        this.dbState = 'loading';        // 当前数据库状态（语言切换时重渲染徽标）
         this.init();
+        this.bindLangChange();
+    }
+
+    /* ---------- 多语言辅助 ---------- */
+
+    lang() {
+        return window.FishRainI18n ? FishRainI18n.get() : 'zh-CN';
+    }
+
+    t(key, vars) {
+        return window.FishRainI18n ? FishRainI18n.t(key, vars) : key;
+    }
+
+    bindLangChange() {
+        window.addEventListener('fishrain:langchange', () => {
+            this.renderStatus(this.dbState);
+            this.renderMessages();
+        });
     }
 
     /**
@@ -186,23 +208,23 @@ class Guestbook {
 
         // 校验非空
         if (!name || !content) {
-            UTILS.showToast('请填写名字和留言内容');
+            UTILS.showToast(this.t('guestbook.tEmpty'));
             return;
         }
 
         // 长度校验
         if (name.length > this.MAX_NAME_LEN) {
-            UTILS.showToast(`名字不能超过 ${this.MAX_NAME_LEN} 字`);
+            UTILS.showToast(this.t('guestbook.tNameMax', { n: this.MAX_NAME_LEN }));
             return;
         }
         if (content.length > this.MAX_CONTENT_LEN) {
-            UTILS.showToast(`留言不能超过 ${this.MAX_CONTENT_LEN} 字`);
+            UTILS.showToast(this.t('guestbook.tContentMax', { n: this.MAX_CONTENT_LEN }));
             return;
         }
 
         // 频率限制
         if (this.isRateLimited()) {
-            UTILS.showToast('操作太频繁了，请一分钟后再试');
+            UTILS.showToast(this.t('guestbook.tRate'));
             return;
         }
 
@@ -213,15 +235,15 @@ class Guestbook {
         try {
             if (this.online) {
                 saved = await this.submitToCloud(name, content);
-                UTILS.showToast('留言成功，便签已上墙 📌');
+                UTILS.showToast(this.t('guestbook.tSuccess'));
             } else {
                 saved = this.saveLocal({
                     id: Date.now(),
                     name: name,
                     content: content,
-                    date: new Date().toLocaleString('zh-CN')
+                    date: new Date().toLocaleString(this.lang())
                 });
-                UTILS.showToast('云端暂不可用，已保存在本浏览器');
+                UTILS.showToast(this.t('guestbook.tLocal'));
             }
         } catch (e) {
             console.error('云端写入失败，转为本地保存:', e);
@@ -229,9 +251,9 @@ class Guestbook {
                 id: Date.now(),
                 name: name,
                 content: content,
-                date: new Date().toLocaleString('zh-CN')
+                date: new Date().toLocaleString(this.lang())
             });
-            UTILS.showToast('云端保存失败，已转为本地保存');
+            UTILS.showToast(this.t('guestbook.tFail'));
         }
 
         this.messages.unshift(saved);
@@ -261,7 +283,7 @@ class Guestbook {
         const btn = document.querySelector('#messageForm button[type="submit"]');
         if (!btn) return;
         btn.disabled = disabled;
-        btn.textContent = disabled ? '正在提交…' : '贴上便签';
+        btn.textContent = this.t(disabled ? 'guestbook.submitting' : 'guestbook.submit');
     }
 
     /**
@@ -285,12 +307,13 @@ class Guestbook {
     renderStatus(state) {
         const el = document.getElementById('dbStatus');
         if (!el) return;
+        this.dbState = state;
         const map = {
-            loading: '📡 正在连接云端…',
-            online: '📡 云端同步已开启 · 留言全站可见',
-            offline: '📴 云端暂不可用 · 便签先保存在本浏览器'
+            loading: 'guestbook.dbLoading',
+            online: 'guestbook.dbOnline',
+            offline: 'guestbook.dbOffline'
         };
-        el.textContent = map[state] || '';
+        el.textContent = map[state] ? this.t(map[state]) : '';
         el.dataset.state = state;
     }
 
@@ -302,7 +325,7 @@ class Guestbook {
         if (!container) return;
 
         if (this.messages.length === 0) {
-            container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">还没有留言，来贴第一张便签吧</p>';
+            container.innerHTML = `<p style="text-align: center; padding: 2rem; color: var(--text-secondary);">${this.t('guestbook.emptyWall')}</p>`;
             return;
         }
 
@@ -351,7 +374,7 @@ class Guestbook {
      */
     formatDate(iso) {
         const d = new Date(iso);
-        return isNaN(d.getTime()) ? String(iso) : d.toLocaleString('zh-CN');
+        return isNaN(d.getTime()) ? String(iso) : d.toLocaleString(this.lang());
     }
 
     /**
