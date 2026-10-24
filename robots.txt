@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /legacy-site-backup/
+
+Sitemap: https://fishrain.top/sitemap.xml

@@ -15,7 +15,9 @@ window.FISHRAIN_I18N['zh-CN'] = {
         guestbookTitle: '留言墙 - FishRain',
         guestbookDesc: '在 FishRain 的留言墙留下你的想法 —— 便签会保存在云端，随时回来看看。',
         gachaponTitle: '今天吃什么？ - FishRain 扭蛋机',
-        gachaponDesc: "FishRain 的小玩具 —— 深海扭蛋机，帮我决定今天吃什么。"
+        gachaponDesc: "FishRain 的小玩具 —— 深海扭蛋机，帮我决定今天吃什么。",
+        hdfsTitle: "HDFS 架构与可靠性工程 - FishRain",
+        hdfsDesc: "HDFS 架构与可靠性工程双语专题：Checkpoint、QJM 多数派、HA 故障切换与 Fencing、真实故障排查与 Spark 小文件治理。"
     },
     nav: {
         home: '首页',
@@ -71,7 +73,11 @@ window.FISHRAIN_I18N['zh-CN'] = {
         learning: '正在学习',
         practiceDesc: '在真实项目中反复使用、持续打磨的技术',
         exploreDesc: '通过课程与实验建立基础认知的技术',
-        learningDesc: '当前正在补齐与深入的方向'
+        learningDesc: '当前正在补齐与深入的方向',
+        hdfsTitle: 'HDFS 架构与可靠性工程',
+        hdfsDesc: 'Checkpoint、QJM、HA 故障切换与 Fencing 的机制拆解，配真实故障排查手册与 Spark 小文件治理实践。',
+        hdfsNote: '📖 中英双语专题 · 站内阅读',
+        hdfsBadge: '双语专题'
     },
     articles: {
         title: '文章',
@@ -90,6 +96,8 @@ window.FISHRAIN_I18N['zh-CN'] = {
         filterCat: '分类筛选',
         filterTag: '标签筛选',
         catCase: '工程复盘',
+        catTopic: '技术专题',
+        readTopic: '📖 阅读专题',
         tags: {
             '数仓分层': '数仓分层',
             '数仓迁移': '数仓迁移',
@@ -197,5 +205,50 @@ window.FISHRAIN_I18N['zh-CN'] = {
         tReset: '🔄 已恢复默认菜单',
         confirmReset: '确定恢复默认菜单吗？当前菜品列表将被替换。',
         deleteAria: '删除 {name}'
+    },
+    hdfs: {
+        skipMain: '跳到正文',
+        crumb: 'HDFS 专题',
+        title: 'HDFS 架构与可靠性工程',
+        summary: 'Checkpoint、HA、JournalNode、故障诊断与 Spark 小文件治理 —— 面向工程实践的双语技术专题。',
+        bilingual: '中英双语 / Bilingual',
+        tocAria: '目录',
+        tocTitle: '目录',
+        loading: '正在加载内容…',
+        loadFail: '内容加载失败，请刷新重试',
+        copy: '复制',
+        copied: '已复制',
+        copyFail: '复制失败',
+        copyAria: '复制代码',
+        mermaidFallback: '图表渲染失败，已保留 Mermaid 源码：',
+        diagram: '架构示意图',
+        backTopAria: '返回顶部',
+        sourceRepo: 'GitHub 源码仓库',
+        maintainNote: '本专题内容与仓库 Markdown 同源维护：更新 projects/hdfs-reliability/content/ 下的 Markdown 即可更新本页。',
+        simBadge: '教学模拟',
+        calQTitle: 'JournalNode 多数派计算器',
+        calQDesc: '选择 JournalNode 数量与故障数，观察 QJM 写入多数派的变化。',
+        calQCluster: 'JournalNode 数量',
+        calQFailures: '故障 JN 数',
+        calQQuorum: '写入多数派 Q = ⌊N/2⌋+1',
+        calQAlive: '存活 JournalNode',
+        calQOk: '新 EditLog 可正常提交',
+        calQNo: '不满足多数派，新写入无法提交',
+        calQHint: '该集群最多容忍 {n} 台 JournalNode 故障；切换 NameNode 无法恢复 JN 多数派。仅教学模拟，非生产建议。',
+        calFTitle: 'Active → Standby 故障切换步骤模拟',
+        calFDesc: '逐步走一遍自动故障切换的关键环节，理解顺序比记忆结论更重要。',
+        calFPrev: '上一步',
+        calFNext: '下一步',
+        calFReset: '重新开始',
+        calFStep: '第 {n} / {total} 步',
+        calSTitle: '小文件数量估算器',
+        calSDesc: '根据每日数据量与目标文件大小估算合并后的文件数。',
+        calSVolume: '每日数据量 (GiB)',
+        calSCount: '当前文件数',
+        calSTarget: '目标文件大小 (MiB)',
+        calSAvg: '当前平均文件大小',
+        calSEst: '估算文件数',
+        calSReduction: '文件数减少',
+        calSNote: '估算需按压缩比、并行度与查询模式实测验证，非保证值。'
     }
 };

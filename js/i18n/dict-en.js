@@ -15,7 +15,9 @@ window.FISHRAIN_I18N['en'] = {
         guestbookTitle: 'Guestbook - FishRain',
         guestbookDesc: "Leave a note on FishRain's guestbook — messages are stored in the cloud, come back anytime to check the wall.",
         gachaponTitle: "What to Eat Today? - FishRain Gachapon",
-        gachaponDesc: "FishRain's little toy — a deep-sea gachapon machine that decides what I eat today."
+        gachaponDesc: "FishRain's little toy — a deep-sea gachapon machine that decides what I eat today.",
+        hdfsTitle: "HDFS Architecture & Reliability Engineering - FishRain",
+        hdfsDesc: "Bilingual HDFS topic: checkpointing, QJM quorum, HA failover and fencing, real incident playbooks, and Spark small-file governance."
     },
     nav: {
         home: 'Home',
@@ -71,7 +73,11 @@ window.FISHRAIN_I18N['en'] = {
         learning: 'Currently Learning',
         practiceDesc: 'Technologies used repeatedly and polished in real projects',
         exploreDesc: 'Basics built through coursework and experiments',
-        learningDesc: 'Areas currently being deepened'
+        learningDesc: 'Areas currently being deepened',
+        hdfsTitle: 'HDFS Architecture & Reliability Engineering',
+        hdfsDesc: 'How checkpointing, QJM, HA failover and fencing actually work — with incident playbooks and Spark small-file governance.',
+        hdfsNote: '📖 Bilingual topic · read on site',
+        hdfsBadge: 'Bilingual Topic'
     },
     articles: {
         title: 'Articles',
@@ -90,6 +96,8 @@ window.FISHRAIN_I18N['en'] = {
         filterCat: 'Filter by category',
         filterTag: 'Filter by tag',
         catCase: 'Case Study',
+        catTopic: 'Tech Topic',
+        readTopic: '📖 Read the topic',
         tags: {
             '数仓分层': 'Warehouse Layering',
             '数仓迁移': 'Warehouse Migration',
@@ -197,5 +205,50 @@ window.FISHRAIN_I18N['en'] = {
         tReset: '🔄 Default menu restored',
         confirmReset: 'Restore the default menu? Your current list will be replaced.',
         deleteAria: 'Delete {name}'
+    },
+    hdfs: {
+        skipMain: 'Skip to content',
+        crumb: 'HDFS Topic',
+        title: 'HDFS Architecture & Reliability Engineering',
+        summary: 'Checkpointing, HA, JournalNodes, incident diagnostics and Spark small-file governance — a bilingual topic for engineering practice.',
+        bilingual: 'Bilingual / 双语',
+        tocAria: 'Table of contents',
+        tocTitle: 'On this page',
+        loading: 'Loading content…',
+        loadFail: 'Failed to load content — please refresh and retry.',
+        copy: 'Copy',
+        copied: 'Copied',
+        copyFail: 'Copy failed',
+        copyAria: 'Copy code',
+        mermaidFallback: 'Diagram rendering failed; Mermaid source kept below:',
+        diagram: 'Architecture diagram',
+        backTopAria: 'Back to top',
+        sourceRepo: 'GitHub source repository',
+        maintainNote: 'This topic is maintained from the repository Markdown: update the files under projects/hdfs-reliability/content/ to update this page.',
+        simBadge: 'Teaching simulation',
+        calQTitle: 'JournalNode quorum calculator',
+        calQDesc: 'Pick the JournalNode count and the number of failures to see how the QJM write majority changes.',
+        calQCluster: 'JournalNodes',
+        calQFailures: 'Failed JNs',
+        calQQuorum: 'Write majority Q = ⌊N/2⌋+1',
+        calQAlive: 'Alive JournalNodes',
+        calQOk: 'New EditLog commits normally',
+        calQNo: 'Majority lost — new writes cannot commit',
+        calQHint: 'This cluster tolerates at most {n} JournalNode failures; switching NameNodes cannot restore the JN majority. Teaching simulation only, not production advice.',
+        calFTitle: 'Active → Standby failover step simulator',
+        calFDesc: 'Walk through the key stages of an automatic failover — understanding the order beats memorizing conclusions.',
+        calFPrev: 'Previous',
+        calFNext: 'Next',
+        calFReset: 'Restart',
+        calFStep: 'Step {n} / {total}',
+        calSTitle: 'Small-file count estimator',
+        calSDesc: 'Estimate the file count after compaction from daily volume and target file size.',
+        calSVolume: 'Daily volume (GiB)',
+        calSCount: 'Current file count',
+        calSTarget: 'Target file size (MiB)',
+        calSAvg: 'Current average file size',
+        calSEst: 'Estimated file count',
+        calSReduction: 'File-count reduction',
+        calSNote: 'Estimates must be validated against compression ratio, parallelism, and query patterns — not guaranteed.'
     }
 };

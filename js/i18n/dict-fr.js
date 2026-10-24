@@ -16,7 +16,9 @@ window.FISHRAIN_I18N['fr'] = {
         guestbookTitle: 'Livre d\u2019or - FishRain',
         guestbookDesc: "Laissez un mot sur le livre d'or de FishRain — les messages sont sauvegardés dans le cloud, revenez les voir quand vous voulez.",
         gachaponTitle: "On mange quoi aujourd'hui ? — Gachapon FishRain",
-        gachaponDesc: "Le petit jeu de FishRain — une machine gachapon des abysses qui décide de mon repas du jour."
+        gachaponDesc: "Le petit jeu de FishRain — une machine gachapon des abysses qui décide de mon repas du jour.",
+        hdfsTitle: "HDFS : architecture et fiabilité - FishRain",
+        hdfsDesc: "Sujet bilingue HDFS : checkpoint, quorum QJM, basculement HA et fencing, diagnostics réels et gouvernance des petits fichiers Spark."
     },
     nav: {
         home: 'Accueil',
@@ -72,7 +74,11 @@ window.FISHRAIN_I18N['fr'] = {
         learning: 'En cours d\u2019apprentissage',
         practiceDesc: 'Technologies utilisées et affinées dans de vrais projets',
         exploreDesc: 'Bases acquises via les cours et les travaux pratiques',
-        learningDesc: 'Axes actuellement approfondis'
+        learningDesc: 'Axes actuellement approfondis',
+        hdfsTitle: "HDFS : architecture et fiabilité",
+        hdfsDesc: "Checkpoint, quorum QJM, basculement HA et fencing, playbook d'incidents et gouvernance des petits fichiers Spark.",
+        hdfsNote: '📖 Sujet bilingue · lecture sur le site',
+        hdfsBadge: 'Sujet bilingue'
     },
     articles: {
         title: 'Articles',
@@ -91,6 +97,8 @@ window.FISHRAIN_I18N['fr'] = {
         filterCat: 'Filtrer par catégorie',
         filterTag: 'Filtrer par tag',
         catCase: 'Étude de cas',
+        catTopic: 'Sujet technique',
+        readTopic: '📖 Lire le sujet',
         tags: {
             '数仓分层': 'Couches DWH',
             '数仓迁移': 'Migration de data warehouse',
@@ -198,5 +206,50 @@ window.FISHRAIN_I18N['fr'] = {
         tReset: '🔄 Menu par défaut restauré',
         confirmReset: 'Restaurer le menu par défaut ? Votre liste actuelle sera remplacée.',
         deleteAria: 'Supprimer {name}'
+    },
+    hdfs: {
+        skipMain: 'Aller au contenu',
+        crumb: 'Sujet HDFS',
+        title: "HDFS : architecture et fiabilité",
+        summary: "Checkpoint, HA, JournalNodes, diagnostic des incidents et gouvernance des petits fichiers Spark — un sujet bilingue orienté ingénierie.",
+        bilingual: 'Bilingue / 双语',
+        tocAria: 'Sommaire',
+        tocTitle: 'Sur cette page',
+        loading: 'Chargement du contenu…',
+        loadFail: 'Échec du chargement — veuillez rafraîchir la page.',
+        copy: 'Copier',
+        copied: 'Copié',
+        copyFail: 'Échec de la copie',
+        copyAria: 'Copier le code',
+        mermaidFallback: 'Échec du rendu du diagramme ; source Mermaid conservée :',
+        diagram: "Schéma d'architecture",
+        backTopAria: 'Retour en haut',
+        sourceRepo: 'Dépôt GitHub source',
+        maintainNote: 'Ce sujet est maintenu depuis le Markdown du dépôt : mettez à jour projects/hdfs-reliability/content/ pour mettre à jour cette page.',
+        simBadge: 'Simulation pédagogique',
+        calQTitle: 'Calculateur de quorum JournalNode',
+        calQDesc: 'Choisissez le nombre de JournalNodes et de pannes pour observer le quorum d\u2019écriture QJM.',
+        calQCluster: 'Nombre de JournalNodes',
+        calQFailures: 'JN en panne',
+        calQQuorum: 'Quorum d\u2019écriture Q = ⌊N/2⌋+1',
+        calQAlive: 'JournalNodes vivants',
+        calQOk: 'Nouveaux EditLog validés',
+        calQNo: 'Quorum non atteint : écritures bloquées',
+        calQHint: 'Ce cluster tolère au plus {n} pannes de JN ; basculer le NameNode ne restaure pas le quorum. Simulation pédagogique, pas un conseil de production.',
+        calFTitle: 'Simulation du basculement Active → Standby',
+        calFDesc: 'Parcourez étape par étape les étapes clés d\u2019un basculement automatique.',
+        calFPrev: 'Étape précédente',
+        calFNext: 'Étape suivante',
+        calFReset: 'Recommencer',
+        calFStep: 'Étape {n} / {total}',
+        calSTitle: 'Estimateur de petits fichiers',
+        calSDesc: 'Estimez le nombre de fichiers après compactage selon le volume quotidien et la taille cible.',
+        calSVolume: 'Volume quotidien (GiB)',
+        calSCount: 'Nombre actuel de fichiers',
+        calSTarget: 'Taille cible (MiB)',
+        calSAvg: 'Taille moyenne actuelle',
+        calSEst: 'Nombre estimé de fichiers',
+        calSReduction: 'Réduction du nombre de fichiers',
+        calSNote: 'Estimation à valider selon compression, parallélisme et requêtes — sans garantie.'
     }
 };

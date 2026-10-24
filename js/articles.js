@@ -20,6 +20,19 @@ class ArticlesManager {
         // 已发布：真实存在的学习笔记/复盘仓库
         this.articles = [
             {
+                // 站内双语专题页（非外部 GitHub 仓库链接）
+                title: 'HDFS 架构与可靠性工程（双语专题）',
+                brief: '站内双语技术专题：FsImage/EditLog/Checkpoint、JournalNode/QJM 多数派、ZKFC/ZooKeeper 故障切换与 Fencing、真实故障排查手册与 Spark 小文件治理实践。',
+                titleEn: 'HDFS Architecture & Reliability Engineering (Bilingual Topic)',
+                briefEn: 'An on-site bilingual topic: FsImage/EditLog/checkpointing, JournalNode/QJM quorums, ZKFC/ZooKeeper failover and fencing, an incident playbook, and Spark small-file governance in practice.',
+                titleFr: 'HDFS : architecture et fiabilité (sujet bilingue)',
+                briefFr: 'Sujet bilingue sur le site : FsImage/EditLog/checkpoint, quorum JournalNode/QJM, basculement ZKFC/ZooKeeper et fencing, playbook d\u2019incidents et gouvernance des petits fichiers Spark.',
+                category: '技术专题',
+                tags: ['Hadoop', 'HDFS', 'Spark', 'HA'],
+                date: '2026-10-24',
+                link: 'projects/hdfs-reliability/'
+            },
+            {
                 title: 'BI 数仓迁移与分层加工重构：真实项目工程复盘',
                 brief: '面向 BI 的 SQL Server 数仓迁移与加工链路重构的脱敏复盘：业务指标口径与数据粒度、ODS/DWD/DWS/ADS 分层加工、17 个依赖批次的 ETL 编排、Check List 故障复盘与 BI 换源对账验证。',
                 titleEn: 'BI Warehouse Migration & Layered Processing Refactor: A Real-Project Engineering Retrospective',
@@ -155,7 +168,7 @@ class ArticlesManager {
 
     // 分类显示层翻译（内部键保持中文，不破坏筛选逻辑）
     catLabel(cat) {
-        const map = { '数据仓库': 'articles.catDw', '数据质量': 'articles.catDq', '大数据基础': 'articles.catBd', '工程复盘': 'articles.catCase' };
+        const map = { '数据仓库': 'articles.catDw', '数据质量': 'articles.catDq', '大数据基础': 'articles.catBd', '工程复盘': 'articles.catCase', '技术专题': 'articles.catTopic' };
         return map[cat] ? this.t(map[cat]) : cat;
     }
 
@@ -198,9 +211,15 @@ class ArticlesManager {
 
         container.innerHTML = this.filteredArticles.map(article => {
             const L = this.localized(article);
+            // 站内专题链接（相对路径）同窗口打开，且不显示 GitHub 徽章
+            const internal = !/^https?:/i.test(article.link || '');
+            const linkAttrs = internal ? '' : ' target="_blank" rel="noopener"';
+            const badge = internal
+                ? `<span class="article-github-badge">${this.t('articles.readTopic')}</span>`
+                : `<span class="article-github-badge">${this.t('articles.github')}</span>`;
             return `
             <div class="article-card">
-                <a href="${article.link}" target="_blank" rel="noopener" class="article-card-link">
+                <a href="${article.link}"${linkAttrs} class="article-card-link">
                     <div class="article-card-header">
                         <h3 class="article-card-title">${L.title}</h3>
                     </div>
@@ -213,7 +232,7 @@ class ArticlesManager {
                         <div class="article-card-tags">
                             ${article.tags.map(tag => `<span class="tag" data-tag="${tag}">${this.tagLabel(tag)}</span>`).join('')}
                         </div>
-                        <span class="article-github-badge">${this.t('articles.github')}</span>
+                        ${badge}
                     </div>
                 </a>
             </div>
@@ -257,7 +276,8 @@ class ArticlesManager {
 
         container.innerHTML = latest.map(article => {
             const href = article.link || 'articles.html';
-            const ext = article.link ? ' target="_blank" rel="noopener"' : '';
+            // 站内专题链接（相对路径）同窗口打开
+            const ext = article.link && /^https?:/i.test(article.link) ? ' target="_blank" rel="noopener"' : '';
             const L = this.localized(article);
             return `
             <a href="${href}"${ext} class="article-preview">
