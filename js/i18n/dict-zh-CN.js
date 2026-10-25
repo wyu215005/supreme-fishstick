@@ -17,7 +17,9 @@ window.FISHRAIN_I18N['zh-CN'] = {
         gachaponTitle: '今天吃什么？ - FishRain 扭蛋机',
         gachaponDesc: "FishRain 的小玩具 —— 深海扭蛋机，帮我决定今天吃什么。",
         hdfsTitle: "HDFS 架构与可靠性工程 - FishRain",
-        hdfsDesc: "HDFS 架构与可靠性工程双语专题：Checkpoint、QJM 多数派、HA 故障切换与 Fencing、真实故障排查与 Spark 小文件治理。"
+        hdfsDesc: "HDFS 架构与可靠性工程双语专题：Checkpoint、QJM 多数派、HA 故障切换与 Fencing、真实故障排查与 Spark 小文件治理。",
+        mapreduceTitle: "MapReduce：从 HDFS 输入到 Shuffle 与 YARN 调度 - FishRain",
+        mapreduceDesc: "MapReduce 学习笔记：Block 与 InputSplit、RecordReader 与 Mapper、Map/Reduce 端 Shuffle、Combiner、数据倾斜与 YARN 调度。"
     },
     nav: {
         home: '首页',
@@ -250,5 +252,35 @@ window.FISHRAIN_I18N['zh-CN'] = {
         calSEst: '估算文件数',
         calSReduction: '文件数减少',
         calSNote: '估算需按压缩比、并行度与查询模式实测验证，非保证值。'
+    },
+    /* 通用文章页（topic page）命名空间：所有文章页共用 */
+    topic: {
+        skipMain: '跳到正文',
+        tocTitle: '目录',
+        tocAria: '文章目录',
+        loading: '正在加载内容…',
+        loadFail: '内容加载失败，请刷新重试',
+        copy: '复制代码',
+        copied: '已复制',
+        copyFail: '复制失败',
+        copyAria: '复制代码',
+        mermaidFallback: '图表渲染失败，已保留图表源码。',
+        diagram: '流程图',
+        backTopAria: '返回顶部',
+        progressAria: '阅读进度',
+        objectives: '学习目标',
+        readingTime: '预计阅读',
+        prerequisites: '前置知识',
+        prevChapter: '上一章',
+        nextChapter: '下一章',
+        tbd: '待更新',
+        pathAria: '学习路径导航',
+        maintainNote: '本页内容与仓库 Markdown 同源维护：更新对应 content/ 目录下的 Markdown 即可更新本页。'
+    },
+    /* MapReduce 学习笔记页专用 */
+    mr: {
+        crumb: 'MapReduce 学习笔记',
+        title: 'MapReduce：从 HDFS 输入到 Shuffle 与 YARN 调度',
+        summary: 'Block 与 InputSplit、RecordReader 与 Mapper、Map/Reduce 端 Shuffle、Combiner、数据倾斜与 YARN 调度 —— HDFS 专题的后续学习笔记。'
     }
 };

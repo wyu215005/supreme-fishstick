@@ -20,6 +20,19 @@ class ArticlesManager {
         // 已发布：真实存在的学习笔记/复盘仓库
         this.articles = [
             {
+                // 站内学习笔记页（HDFS 专题的后续，学习路径：HDFS → MapReduce → Spark）
+                title: 'MapReduce：从 HDFS 输入到 Shuffle 与 YARN 调度',
+                brief: 'MapReduce 学习笔记：Block 与 InputSplit、RecordReader 与 Mapper、Map/Reduce 端 Shuffle、Combiner、数据倾斜治理与 YARN 调度，含易错点对照与自测复盘。',
+                titleEn: 'MapReduce: From HDFS Input to Shuffle and YARN Scheduling',
+                briefEn: 'MapReduce study notes: Block vs InputSplit, RecordReader vs Mapper, Map/Reduce-side Shuffle, Combiner, data-skew mitigation, and YARN scheduling, with a pitfall table and self-review Q&A.',
+                titleFr: "MapReduce : des entrées HDFS au Shuffle et à l'ordonnancement YARN",
+                briefFr: "Notes MapReduce : Block vs InputSplit, RecordReader vs Mapper, Shuffle côté Map/Reduce, Combiner, skew des données et YARN, avec tableau des pièges et auto-évaluation.",
+                category: '技术专题',
+                tags: ['MapReduce', 'Hadoop', 'YARN', 'Shuffle'],
+                date: '2026-10-25',
+                link: 'projects/mapreduce/'
+            },
+            {
                 // 站内双语专题页（非外部 GitHub 仓库链接）
                 title: 'HDFS 架构与可靠性工程（双语专题）',
                 brief: '站内双语技术专题：FsImage/EditLog/Checkpoint、JournalNode/QJM 多数派、ZKFC/ZooKeeper 故障切换与 Fencing、真实故障排查手册与 Spark 小文件治理实践。',

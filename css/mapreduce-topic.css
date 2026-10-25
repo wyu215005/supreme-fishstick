@@ -1,0 +1,151 @@
+/* ============================================================
+   通用文章页扩展样式（topic page extras）
+   依赖 hdfs-topic.css 的布局/正文/TOC 样式，此处仅补充：
+   阅读进度条 · 学习元信息 · 上一章/下一章导航
+   全部使用全站设计 token，三主题自动适配
+   ============================================================ */
+
+/* ---------- 阅读进度条（固定顶部，位于导航栏下缘） ---------- */
+.topic-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1200; /* 高于导航栏下缘但不遮挡面板 */
+    pointer-events: none;
+    background: transparent;
+}
+.topic-progress-bar {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--ocean), var(--ocean-soft));
+    opacity: 0.9;
+    transition: width 0.08s linear;
+}
+
+/* ---------- 学习元信息（标题下方：目标 / 时长 / 前置） ---------- */
+.topic-learnmeta {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 0.8rem 1.2rem;
+    margin-top: 1.1rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md, 12px);
+    background: var(--bg-subtle);
+}
+.learnmeta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+}
+.learnmeta-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+.learnmeta-value {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+.learnmeta-value a {
+    color: var(--ocean);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border-strong);
+}
+.learnmeta-value a:hover,
+.learnmeta-value a:focus-visible {
+    border-bottom-style: solid;
+}
+.learnmeta-short .learnmeta-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ---------- 上一章 / 下一章 导航 ---------- */
+.topic-chapnav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2.2rem 0 1rem;
+}
+.chapnav-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.95rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md, 12px);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-xs);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+a.chapnav-card:hover,
+a.chapnav-card:focus-visible {
+    border-color: var(--ocean);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.chapnav-dir {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+}
+.chapnav-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+/* 下一章未发布：禁用态，无链接语义 */
+.chapnav-next.is-tbd {
+    border-style: dashed;
+    background: transparent;
+    box-shadow: none;
+    opacity: 0.75;
+    cursor: default;
+}
+.chapnav-next.is-tbd .chapnav-title {
+    color: var(--text-muted);
+}
+.chapnav-tbd {
+    align-self: flex-start;
+    margin-top: 0.2rem;
+    padding: 0.1rem 0.55rem;
+    font-size: 0.72rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    background: var(--bg-subtle);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1080px) {
+    .topic-learnmeta {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 640px) {
+    .topic-chapnav {
+        grid-template-columns: 1fr;
+    }
+    .topic-learnmeta {
+        padding: 0.8rem 0.9rem;
+    }
+}
+
+/* ---------- 打印 ---------- */
+@media print {
+    .topic-progress,
+    .topic-chapnav { display: none !important; }
+}

@@ -17,7 +17,9 @@ window.FISHRAIN_I18N['en'] = {
         gachaponTitle: "What to Eat Today? - FishRain Gachapon",
         gachaponDesc: "FishRain's little toy — a deep-sea gachapon machine that decides what I eat today.",
         hdfsTitle: "HDFS Architecture & Reliability Engineering - FishRain",
-        hdfsDesc: "Bilingual HDFS topic: checkpointing, QJM quorum, HA failover and fencing, real incident playbooks, and Spark small-file governance."
+        hdfsDesc: "Bilingual HDFS topic: checkpointing, QJM quorum, HA failover and fencing, real incident playbooks, and Spark small-file governance.",
+        mapreduceTitle: "MapReduce: From HDFS Input to Shuffle and YARN Scheduling - FishRain",
+        mapreduceDesc: "MapReduce study notes: Block vs InputSplit, RecordReader vs Mapper, Map/Reduce-side Shuffle, Combiner, data skew, and YARN scheduling."
     },
     nav: {
         home: 'Home',
@@ -250,5 +252,35 @@ window.FISHRAIN_I18N['en'] = {
         calSEst: 'Estimated file count',
         calSReduction: 'File-count reduction',
         calSNote: 'Estimates must be validated against compression ratio, parallelism, and query patterns — not guaranteed.'
+    },
+    /* Shared topic-page namespace for on-site article pages */
+    topic: {
+        skipMain: 'Skip to content',
+        tocTitle: 'Contents',
+        tocAria: 'Article table of contents',
+        loading: 'Loading content…',
+        loadFail: 'Failed to load content, please refresh and retry.',
+        copy: 'Copy code',
+        copied: 'Copied',
+        copyFail: 'Copy failed',
+        copyAria: 'Copy code',
+        mermaidFallback: 'Diagram rendering failed; the source is preserved below.',
+        diagram: 'Flow diagram',
+        backTopAria: 'Back to top',
+        progressAria: 'Reading progress',
+        objectives: 'Learning goals',
+        readingTime: 'Reading time',
+        prerequisites: 'Prerequisites',
+        prevChapter: 'Previous',
+        nextChapter: 'Next',
+        tbd: 'Upcoming',
+        pathAria: 'Learning path navigation',
+        maintainNote: 'This page stays in sync with the repo Markdown: update the Markdown under the matching content/ directory to update the page.'
+    },
+    /* MapReduce study-notes page */
+    mr: {
+        crumb: 'MapReduce Notes',
+        title: 'MapReduce: From HDFS Input to Shuffle and YARN Scheduling',
+        summary: 'Block vs InputSplit, RecordReader vs Mapper, Map/Reduce-side Shuffle, Combiner, data skew, and YARN scheduling — a follow-up to the HDFS topic.'
     }
 };

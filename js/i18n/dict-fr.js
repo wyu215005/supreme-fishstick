@@ -18,7 +18,9 @@ window.FISHRAIN_I18N['fr'] = {
         gachaponTitle: "On mange quoi aujourd'hui ? — Gachapon FishRain",
         gachaponDesc: "Le petit jeu de FishRain — une machine gachapon des abysses qui décide de mon repas du jour.",
         hdfsTitle: "HDFS : architecture et fiabilité - FishRain",
-        hdfsDesc: "Sujet bilingue HDFS : checkpoint, quorum QJM, basculement HA et fencing, diagnostics réels et gouvernance des petits fichiers Spark."
+        hdfsDesc: "Sujet bilingue HDFS : checkpoint, quorum QJM, basculement HA et fencing, diagnostics réels et gouvernance des petits fichiers Spark.",
+        mapreduceTitle: "MapReduce : des entrées HDFS au Shuffle et à l'ordonnancement YARN - FishRain",
+        mapreduceDesc: "Notes d'étude MapReduce : Block vs InputSplit, RecordReader vs Mapper, Shuffle côté Map/Reduce, Combiner, skew des données et ordonnancement YARN."
     },
     nav: {
         home: 'Accueil',
@@ -251,5 +253,35 @@ window.FISHRAIN_I18N['fr'] = {
         calSEst: 'Nombre estimé de fichiers',
         calSReduction: 'Réduction du nombre de fichiers',
         calSNote: 'Estimation à valider selon compression, parallélisme et requêtes — sans garantie.'
+    },
+    /* Espace de noms partagé pour les pages d'articles sur site */
+    topic: {
+        skipMain: 'Aller au contenu',
+        tocTitle: 'Sommaire',
+        tocAria: 'Sommaire de l\u2019article',
+        loading: 'Chargement du contenu…',
+        loadFail: 'Échec du chargement, actualisez la page pour réessayer.',
+        copy: 'Copier le code',
+        copied: 'Copié',
+        copyFail: 'Échec de la copie',
+        copyAria: 'Copier le code',
+        mermaidFallback: 'Échec du rendu du diagramme ; le code source est conservé ci-dessous.',
+        diagram: 'Diagramme de flux',
+        backTopAria: 'Retour en haut',
+        progressAria: 'Progression de lecture',
+        objectives: 'Objectifs d\u2019apprentissage',
+        readingTime: 'Temps de lecture',
+        prerequisites: 'Prérequis',
+        prevChapter: 'Précédent',
+        nextChapter: 'Suivant',
+        tbd: 'À venir',
+        pathAria: 'Navigation du parcours d\u2019apprentissage',
+        maintainNote: 'Cette page est synchronisée avec le Markdown du dépôt : mettez à jour le Markdown du répertoire content/ correspondant pour mettre à jour la page.'
+    },
+    /* Page des notes MapReduce */
+    mr: {
+        crumb: 'Notes MapReduce',
+        title: "MapReduce : des entrées HDFS au Shuffle et à l'ordonnancement YARN",
+        summary: "Block vs InputSplit, RecordReader vs Mapper, Shuffle côté Map/Reduce, Combiner, skew des données et YARN — suite du sujet HDFS."
     }
 };
