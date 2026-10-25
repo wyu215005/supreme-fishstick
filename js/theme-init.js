@@ -17,7 +17,7 @@ window.FishRainTheme = (function () {
     function normalize(value) {
         if (THEMES.indexOf(value) !== -1) return value;
         if (LEGACY_MAP[value]) return LEGACY_MAP[value];
-        return 'ocean'; // 默认主题：深海夜航
+        return 'paper'; // 默认主题：晴天手账（首次访问）
     }
 
     function readStored() {
@@ -28,7 +28,9 @@ window.FishRainTheme = (function () {
         return normalize(readStored());
     }
 
+    var lastApplied = null;
     function apply(theme) {
+        lastApplied = theme;
         document.documentElement.setAttribute('data-theme', theme);
     }
 
@@ -50,6 +52,25 @@ window.FishRainTheme = (function () {
         try { localStorage.setItem(STORAGE_KEY, initial); } catch (e) { /* ignore */ }
     }
     apply(initial);
+
+    /* ---- 双重断言：页面加载完成与 bfcache 恢复时重新校验主题 ----
+       防御场景：跨标签页切换后返回（bfcache 恢复不重跑脚本、主题已在他页更新）、
+       或任何延后执行的代码意外覆盖 data-theme 属性 */
+    document.addEventListener('DOMContentLoaded', function () { apply(get()); });
+    window.addEventListener('pageshow', function (e) { if (e.persisted) apply(get()); });
+
+    /* ---- 主题守卫：页面加载后如有代码意外改写 data-theme，立即恢复用户偏好 ----
+       仅在 DOM 值既不等于存储偏好、也不等于本模块刚应用过的值时介入（后者兼容
+       隐私模式下 localStorage 写入失败、但用户主动切换主题的场景），不影响正常切换 */
+    if (window.MutationObserver) {
+        new MutationObserver(function () {
+            var expected = get();
+            var current = document.documentElement.getAttribute('data-theme');
+            if (current !== expected && current !== lastApplied) {
+                apply(expected);
+            }
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    }
 
     return {
         themes: THEMES,

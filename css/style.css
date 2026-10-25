@@ -11,9 +11,9 @@
 
 /* ---------- 设计令牌 ------------------------------------------
    主题体系（FishRain 主题衣橱）：
-   · ocean 深海夜航 —— 深海蓝 + 薄荷青，安静克制（默认主题）
-   · paper 晴天手账 —— 暖白纸张 + 墨绿 + 珊瑚粉，手写笔记感
-   · play  怪趣实验室 —— 薄荷绿 + 黑色粗描边，鲜趣大胆
+   · paper 晴天手账 —— 暖白纸张 + 墨绿 + 珊瑚粉，手写笔记感（默认主题）
+   · ocean 深海夜航 —— 极简深蓝科技风 + 蓝青强调，安静专业
+   · play  怪趣实验室 —— 极简黄红波普风，大胆有序
    :root 为无 JS 时的兜底（等价于 paper 浅色）；
    js/theme-init.js 会在首次绘制前切换到实际主题
    ------------------------------------------------------------- */
@@ -90,31 +90,31 @@
     --flow-accent: #D78B70;
 }
 
-/* ---------- 主题 A：Ocean 深海夜航（默认） ---------- */
+/* ---------- 主题 A：Ocean 深海夜航（极简深蓝科技风） ---------- */
 [data-theme="ocean"] {
-    --ocean-deep: #0B1420;
-    --ocean: #7FB3CC;
-    --ocean-soft: #9CC6DB;
-    --mint: #71DAD0;
-    --mint-deep: #71DAD0;
-    --warm-white: #EAF5F5;
+    --ocean-deep: #070B16;
+    --ocean: #38BDF8;
+    --ocean-soft: #22D3EE;
+    --mint: #22D3EE;
+    --mint-deep: #38BDF8;
+    --warm-white: #F2F8F0;
 
-    --text-color: #EAF5F5;
-    --text-secondary: #A8C3CD;
-    --text-muted: #93ADBD;
+    --text-color: #F2F8F0;
+    --text-secondary: #A8BED0;
+    --text-muted: #7E93AC;
 
-    --bg-color: #101C2C;
-    --bg-subtle: #14212F;
-    --bg-card: #17283A;
+    --bg-color: #0B1021;
+    --bg-subtle: #111A31;
+    --bg-card: #1F293B;
 
-    --border-color: #24384C;
-    --border-strong: #34495E;
-    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.4);
+    --border-color: #2A3A55;
+    --border-strong: #3C4F6B;
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.45);
     --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.5);
 
-    --selection-bg: rgba(113, 218, 208, 0.35);
+    --selection-bg: rgba(56, 189, 248, 0.28);
 
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -123,61 +123,62 @@
 
     --font-display: var(--font-sans);
 
-    --nav-bg: rgba(16, 28, 44, 0.9);
-    --footer-bg: #0C1520;
-    --footer-heading: #EAF5F5;
+    --nav-bg: rgba(11, 16, 33, 0.9);
+    --footer-bg: #070B16;
+    --footer-heading: #F2F8F0;
 
+    /* 极其微弱的蓝色渐变，保持纯净深蓝底 */
     --hero-bg:
-        radial-gradient(ellipse 60% 50% at 82% 12%, rgba(98, 200, 189, 0.10), transparent 70%),
-        radial-gradient(ellipse 50% 60% at 10% 90%, rgba(49, 93, 120, 0.35), transparent 70%),
-        linear-gradient(160deg, #0C1622 0%, #101C2C 48%, #152538 100%);
+        radial-gradient(ellipse 70% 55% at 50% 0%, rgba(56, 189, 248, 0.06), transparent 70%),
+        linear-gradient(180deg, #0C1226 0%, #0B1021 70%);
     --hero-bg-size: auto;
-    --hero-bg-color: #101C2C;
-    --hero-heading: #EAF5F5;
-    --hero-sub: #71DAD0;
-    --hero-intro: rgba(234, 245, 245, 0.72);
-    --hero-btn-bg: #71DAD0;
-    --hero-btn-text: #0E2A26;
-    --hero-ghost-border: rgba(234, 245, 245, 0.38);
-    --hero-ghost-text: #EAF5F5;
-    --hero-ghost-hover-bg: rgba(234, 245, 245, 0.08);
+    --hero-bg-color: #0B1021;
+    --hero-heading: #F2F8F0;
+    --hero-sub: #38BDF8;
+    --hero-intro: rgba(168, 190, 208, 0.85);
+    --hero-btn-bg: #38BDF8;
+    --hero-btn-text: #08101E;
+    --hero-ghost-border: rgba(242, 248, 240, 0.3);
+    --hero-ghost-text: #F2F8F0;
+    --hero-ghost-hover-bg: rgba(56, 189, 248, 0.08);
 
-    --flow-node-fill: rgba(234, 245, 245, 0.05);
-    --flow-node-stroke: rgba(113, 218, 208, 0.55);
-    --flow-text: rgba(234, 245, 245, 0.9);
-    --flow-sub: rgba(234, 245, 245, 0.45);
-    --flow-line-color: rgba(113, 218, 208, 0.5);
-    --flow-accent: #71DAD0;
+    --flow-node-fill: rgba(56, 189, 248, 0.06);
+    --flow-node-stroke: rgba(56, 189, 248, 0.5);
+    --flow-text: rgba(242, 248, 240, 0.9);
+    --flow-sub: rgba(168, 190, 208, 0.5);
+    --flow-line-color: rgba(34, 211, 238, 0.45);
+    --flow-accent: #38BDF8;
 }
 
 /* paper 晴天手账的取值即 :root 兜底值，无需重复覆盖 */
 
-/* ---------- 主题 C：Playground 怪趣实验室 ---------- */
+/* ---------- 主题 C：Playground 怪趣实验室（极简黄红波普风） ---------- */
 [data-theme="play"] {
-    --ocean-deep: #111111;
-    --ocean: #111111;
-    --ocean-soft: #3A3A3A;
-    --mint: #111111;
-    --mint-deep: #111111;
-    --warm-white: #F7F2E7;
+    --ocean-deep: #2B2B2B;
+    --ocean: #FF4D4D;
+    --ocean-soft: #E63B3B;
+    --mint: #1EC9B4;
+    --mint-deep: #17A998;
+    --warm-white: #FFF2E0;
 
-    --text-color: #111111;
-    --text-secondary: #2A2A2A;
-    --text-muted: #4E4E4E;
+    --text-color: #2B2B2B;
+    --text-secondary: #3D3D3D;
+    --text-muted: #6B625A;
 
-    /* 首页薄荷绿，阅读区一律落在浅色卡片上 */
-    --bg-color: #70EB93;
-    --bg-subtle: #63DE86;
-    --bg-card: #F7F2E7;
+    /* 首页大面积波普黄，阅读区一律落在米白卡片上 */
+    --bg-color: #FFCF00;
+    --bg-subtle: #FFE066;
+    --bg-card: #FFF2E0;
 
-    --border-color: #C9C0AC;
-    --border-strong: #111111;
-    --shadow-xs: 3px 3px 0 rgba(17, 17, 17, 0.85);
-    --shadow: 3px 3px 0 rgba(17, 17, 17, 0.85);
-    --shadow-md: 4px 4px 0 rgba(17, 17, 17, 0.85);
-    --shadow-hover: 6px 6px 0 rgba(17, 17, 17, 0.9);
+    --border-color: #E8D9BE;
+    --border-strong: #2B2B2B;
+    /* 硬阴影只保留给交互组件（按钮/回顶），卡片靠边框构建层次 */
+    --shadow-xs: none;
+    --shadow: none;
+    --shadow-md: 4px 4px 0 rgba(43, 43, 43, 0.9);
+    --shadow-hover: 6px 6px 0 rgba(43, 43, 43, 0.9);
 
-    --selection-bg: rgba(231, 138, 238, 0.45);
+    --selection-bg: rgba(255, 77, 77, 0.28);
 
     --radius-sm: 4px;
     --radius-md: 6px;
@@ -186,28 +187,28 @@
 
     --font-display: var(--font-sans);
 
-    --nav-bg: rgba(112, 235, 147, 0.92);
-    --footer-bg: #111111;
-    --footer-heading: #F7F2E7;
+    --nav-bg: rgba(255, 207, 0, 0.92);
+    --footer-bg: #2B2B2B;
+    --footer-heading: #FFF2E0;
 
     --hero-bg: none;
     --hero-bg-size: auto;
-    --hero-bg-color: #70EB93;
-    --hero-heading: #111111;
-    --hero-sub: #111111;
-    --hero-intro: rgba(17, 17, 17, 0.8);
-    --hero-btn-bg: #111111;
-    --hero-btn-text: #F7F2E7;
-    --hero-ghost-border: #111111;
-    --hero-ghost-text: #111111;
+    --hero-bg-color: #FFCF00;
+    --hero-heading: #2B2B2B;
+    --hero-sub: #FF4D4D;
+    --hero-intro: rgba(43, 43, 43, 0.82);
+    --hero-btn-bg: #FF4D4D;
+    --hero-btn-text: #FFF2E0;
+    --hero-ghost-border: #2B2B2B;
+    --hero-ghost-text: #2B2B2B;
     --hero-ghost-hover-bg: rgba(255, 255, 255, 0.35);
 
-    --flow-node-fill: #F7F2E7;
-    --flow-node-stroke: #111111;
-    --flow-text: #111111;
-    --flow-sub: rgba(17, 17, 17, 0.6);
-    --flow-line-color: #111111;
-    --flow-accent: #E78AEE;
+    --flow-node-fill: #FFF2E0;
+    --flow-node-stroke: #2B2B2B;
+    --flow-text: #2B2B2B;
+    --flow-sub: rgba(43, 43, 43, 0.6);
+    --flow-line-color: #2B2B2B;
+    --flow-accent: #FF4D4D;
 }
 
 /* ---------- 基础 ---------- */
@@ -560,17 +561,17 @@ img {
     border-radius: 50%;
 }
 
-.swatch-ocean i:nth-child(1) { background: #101C2C; }
-.swatch-ocean i:nth-child(2) { background: #17283A; }
-.swatch-ocean i:nth-child(3) { background: #71DAD0; }
+.swatch-ocean i:nth-child(1) { background: #0B1021; }
+.swatch-ocean i:nth-child(2) { background: #1F293B; }
+.swatch-ocean i:nth-child(3) { background: #38BDF8; }
 
 .swatch-paper i:nth-child(1) { background: #F8F4EA; }
 .swatch-paper i:nth-child(2) { background: #FFFCF5; }
 .swatch-paper i:nth-child(3) { background: #D78B70; }
 
-.swatch-play i:nth-child(1) { background: #70EB93; }
-.swatch-play i:nth-child(2) { background: #F7F2E7; }
-.swatch-play i:nth-child(3) { background: #E78AEE; }
+.swatch-play i:nth-child(1) { background: #FFCF00; }
+.swatch-play i:nth-child(2) { background: #FFF2E0; }
+.swatch-play i:nth-child(3) { background: #FF4D4D; }
 
 .theme-option-info {
     flex: 1;
@@ -806,7 +807,7 @@ img {
 
 [data-theme="ocean"] .tag.active {
     background: var(--mint);
-    color: #0E2A26;
+    color: #08101E;
     border-color: var(--mint);
 }
 
@@ -2761,7 +2762,7 @@ img {
     border-width: 1.5px;
 }
 
-/* --- Playground 怪趣实验室：粗描边、贴纸与硬阴影 --- */
+/* --- Playground 怪趣实验室：粗描边与硬阴影（黄红波普） --- */
 [data-theme="play"] .card,
 [data-theme="play"] .feature-card,
 [data-theme="play"] .article-card,
@@ -2772,7 +2773,7 @@ img {
 [data-theme="play"] .project-item,
 [data-theme="play"] .topic-item,
 [data-theme="play"] .intro-section {
-    border: 2px solid #111111;
+    border: 2px solid #2B2B2B;
 }
 
 [data-theme="play"] .feature-card:hover,
@@ -2784,7 +2785,7 @@ img {
 }
 
 [data-theme="play"] .btn {
-    border: 2px solid #111111;
+    border: 2px solid #2B2B2B;
     font-weight: 700;
 }
 
@@ -2797,14 +2798,14 @@ img {
 }
 
 [data-theme="play"] .btn-primary {
-    background: #111111;
-    color: #F7F2E7;
-    border-color: #111111;
+    background: #FF4D4D;
+    color: #FFF2E0;
+    border-color: #2B2B2B;
 }
 
 [data-theme="play"] .btn-primary:hover {
-    background: #111111;
-    color: #F7F2E7;
+    background: #FF4D4D;
+    color: #FFF2E0;
     filter: none;
 }
 
@@ -2814,35 +2815,109 @@ img {
     font-weight: 600;
 }
 
-/* 状态徽标：贴纸感 */
+/* 状态徽标：红色小色块 */
 [data-theme="play"] .feature-status,
 [data-theme="play"] .project-badge {
-    background: #E78AEE;
-    color: #111111;
-    border: 2px solid #111111;
+    background: #FF4D4D;
+    color: #FFF2E0;
+    border: 2px solid #2B2B2B;
     border-radius: 4px;
-    box-shadow: 2px 2px 0 #111111;
+    box-shadow: 2px 2px 0 #2B2B2B;
 }
 
-/* 页面标题：荧光笔划过 */
+/* 页面标题：黄色荧光笔划过 */
 [data-theme="play"] .page-header h1 {
     font-weight: 900;
     display: inline-block;
-    background: linear-gradient(180deg, transparent 68%, rgba(231, 138, 238, 0.7) 68%);
+    background: linear-gradient(180deg, transparent 68%, rgba(255, 207, 0, 0.85) 68%);
     padding: 0 0.15em;
 }
 
+/* Hero 标题：红色色块衬底，波普节奏感 */
 [data-theme="play"] .hero-title {
     font-weight: 900;
+    display: inline-block;
+    background: linear-gradient(180deg, transparent 74%, rgba(255, 77, 77, 0.9) 74%);
+    padding: 0 0.12em;
 }
 
-/* Hero 按钮在薄荷绿底上保持可读 */
+/* Hero 按钮：硬阴影按压反馈 */
 [data-theme="play"] .btn-hero {
-    box-shadow: 4px 4px 0 #111111;
+    box-shadow: 4px 4px 0 #2B2B2B;
 }
 
 [data-theme="play"] .btn-hero-ghost {
-    border: 2px solid #111111;
+    border: 2px solid #2B2B2B;
+}
+
+/* --- 主题极简化修订：移除海洋生物插画、波浪与持续动画 --- */
+/* 晴天手账（paper）保持现状，不参与以下清理 */
+[data-theme="ocean"] .hero-fish,
+[data-theme="play"] .hero-fish,
+[data-theme="ocean"] .hero-wave,
+[data-theme="play"] .hero-wave {
+    display: none;
+}
+
+/* 静态几何流线，不再持续流动 */
+[data-theme="ocean"] .flow-line,
+[data-theme="play"] .flow-line {
+    animation: none;
+}
+
+/* 深海夜航：输入焦点光圈改为蓝青色 */
+[data-theme="ocean"] .search-box:focus {
+    border-color: var(--mint);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.16);
+}
+
+/* 怪趣实验室：输入框落在米白底上，对比清晰 */
+[data-theme="play"] .hero-search .search-box {
+    background: #FFF2E0;
+}
+
+[data-theme="play"] .search-box:focus {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.22);
+}
+
+/* ---------- Hero 搜索框（三主题共享，原生 GET 提交到文章页） ---------- */
+.hero-search {
+    display: flex;
+    gap: 0.6rem;
+    max-width: 30rem;
+    margin: 0 0 2rem;
+}
+
+.hero-search .search-box {
+    flex: 1;
+    margin: 0;
+    min-width: 0;
+    width: auto;
+}
+
+.hero-search-btn {
+    flex-shrink: 0;
+    padding: 0.7rem 1.25rem;
+    border: 1px solid var(--hero-ghost-border);
+    border-radius: var(--radius-btn);
+    background: var(--hero-btn-bg);
+    color: var(--hero-btn-text);
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.hero-search-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+/* 深海夜航：搜索输入与 Hero 底色拉开一档层次 */
+[data-theme="ocean"] .hero-search .search-box {
+    background: var(--bg-subtle);
 }
 
 /* ---------- 长标题在窄屏正确换行 ---------- */

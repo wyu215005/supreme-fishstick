@@ -80,7 +80,9 @@ window.FISHRAIN_I18N['fr'] = {
         hdfsTitle: "HDFS : architecture et fiabilité",
         hdfsDesc: "Checkpoint, quorum QJM, basculement HA et fencing, playbook d'incidents et gouvernance des petits fichiers Spark.",
         hdfsNote: '📖 Sujet bilingue · lecture sur le site',
-        hdfsBadge: 'Sujet bilingue'
+        hdfsBadge: 'Sujet bilingue',
+        searchPh: 'Rechercher des articles, tags ou mots-clés…',
+        searchBtn: 'Rechercher'
     },
     articles: {
         title: 'Articles',

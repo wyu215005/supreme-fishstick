@@ -79,7 +79,9 @@ window.FISHRAIN_I18N['en'] = {
         hdfsTitle: 'HDFS Architecture & Reliability Engineering',
         hdfsDesc: 'How checkpointing, QJM, HA failover and fencing actually work — with incident playbooks and Spark small-file governance.',
         hdfsNote: '📖 Bilingual topic · read on site',
-        hdfsBadge: 'Bilingual Topic'
+        hdfsBadge: 'Bilingual Topic',
+        searchPh: 'Search articles, tags or keywords…',
+        searchBtn: 'Search'
     },
     articles: {
         title: 'Articles',

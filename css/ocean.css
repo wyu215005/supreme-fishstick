@@ -1,7 +1,8 @@
 /* ============================================================
    FishRain · Ocean Extras
-   交互增强层：滚动渐入 / 回到顶部 / 点击粒子 / 鱼雨彩蛋
+   交互增强层：滚动渐入 / 回到顶部
    由 js/pixel-effects.js 驱动，仅包含 JS 动态创建的元素样式
+   （极简化修订：移除点击粒子与鱼雨彩蛋相关样式）
    ============================================================ */
 
 /* ---------- 滚动渐入（平滑淡入上移） ---------- */
@@ -21,20 +22,19 @@ html.js-anim .pixel-reveal.in-view {
     transform: translateY(0);
 }
 
-/* ---------- 回到顶部 ---------- */
+/* ---------- 回到顶部（中性箭头图标） ---------- */
 .back-to-top {
     position: fixed;
     bottom: 28px;
     right: 28px;
     width: 46px;
     height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    background-image: url('../images/pixel-fish.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 26px 26px;
     cursor: pointer;
     z-index: 1000;
     opacity: 0;
@@ -44,6 +44,14 @@ html.js-anim .pixel-reveal.in-view {
     box-shadow: var(--shadow-md);
 }
 
+.back-to-top::before {
+    content: '↑';
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-secondary);
+}
+
 .back-to-top.visible {
     opacity: 1;
     visibility: visible;
@@ -51,53 +59,13 @@ html.js-anim .pixel-reveal.in-view {
 }
 
 .back-to-top:hover {
-    border-color: var(--mint);
+    border-color: var(--ocean-soft);
     transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
 }
 
-/* ---------- 点击粒子（克制版） ---------- */
-.pixel-coin-fx {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    font-size: 11px;
-    user-select: none;
-    opacity: 0.9;
-    animation: coin-float-up 0.75s ease-out forwards;
-}
-
-@keyframes coin-float-up {
-    0% {
-        opacity: 0.9;
-        transform: translate(-50%, -50%) scale(0.7);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -190%) scale(1.05);
-    }
-}
-
-/* ---------- 鱼雨彩蛋（Konami / 连续点鱼） ---------- */
-.pixel-fish-rain {
-    position: fixed;
-    top: -60px;
-    font-size: 26px;
-    z-index: 9998;
-    pointer-events: none;
-    user-select: none;
-    animation: fish-rain-fall var(--fall-dur, 3.5s) linear forwards;
-}
-
-@keyframes fish-rain-fall {
-    0% {
-        transform: translateY(0) translateX(0) rotate(-12deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(calc(100vh + 120px)) translateX(var(--drift, 30px)) rotate(12deg);
-        opacity: 0.7;
-    }
+.back-to-top:hover::before {
+    color: var(--ocean-soft);
 }
 
 /* ---------- 减少动画偏好 ---------- */
@@ -106,10 +74,5 @@ html.js-anim .pixel-reveal.in-view {
         opacity: 1;
         transform: none;
         transition: none;
-    }
-
-    .pixel-coin-fx,
-    .pixel-fish-rain {
-        display: none !important;
     }
 }

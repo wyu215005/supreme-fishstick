@@ -324,6 +324,15 @@ class ArticlesManager {
             searchBox.addEventListener('input', (e) => {
                 this.search(e.target.value);
             });
+            // 支持 URL ?q= 预填（首页 Hero 搜索等入口以 GET 跳转过来）
+            try {
+                const q = new URLSearchParams(location.search).get('q');
+                if (q) {
+                    searchBox.value = q;
+                    this.currentQuery = q.toLowerCase();
+                    this.applyFilters();
+                }
+            } catch (e) { /* 老浏览器忽略 */ }
         }
     }
 

@@ -79,7 +79,9 @@ window.FISHRAIN_I18N['zh-CN'] = {
         hdfsTitle: 'HDFS 架构与可靠性工程',
         hdfsDesc: 'Checkpoint、QJM、HA 故障切换与 Fencing 的机制拆解，配真实故障排查手册与 Spark 小文件治理实践。',
         hdfsNote: '📖 中英双语专题 · 站内阅读',
-        hdfsBadge: '双语专题'
+        hdfsBadge: '双语专题',
+        searchPh: '搜索文章、标签或关键词…',
+        searchBtn: '搜索'
     },
     articles: {
         title: '文章',
