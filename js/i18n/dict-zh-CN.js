@@ -277,6 +277,7 @@ window.FISHRAIN_I18N['zh-CN'] = {
         nextChapter: '下一章',
         tbd: '待更新',
         pathAria: '学习路径导航',
+        sourceRepo: 'GitHub 源码仓库',
         maintainNote: '本页内容与仓库 Markdown 同源维护：更新对应 content/ 目录下的 Markdown 即可更新本页。'
     },
     /* MapReduce 学习笔记页专用 */

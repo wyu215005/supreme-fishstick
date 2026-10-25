@@ -188,8 +188,8 @@
     --font-display: var(--font-sans);
 
     --nav-bg: rgba(255, 207, 0, 0.92);
-    --footer-bg: #2B2B2B;
-    --footer-heading: #FFF2E0;
+    --footer-bg: #FF4D4D;
+    --footer-heading: #2B2B2B;
 
     --hero-bg: none;
     --hero-bg-size: auto;
@@ -725,6 +725,18 @@ img {
 [data-theme="ocean"] .btn:hover {
     color: var(--ocean-soft);
     border-color: var(--ocean-soft);
+}
+
+/* 深海夜航：Hero 主按钮文字保持深色（静态态需覆盖 [data-theme="ocean"] a 的链接规则，
+   hover 态需覆盖上面的全局按钮规则，否则浅青字叠浅蓝底看不清） */
+[data-theme="ocean"] .btn-hero {
+    color: var(--hero-btn-text);
+    border-color: var(--hero-btn-bg);
+}
+
+[data-theme="ocean"] .btn-hero:hover {
+    color: var(--hero-btn-text);
+    border-color: var(--hero-btn-bg);
 }
 
 .btn:active {
@@ -2850,13 +2862,43 @@ img {
     border: 2px solid #2B2B2B;
 }
 
-/* --- 主题极简化修订：移除海洋生物插画、波浪与持续动画 --- */
+/* 页脚：波普红大色块 + 黑色文字与黑色描边，呼应卡片系统的黑色线条 */
+[data-theme="play"] .footer {
+    border-top: 3px solid #2B2B2B;
+    color: rgba(43, 43, 43, 0.82);
+}
+
+[data-theme="play"] .footer-motto {
+    color: #2B2B2B;
+    font-weight: 600;
+}
+
+[data-theme="play"] .footer-link {
+    color: rgba(43, 43, 43, 0.82);
+}
+
+[data-theme="play"] .footer-link:hover {
+    color: #2B2B2B;
+    text-decoration: underline;
+}
+
+[data-theme="play"] .footer-bottom {
+    border-top: 2px solid #2B2B2B;
+    color: rgba(43, 43, 43, 0.72);
+}
+
+/* --- 主题极简化修订（二轮）：保留小鱼，隐藏波浪与持续流线动画 --- */
 /* 晴天手账（paper）保持现状，不参与以下清理 */
-[data-theme="ocean"] .hero-fish,
-[data-theme="play"] .hero-fish,
 [data-theme="ocean"] .hero-wave,
 [data-theme="play"] .hero-wave {
     display: none;
+}
+
+/* 小鱼回归：深海夜航为主题蓝（--flow-accent: #38BDF8），怪趣实验室为主题红（#FF4D4D） */
+
+/* 深海夜航：品牌小鱼（<img> 引用时 currentColor 解析为黑色）在深色底不可见，滤镜转为主题蓝 */
+[data-theme="ocean"] .logo-fish {
+    filter: invert(1) sepia(1) saturate(4.2) hue-rotate(165deg);
 }
 
 /* 静态几何流线，不再持续流动 */

@@ -23,8 +23,8 @@
         'en': CONTENT_BASE + 'hdfs-reliability.en.md',
         'fr': CONTENT_BASE + 'hdfs-reliability.en.md' // 法语暂时回落英文内容
     };
-    // 待配置：HDFS 专题对应的公开 GitHub 仓库地址。为空则隐藏入口按钮，不虚构链接。
-    var SOURCE_REPO = '';
+    // HDFS 专题的源码地址：站点仓库内对应的项目目录（点击跳转 GitHub）
+    var SOURCE_REPO = 'https://github.com/wyu215005/supreme-fishstick/tree/main/projects/hdfs-reliability';
 
     /* 故障切换步骤（教学内容随页面脚本维护，i18n 字典仅支持字符串键） */
     var FAILOVER_STEPS = {

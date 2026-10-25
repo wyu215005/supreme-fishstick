@@ -277,6 +277,7 @@ window.FISHRAIN_I18N['en'] = {
         nextChapter: 'Next',
         tbd: 'Upcoming',
         pathAria: 'Learning path navigation',
+        sourceRepo: 'GitHub source repository',
         maintainNote: 'This page stays in sync with the repo Markdown: update the Markdown under the matching content/ directory to update the page.'
     },
     /* MapReduce study-notes page */

@@ -278,6 +278,7 @@ window.FISHRAIN_I18N['fr'] = {
         nextChapter: 'Suivant',
         tbd: 'À venir',
         pathAria: 'Navigation du parcours d\u2019apprentissage',
+        sourceRepo: 'Dépôt GitHub source',
         maintainNote: 'Cette page est synchronisée avec le Markdown du dépôt : mettez à jour le Markdown du répertoire content/ correspondant pour mettre à jour la page.'
     },
     /* Page des notes MapReduce */
