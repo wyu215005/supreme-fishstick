@@ -19,7 +19,11 @@ window.FISHRAIN_I18N['zh-CN'] = {
         hdfsTitle: "HDFS 架构与可靠性工程 - FishRain",
         hdfsDesc: "HDFS 架构与可靠性工程双语专题：Checkpoint、QJM 多数派、HA 故障切换与 Fencing、真实故障排查与 Spark 小文件治理。",
         mapreduceTitle: "MapReduce：从 HDFS 输入到 Shuffle 与 YARN 调度 - FishRain",
-        mapreduceDesc: "MapReduce 学习笔记：Block 与 InputSplit、RecordReader 与 Mapper、Map/Reduce 端 Shuffle、Combiner、数据倾斜与 YARN 调度。"
+        mapreduceDesc: "MapReduce 学习笔记：Block 与 InputSplit、RecordReader 与 Mapper、Map/Reduce 端 Shuffle、Combiner、数据倾斜与 YARN 调度。",
+        hserTitle: "Hadoop MapReduce 序列化与 YARN 资源调度 | Serialization & YARN - FishRain",
+        hserDesc: "Hadoop 双语学习笔记：序列化与反序列化、Writable 与 WritableComparable、Shuffle 中的序列化、YARN 四大组件与生产排障，附面试问答。",
+        hcolTitle: "Hadoop 文件格式与优化 | Parquet, ORC & File Optimization - FishRain",
+        hcolDesc: "Hadoop 双语学习笔记：行存储与列存储、Parquet/ORC 内部结构、分区裁剪、谓词下推、小文件治理与 Compaction。"
     },
     nav: {
         home: '首页',
@@ -101,6 +105,7 @@ window.FISHRAIN_I18N['zh-CN'] = {
         filterTag: '标签筛选',
         catCase: '工程复盘',
         catTopic: '技术专题',
+        catHadoop: '大数据 / Hadoop',
         readTopic: '📖 阅读专题',
         tags: {
             '数仓分层': '数仓分层',
@@ -285,5 +290,17 @@ window.FISHRAIN_I18N['zh-CN'] = {
         crumb: 'MapReduce 学习笔记',
         title: 'MapReduce：从 HDFS 输入到 Shuffle 与 YARN 调度',
         summary: 'Block 与 InputSplit、RecordReader 与 Mapper、Map/Reduce 端 Shuffle、Combiner、数据倾斜与 YARN 调度 —— HDFS 专题的后续学习笔记。'
+    },
+    /* Hadoop 学习系列：序列化与 YARN 页 */
+    hser: {
+        crumb: 'Hadoop 序列化与 YARN',
+        title: 'Hadoop MapReduce 序列化与 YARN 资源调度 | Serialization & YARN',
+        summary: '序列化与 Writable 接口、Shuffle 中的字节表示、YARN 四大组件与生产排障 —— Hadoop 学习系列双语笔记。'
+    },
+    /* Hadoop 学习系列：文件格式与优化页 */
+    hcol: {
+        crumb: 'Hadoop 文件格式',
+        title: 'Hadoop 文件格式与优化 | Parquet, ORC & File Optimization',
+        summary: '行存储与列存储、Parquet/ORC 内部结构、五类读取优化、小文件治理与 Compaction —— Hadoop 学习系列双语笔记。'
     }
 };

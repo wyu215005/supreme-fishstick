@@ -250,7 +250,7 @@
         state.rendering = true;
         return fetchText(CONTENT[lang]).then(function (md) {
             state.lang = lang;
-            state.result = window.FishRainMarkdown.render(md, { skipFirstH1: true });
+            state.result = window.FishRainMarkdown.render(md, { skipFirstH1: true, highlight: !!PAGE.highlight });
             articleEl.innerHTML = state.result.html;
             buildTOC();
             wireCopyButtons();

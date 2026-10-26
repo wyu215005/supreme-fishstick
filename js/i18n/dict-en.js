@@ -19,7 +19,11 @@ window.FISHRAIN_I18N['en'] = {
         hdfsTitle: "HDFS Architecture & Reliability Engineering - FishRain",
         hdfsDesc: "Bilingual HDFS topic: checkpointing, QJM quorum, HA failover and fencing, real incident playbooks, and Spark small-file governance.",
         mapreduceTitle: "MapReduce: From HDFS Input to Shuffle and YARN Scheduling - FishRain",
-        mapreduceDesc: "MapReduce study notes: Block vs InputSplit, RecordReader vs Mapper, Map/Reduce-side Shuffle, Combiner, data skew, and YARN scheduling."
+        mapreduceDesc: "MapReduce study notes: Block vs InputSplit, RecordReader vs Mapper, Map/Reduce-side Shuffle, Combiner, data skew, and YARN scheduling.",
+        hserTitle: "Hadoop MapReduce Serialization & YARN Resource Scheduling - FishRain",
+        hserDesc: "Bilingual Hadoop notes: serialization and Writable, serialization in Shuffle, the four YARN components, scheduling and production troubleshooting, with interview Q&A.",
+        hcolTitle: "Hadoop File Formats & Optimization: Parquet, ORC - FishRain",
+        hcolDesc: "Bilingual Hadoop notes: row vs columnar storage, Parquet/ORC internals, partition pruning, predicate pushdown, small files and compaction."
     },
     nav: {
         home: 'Home',
@@ -101,6 +105,7 @@ window.FISHRAIN_I18N['en'] = {
         filterTag: 'Filter by tag',
         catCase: 'Case Study',
         catTopic: 'Tech Topic',
+        catHadoop: 'Big Data / Hadoop',
         readTopic: '📖 Read the topic',
         tags: {
             '数仓分层': 'Warehouse Layering',
@@ -285,5 +290,17 @@ window.FISHRAIN_I18N['en'] = {
         crumb: 'MapReduce Notes',
         title: 'MapReduce: From HDFS Input to Shuffle and YARN Scheduling',
         summary: 'Block vs InputSplit, RecordReader vs Mapper, Map/Reduce-side Shuffle, Combiner, data skew, and YARN scheduling — a follow-up to the HDFS topic.'
+    },
+    /* Hadoop series: serialization & YARN page */
+    hser: {
+        crumb: 'Serialization & YARN',
+        title: 'Hadoop MapReduce Serialization & YARN Resource Scheduling',
+        summary: 'Serialization and Writable interfaces, serialization in Shuffle, the four YARN components, scheduling and production troubleshooting — bilingual notes in the Hadoop series.'
+    },
+    /* Hadoop series: file formats & optimization page */
+    hcol: {
+        crumb: 'File Formats',
+        title: 'Hadoop File Formats & Optimization: Parquet, ORC and Columnar Storage',
+        summary: 'Row vs columnar storage, Parquet/ORC internals, five read optimizations, small-file governance and compaction — bilingual notes in the Hadoop series.'
     }
 };

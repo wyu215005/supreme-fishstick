@@ -10,11 +10,12 @@
  * 链接（外链自动新窗口+noopener）、图片、引用、水平线、有序/无序列表（可嵌套）、
  * 表格（含对齐、行内代码内的管道符保护）、围栏代码块（语言标签+复制按钮骨架）、
  * mermaid 代码块（占位符提取，由页面脚本渲染）、\[\...\] 公式块（LaTeX 子集美化）、
- * <details><summary> 白名单。
+ * <details><summary> 白名单、可选代码语法高亮（tok-* span，按页启用）。
  *
  * API：FishRainMarkdown.render(md, opts) → { html, headings, mermaid }
  *   opts.skipFirstH1   丢弃首个 h1（页面 Hero 已展示标题时使用）
  *   opts.mermaidLang    mermaid 块语言名，默认 'mermaid'
+ *   opts.highlight      启用代码语法高亮（默认关闭，未启用时输出与旧版一致）
  */
 window.FishRainMarkdown = (function () {
     'use strict';
@@ -180,6 +181,102 @@ window.FishRainMarkdown = (function () {
         return html;
     }
 
+    /* ---------- 可选代码语法高亮（escape-first：先分词、逐段转义，不引入注入面） ---------- */
+
+    var HL_RULES = {
+        java: {
+            kw: 'abstract assert boolean break byte case catch char class const continue default do double else enum extends final finally float for goto if implements import instanceof int interface long native new package private protected public return short static strictfp super switch synchronized this throw throws transient try void volatile while true false null var',
+            line: '//', block: true, ann: true
+        },
+        python: {
+            kw: 'and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield True False None',
+            line: '#'
+        },
+        sql: {
+            kw: 'SELECT FROM WHERE GROUP BY ORDER HAVING JOIN INNER LEFT RIGHT FULL OUTER CROSS ON AS AND OR NOT NULL IS IN LIKE BETWEEN EXISTS SUM COUNT AVG MIN MAX DISTINCT UNION ALL INSERT INTO VALUES UPDATE SET DELETE CREATE TABLE DROP ALTER VIEW WITH CASE WHEN THEN END DESC ASC LIMIT PARTITION OVER CAST COALESCE',
+            line: '--', block: true, ci: true
+        },
+        bash: {
+            kw: 'if then else elif fi for while do done case esac function return export local echo cd',
+            line: '#', cmd: true
+        }
+    };
+    var HL_ALIAS = { sh: 'bash', shell: 'bash', zsh: 'bash', py: 'python' };
+
+    function hlEscRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+    // 注释/字符串切分正则（先于关键字匹配，保证字符串内的 // -- # 不被误判为注释）
+    function hlSplitRegex(rule) {
+        var parts = [];
+        if (rule.block) parts.push('/\\*[\\s\\S]*?\\*/');
+        if (rule.line) parts.push(hlEscRe(rule.line) + '[^\\n]*');
+        if (rule.str !== false) {
+            parts.push('"(?:\\\\.|[^"\\\\\\n])*"');
+            parts.push("'(?:\\\\.|[^'\\\\\\n])*'");
+        }
+        return new RegExp(parts.join('|'), 'g');
+    }
+
+    // 纯文本段内高亮：注解 / 关键字 / 数字 / 函数名
+    function hlTokens(seg, rule) {
+        if (!seg) return '';
+        var kwSrc = rule.kw.split(/\s+/).map(hlEscRe).join('|');
+        var parts = [];
+        if (rule.ann) parts.push('@[A-Za-z_][A-Za-z0-9_]*');
+        parts.push('\\b(?:' + kwSrc + ')\\b');
+        parts.push('\\b(?:0[xX][0-9a-fA-F]+|\\d+(?:\\.\\d+)?)\\b');
+        parts.push('\\b[A-Za-z_][A-Za-z0-9_]*(?=\\s*\\()');
+        var re = new RegExp(parts.join('|'), rule.ci ? 'gi' : 'g');
+        var out = '', last = 0, m;
+        while ((m = re.exec(seg))) {
+            out += escapeHtml(seg.slice(last, m.index));
+            out += '<span class="' + hlClass(m[0], rule) + '">' + escapeHtml(m[0]) + '</span>';
+            last = m.index + m[0].length;
+            if (m[0].length === 0) re.lastIndex++;
+        }
+        return out + escapeHtml(seg.slice(last));
+    }
+
+    function hlClass(tok, rule) {
+        if (tok.charAt(0) === '@') return 'tok-ann';
+        if (/^\d/.test(tok)) return 'tok-num';
+        if (!rule.kwMap) {
+            rule.kwMap = {};
+            rule.kw.split(/\s+/).forEach(function (w) { rule.kwMap[rule.ci ? w.toUpperCase() : w] = 1; });
+        }
+        return rule.kwMap[rule.ci ? tok.toUpperCase() : tok] ? 'tok-kw' : 'tok-fn';
+    }
+
+    // bash：每行首个单词（命令位）着色
+    function hlBash(seg, rule) {
+        return seg.split('\n').map(function (ln) {
+            var mm = ln.match(/^(\s*)([A-Za-z_][A-Za-z0-9_.-]*)([\s\S]*)$/);
+            if (!mm) return escapeHtml(ln);
+            return escapeHtml(mm[1]) +
+                '<span class="tok-fn">' + escapeHtml(mm[2]) + '</span>' +
+                hlTokens(mm[3], rule);
+        }).join('\n');
+    }
+
+    function highlight(code, lang) {
+        var key = String(lang || '').toLowerCase();
+        key = HL_ALIAS[key] || key;
+        var rule = HL_RULES[key];
+        if (!rule) return escapeHtml(code);
+        var out = '', last = 0, m;
+        var re = hlSplitRegex(rule);
+        while ((m = re.exec(code))) {
+            out += rule.cmd ? hlBash(code.slice(last, m.index), rule) : hlTokens(code.slice(last, m.index), rule);
+            var isCom = (rule.block && m[0].charAt(0) === '/' && m[0].charAt(1) === '*') ||
+                        (rule.line && m[0].indexOf(rule.line) === 0);
+            out += '<span class="' + (isCom ? 'tok-com' : 'tok-str') + '">' + escapeHtml(m[0]) + '</span>';
+            last = m.index + m[0].length;
+            if (m[0].length === 0) re.lastIndex++;
+        }
+        out += rule.cmd ? hlBash(code.slice(last), rule) : hlTokens(code.slice(last), rule);
+        return out;
+    }
+
     /* ---------- 主渲染 ---------- */
 
     function render(mdText, opts) {
@@ -223,12 +320,13 @@ window.FishRainMarkdown = (function () {
                     mermaid.push(code);
                     html.push('<div class="mmd-slot" data-mmd="' + idx + '" role="img" aria-label="diagram"></div>');
                 } else {
+                    var codeHtml = opts.highlight ? highlight(code, lang) : escapeHtml(code);
                     html.push(
                         '<div class="code-block"><div class="code-head"><span class="code-lang">' +
                         escapeHtml(lang || 'text') + '</span>' +
                         '<button type="button" class="code-copy" data-copy="' + idx + '" aria-label="copy code">' +
                         '<span class="code-copy-label"></span></button></div>' +
-                        '<pre><code>' + escapeHtml(code) + '</code></pre></div>'
+                        '<pre><code>' + codeHtml + '</code></pre></div>'
                     );
                 }
                 continue;
@@ -267,7 +365,7 @@ window.FishRainMarkdown = (function () {
                 var dbuf = [];
                 while (i < lines.length && lines[i].trim() !== '</details>') { dbuf.push(lines[i]); i++; }
                 i++;
-                html.push(render(dbuf.join('\n') + '\n', { mermaidLang: mermaidLang }).html);
+                html.push(render(dbuf.join('\n') + '\n', { mermaidLang: mermaidLang, highlight: opts.highlight }).html);
                 html.push('</details>');
                 continue;
             }
@@ -340,5 +438,5 @@ window.FishRainMarkdown = (function () {
         return { html: html.join('\n'), headings: headings, mermaid: mermaid };
     }
 
-    return { render: render, escapeHtml: escapeHtml, texToText: texToText };
+    return { render: render, escapeHtml: escapeHtml, texToText: texToText, highlight: highlight };
 })();

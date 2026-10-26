@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadoop 文件格式与优化 | Parquet, ORC &amp; File Optimization - FishRain</title>
+    <meta name="description" content="Hadoop 双语学习笔记：行存储与列存储、Parquet Row Group 与 ORC Stripe 内部结构、分区裁剪、谓词下推、小文件治理、Compaction 与压缩编码。">
+    <meta name="keywords" content="Hadoop, HDFS, Parquet, ORC, Columnar Storage, Compaction, Compression, Spark, 大数据">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://fishrain.top/projects/hadoop-columnar-storage-parquet-orc/">
+    <meta property="og:title" content="Hadoop 文件格式与优化 | Parquet, ORC &amp; File Optimization">
+    <meta property="og:description" content="行存储与列存储、Parquet/ORC 内部结构、五类读取优化、小文件治理与 Compaction —— Hadoop 学习系列双语笔记。">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://fishrain.top/projects/hadoop-columnar-storage-parquet-orc/">
+    <meta property="og:site_name" content="FishRain">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'">
+    <link rel="icon" type="image/svg+xml" href="../../images/logo-fish.svg">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/ocean.css">
+    <link rel="stylesheet" href="../../css/hdfs-topic.css">
+    <link rel="stylesheet" href="../../css/mapreduce-topic.css">
+    <script src="../../js/theme-init.js"></script>
+    <script src="../../js/i18n/dict-zh-CN.js"></script>
+    <script src="../../js/i18n/dict-en.js"></script>
+    <script src="../../js/i18n/dict-fr.js"></script>
+    <script src="../../js/i18n/i18n.js"></script>
+</head>
+<body data-i18n-doc="hcol">
+    <a class="skip-link" href="#topicMain" data-i18n="topic.skipMain">跳到正文</a>
+
+    <!-- 阅读进度条 -->
+    <div class="topic-progress" id="topicProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="阅读进度" data-i18n-attr="aria-label:topic.progressAria"><span class="topic-progress-bar" id="topicProgressBar"></span></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../../index.html">
+                    <img src="../../images/logo-fish.svg" alt="FishRain Logo" class="logo-fish">
+                    <span>FishRain</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../../index.html" class="nav-link"><span class="icon icon-fish" aria-hidden="true"></span><span data-i18n="nav.home">首页</span></a></li>
+                <li><a href="../../articles.html" class="nav-link active"><span class="icon icon-book" aria-hidden="true"></span><span data-i18n="nav.articles">文章</span></a></li>
+                <li><a href="../../about.html" class="nav-link"><span class="icon icon-jelly" aria-hidden="true"></span><span data-i18n="nav.about">关于我</span></a></li>
+                <li><a href="../../guestbook.html" class="nav-link"><span class="icon icon-bottle" aria-hidden="true"></span><span data-i18n="nav.guestbook">留言墙</span></a></li>
+                <li><a href="../../gachapon.html" class="nav-link"><span class="icon icon-chest" aria-hidden="true"></span><span data-i18n="nav.gachapon">扭蛋机</span></a></li>
+            </ul>
+            <div class="nav-controls">
+                <div class="wardrobe lang-wardrobe">
+                    <button class="theme-toggle lang-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-controls="langPanel" aria-label="切换语言" data-i18n-attr="aria-label:lang.switchAria">
+                        <span class="icon icon-globe" aria-hidden="true"></span><span class="lang-code" id="langCode">中</span>
+                    </button>
+                    <div class="theme-panel lang-panel" id="langPanel" hidden>
+                        <p class="theme-panel-title" data-i18n="lang.panelTitle">语言 / Language</p>
+                        <div class="theme-options" role="radiogroup" aria-label="切换语言" data-i18n-attr="aria-label:lang.switchAria">
+                            <button type="button" class="theme-option lang-option" data-lang-value="zh-CN" role="radio" aria-checked="false">
+                                <span class="theme-option-info"><strong>简体中文</strong><em>CHINESE</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option lang-option" data-lang-value="en" role="radio" aria-checked="false">
+                                <span class="theme-option-info"><strong>English</strong><em>ENGLISH</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option lang-option" data-lang-value="fr" role="radio" aria-checked="false">
+                                <span class="theme-option-info"><strong>Français</strong><em>Français</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wardrobe">
+                    <button class="theme-toggle" id="themeToggle" aria-haspopup="true" aria-expanded="false" aria-controls="themePanel" title="主题衣橱" aria-label="打开主题衣橱" data-i18n-attr="title:nav.wardrobeTitle;aria-label:nav.openWardrobe">
+                        <span class="icon icon-hanger" aria-hidden="true"></span>
+                    </button>
+                    <div class="theme-panel" id="themePanel" hidden>
+                        <p class="theme-panel-title" data-i18n="nav.wardrobeTitle">主题衣橱</p>
+                        <div class="theme-options" role="radiogroup" aria-label="选择主题" data-i18n-attr="aria-label:nav.selectTheme">
+                            <button type="button" class="theme-option" data-theme-value="ocean" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-ocean" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong data-i18n="nav.ocean">深海夜航</strong><em>OCEAN</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="paper" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-paper" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong data-i18n="nav.paper">晴天手账</strong><em>SKETCHBOOK</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="theme-option" data-theme-value="play" role="radio" aria-checked="false">
+                                <span class="theme-swatch swatch-play" aria-hidden="true"><i></i><i></i><i></i></span>
+                                <span class="theme-option-info"><strong data-i18n="nav.play">怪趣实验室</strong><em>PLAYGROUND</em></span>
+                                <span class="theme-check" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" data-i18n-attr="aria-label:nav.openMenu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" id="topicMain">
+        <!-- 文章页头 -->
+        <header class="hdfs-hero">
+            <nav class="hdfs-crumb" aria-label="Breadcrumb">
+                <a href="../../index.html" data-i18n="nav.home">首页</a>
+                <span aria-hidden="true">/</span>
+                <a href="../../articles.html" data-i18n="nav.articles">文章</a>
+                <span aria-hidden="true">/</span>
+                <span data-i18n="hcol.crumb">Hadoop 文件格式</span>
+            </nav>
+            <h1 class="hdfs-title" data-i18n="hcol.title">Hadoop 文件格式与优化 | Parquet, ORC &amp; File Optimization</h1>
+            <p class="hdfs-summary" data-i18n="hcol.summary">行存储与列存储、Parquet/ORC 内部结构、五类读取优化、小文件治理与 Compaction —— Hadoop 学习系列双语笔记。</p>
+            <div class="hdfs-meta">
+                <span class="hdfs-meta-item">📅 <time datetime="2026-10-26">2026-10-26</time></span>
+                <span class="tag">Hadoop</span>
+                <span class="tag">Parquet</span>
+                <span class="tag">ORC</span>
+                <span class="tag">Columnar Storage</span>
+            </div>
+            <a class="hdfs-source-link" href="https://github.com/wyu215005/supreme-fishstick/tree/main/projects/hadoop-columnar-storage-parquet-orc" target="_blank" rel="noopener noreferrer" data-i18n="topic.sourceRepo">GitHub 源码仓库</a>
+            <!-- 学习元信息：目标 / 时长 / 前置 -->
+            <div class="topic-learnmeta">
+                <div class="learnmeta-item">
+                    <span class="learnmeta-label" data-i18n="topic.objectives">学习目标</span>
+                    <p class="learnmeta-value">区分 HDFS 与文件格式的职责、行存与列存的取舍、Parquet Row Group 与 ORC Stripe 的结构，以及分区裁剪、谓词下推等五类读取优化与安全 Compaction 流程。</p>
+                </div>
+                <div class="learnmeta-item learnmeta-short">
+                    <span class="learnmeta-label" data-i18n="topic.readingTime">预计阅读</span>
+                    <p class="learnmeta-value">约 20 分钟</p>
+                </div>
+                <div class="learnmeta-item learnmeta-short">
+                    <span class="learnmeta-label" data-i18n="topic.prerequisites">前置知识</span>
+                    <p class="learnmeta-value"><a href="../hdfs-reliability/">HDFS 架构与可靠性工程</a></p>
+                </div>
+            </div>
+        </header>
+
+        <!-- 正文 + 目录 -->
+        <div class="hdfs-layout">
+            <article class="hdfs-article md-body" id="topicArticle" aria-live="polite">
+                <div class="hdfs-loading" data-i18n="topic.loading">正在加载内容…</div>
+            </article>
+            <aside class="hdfs-toc" id="topicToc" aria-label="文章目录" data-i18n-attr="aria-label:topic.tocAria">
+                <button type="button" class="hdfs-toc-toggle" id="tocToggle" aria-expanded="false" aria-controls="tocNav">
+                    <span data-i18n="topic.tocTitle">目录</span><span class="hdfs-toc-arrow" aria-hidden="true">▾</span>
+                </button>
+                <nav class="hdfs-toc-nav" id="tocNav"></nav>
+            </aside>
+        </div>
+
+        <!-- 学习路径：上一章 / 下一章 -->
+        <nav class="topic-chapnav" aria-label="学习路径导航" data-i18n-attr="aria-label:topic.pathAria">
+            <a class="chapnav-card chapnav-prev" href="../hadoop-mapreduce-serialization-yarn/">
+                <span class="chapnav-dir">← <span data-i18n="topic.prevChapter">上一章</span></span>
+                <span class="chapnav-title">Hadoop MapReduce 序列化与 YARN 资源调度 | Serialization &amp; YARN</span>
+            </a>
+            <div class="chapnav-card chapnav-next is-tbd" aria-disabled="true">
+                <span class="chapnav-dir"><span data-i18n="topic.nextChapter">下一章</span> →</span>
+                <span class="chapnav-title">Spark 执行模型与 Shuffle</span>
+                <span class="chapnav-tbd" data-i18n="topic.tbd">待更新</span>
+            </div>
+        </nav>
+
+        <p class="hdfs-maintain" data-i18n="topic.maintainNote">本页内容与仓库 Markdown 同源维护：更新对应 content/ 目录下的 Markdown 即可更新本页。</p>
+    </main>
+
+    <!-- 返回顶部 -->
+    <button type="button" class="hdfs-backtop" id="topicBackTop" aria-label="返回顶部" data-i18n-attr="aria-label:topic.backTopAria" hidden>↑</button>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="../../images/logo-fish.svg" alt="" aria-hidden="true" class="logo-fish">
+                <span class="footer-brand-name">FishRain</span>
+            </div>
+            <p class="footer-motto" data-i18n="footer.motto">慢慢来，比较快。</p>
+            <div class="footer-links">
+                <a class="footer-link" href="https://github.com/wyu215005" target="_blank" rel="noopener">🐙 GitHub</a>
+                <a class="footer-link" href="https://space.bilibili.com/1938108705" target="_blank" rel="noopener">📺 <span data-i18n="footer.bilibili">哔哩哔哩</span></a>
+                <a class="footer-link" href="mailto:3492403678@qq.com">📧 <span data-i18n="footer.email">邮箱</span></a>
+                <a class="footer-link" href="https://xhslink.cn/o/5xlS9WNlUCt" target="_blank" rel="noopener">📕 <span data-i18n="footer.xhs">小红书</span></a>
+            </div>
+            <div class="footer-bottom">
+                <span data-i18n="footer.copyright">© 2026 FishRain · 从业务逻辑到数据模型</span>
+                <span data-i18n="footer.poweredBy">Powered by GitHub Pages</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="page-config.js"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/navbar.js"></script>
+    <script src="../../js/markdown.js"></script>
+    <script src="../../js/vendor/mermaid.min.js"></script>
+    <script src="../../js/topic-page.js"></script>
+</body>
+</html>

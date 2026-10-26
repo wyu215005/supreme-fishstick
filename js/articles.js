@@ -20,6 +20,32 @@ class ArticlesManager {
         // 已发布：真实存在的学习笔记/复盘仓库
         this.articles = [
             {
+                // 站内双语笔记页（Hadoop 学习系列：HDFS → MapReduce → 序列化/YARN → Parquet/ORC → Spark）
+                title: 'Hadoop MapReduce 序列化与 YARN 资源调度 | Serialization & YARN',
+                brief: 'Hadoop 双语学习笔记：序列化与反序列化、Writable 与 WritableComparable、Shuffle 中序列化的作用、YARN 四大核心组件与生产排障，附 8 组面试问答。',
+                titleEn: 'Hadoop MapReduce Serialization & YARN Resource Scheduling',
+                briefEn: 'Bilingual Hadoop notes: serialization and Writable interfaces, serialization in Shuffle, the four YARN components, scheduling and production troubleshooting, with 8 interview Q&A pairs.',
+                titleFr: "Hadoop MapReduce : sérialisation et ordonnancement YARN",
+                briefFr: "Notes Hadoop bilingues : sérialisation et interfaces Writable, rôle de la sérialisation dans le Shuffle, les quatre composants YARN, ordonnancement et dépannage en production, avec 8 Q&A d'entretien.",
+                category: 'Big Data / Hadoop',
+                tags: ['Hadoop', 'MapReduce', 'Serialization', 'YARN'],
+                date: '2026-10-26',
+                link: 'projects/hadoop-mapreduce-serialization-yarn/'
+            },
+            {
+                // 站内双语笔记页（Hadoop 学习系列第二篇：文件格式与列式存储优化）
+                title: 'Hadoop 文件格式与优化 | Parquet, ORC & File Optimization',
+                brief: 'Hadoop 双语学习笔记：行存储与列存储、Parquet Row Group 与 ORC Stripe、分区裁剪、谓词下推、小文件治理与 Compaction，附 8 组面试问答。',
+                titleEn: 'Hadoop File Formats & Optimization: Parquet, ORC and Columnar Storage',
+                briefEn: 'Bilingual Hadoop notes: row vs columnar storage, Parquet row groups and ORC stripes, partition pruning, predicate pushdown, small-file governance and compaction, with 8 interview Q&A pairs.',
+                titleFr: 'Hadoop : formats de fichiers et optimisation | Parquet, ORC',
+                briefFr: 'Notes Hadoop bilingues : stockage en lignes vs colonnes, Row Group Parquet et Stripe ORC, partition pruning, predicate pushdown, petits fichiers et compaction, avec 8 Q&A.',
+                category: 'Big Data / Hadoop',
+                tags: ['Hadoop', 'Parquet', 'ORC', 'Columnar Storage'],
+                date: '2026-10-26',
+                link: 'projects/hadoop-columnar-storage-parquet-orc/'
+            },
+            {
                 // 站内学习笔记页（HDFS 专题的后续，学习路径：HDFS → MapReduce → Spark）
                 title: 'MapReduce：从 HDFS 输入到 Shuffle 与 YARN 调度',
                 brief: 'MapReduce 学习笔记：Block 与 InputSplit、RecordReader 与 Mapper、Map/Reduce 端 Shuffle、Combiner、数据倾斜治理与 YARN 调度，含易错点对照与自测复盘。',
@@ -181,7 +207,7 @@ class ArticlesManager {
 
     // 分类显示层翻译（内部键保持中文，不破坏筛选逻辑）
     catLabel(cat) {
-        const map = { '数据仓库': 'articles.catDw', '数据质量': 'articles.catDq', '大数据基础': 'articles.catBd', '工程复盘': 'articles.catCase', '技术专题': 'articles.catTopic' };
+        const map = { '数据仓库': 'articles.catDw', '数据质量': 'articles.catDq', '大数据基础': 'articles.catBd', '工程复盘': 'articles.catCase', '技术专题': 'articles.catTopic', 'Big Data / Hadoop': 'articles.catHadoop' };
         return map[cat] ? this.t(map[cat]) : cat;
     }
 

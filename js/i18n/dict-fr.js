@@ -20,7 +20,11 @@ window.FISHRAIN_I18N['fr'] = {
         hdfsTitle: "HDFS : architecture et fiabilité - FishRain",
         hdfsDesc: "Sujet bilingue HDFS : checkpoint, quorum QJM, basculement HA et fencing, diagnostics réels et gouvernance des petits fichiers Spark.",
         mapreduceTitle: "MapReduce : des entrées HDFS au Shuffle et à l'ordonnancement YARN - FishRain",
-        mapreduceDesc: "Notes d'étude MapReduce : Block vs InputSplit, RecordReader vs Mapper, Shuffle côté Map/Reduce, Combiner, skew des données et ordonnancement YARN."
+        mapreduceDesc: "Notes d'étude MapReduce : Block vs InputSplit, RecordReader vs Mapper, Shuffle côté Map/Reduce, Combiner, skew des données et ordonnancement YARN.",
+        hserTitle: "Hadoop MapReduce : sérialisation et ordonnancement YARN - FishRain",
+        hserDesc: "Notes Hadoop bilingues : sérialisation et Writable, rôle de la sérialisation dans le Shuffle, les quatre composants YARN, ordonnancement et dépannage en production, avec Q&A d'entretien.",
+        hcolTitle: "Hadoop : formats de fichiers et optimisation | Parquet, ORC - FishRain",
+        hcolDesc: "Notes Hadoop bilingues : stockage en lignes vs colonnes, structure interne de Parquet/ORC, partition pruning, predicate pushdown, petits fichiers et compaction."
     },
     nav: {
         home: 'Accueil',
@@ -102,6 +106,7 @@ window.FISHRAIN_I18N['fr'] = {
         filterTag: 'Filtrer par tag',
         catCase: 'Étude de cas',
         catTopic: 'Sujet technique',
+        catHadoop: 'Big Data / Hadoop',
         readTopic: '📖 Lire le sujet',
         tags: {
             '数仓分层': 'Couches DWH',
@@ -286,5 +291,17 @@ window.FISHRAIN_I18N['fr'] = {
         crumb: 'Notes MapReduce',
         title: "MapReduce : des entrées HDFS au Shuffle et à l'ordonnancement YARN",
         summary: "Block vs InputSplit, RecordReader vs Mapper, Shuffle côté Map/Reduce, Combiner, skew des données et YARN — suite du sujet HDFS."
+    },
+    /* Série Hadoop : page sérialisation & YARN */
+    hser: {
+        crumb: 'Sérialisation & YARN',
+        title: "Hadoop MapReduce : sérialisation et ordonnancement YARN",
+        summary: "Sérialisation et interfaces Writable, rôle de la sérialisation dans le Shuffle, les quatre composants YARN, ordonnancement et dépannage en production — notes bilingues de la série Hadoop."
+    },
+    /* Série Hadoop : page formats de fichiers & optimisation */
+    hcol: {
+        crumb: 'Formats de fichiers',
+        title: 'Hadoop : formats de fichiers, Parquet, ORC et optimisation',
+        summary: "Stockage en lignes vs colonnes, structure interne de Parquet/ORC, cinq optimisations de lecture, petits fichiers et compaction — notes bilingues de la série Hadoop."
     }
 };

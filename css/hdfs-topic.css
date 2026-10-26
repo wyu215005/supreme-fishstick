@@ -194,6 +194,16 @@
 .code-block pre { margin: 0; padding: 0.9rem 1rem; overflow-x: auto; }
 .code-block code { background: none; border: none; padding: 0; font-size: 0.84rem; line-height: 1.6; white-space: pre; }
 
+/* 代码语法高亮（按页启用；未启用页面不产生 tok 节点，样式零影响）
+   颜色取自三主题现有 token，深海夜航的数字色用较亮变量保证深底可读 */
+.md-body .tok-kw { color: var(--mint-deep); font-weight: 600; }
+.md-body .tok-str { color: var(--ocean); }
+.md-body .tok-com { color: var(--text-muted); font-style: italic; }
+.md-body .tok-num { color: var(--ocean-deep); }
+[data-theme="ocean"] .md-body .tok-num { color: var(--mint); }
+.md-body .tok-fn { color: var(--ocean); font-weight: 600; }
+.md-body .tok-ann { color: var(--mint-deep); font-weight: 600; }
+
 /* 公式块（LaTeX 子集美化文本） */
 .math-block {
     margin: 0 0 1.3rem;
