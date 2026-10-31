@@ -20,6 +20,19 @@ class ArticlesManager {
         // 已发布：真实存在的学习笔记/复盘仓库
         this.articles = [
             {
+                // 站内三语笔记页（Hadoop 学习系列收尾：HDFS → MapReduce → 序列化/YARN → Parquet/ORC → Spark）
+                title: 'Spark 入门：从 Hadoop 到分布式执行 | Spark Fundamentals',
+                brief: 'Spark 入门学习笔记：架构与任务调度、Application/Job/Stage/Task 层级、Shuffle 执行过程、Catalyst 与 AQE、小文件与数据倾斜治理，附 PySpark 实验与常见问答。',
+                titleEn: 'Spark Fundamentals: From Hadoop to Distributed Execution',
+                briefEn: 'Introductory Spark notes: architecture and scheduling, the Application/Job/Stage/Task hierarchy, shuffle in action, Catalyst and AQE, small-file and skew mitigation, with a PySpark lab and Q&A.',
+                titleFr: 'Comprendre Spark : de Hadoop à l’exécution distribuée',
+                briefFr: "Notes d’initiation à Spark : architecture et ordonnancement, hiérarchie Application/Job/Stage/Task, shuffle, Catalyst et AQE, petits fichiers et déséquilibre, avec un TP PySpark et une FAQ.",
+                category: 'Big Data / Hadoop',
+                tags: ['Spark', 'Shuffle', 'Catalyst', 'AQE'],
+                date: '2026-10-31',
+                link: 'projects/spark-fundamentals/'
+            },
+            {
                 // 站内双语笔记页（Hadoop 学习系列：HDFS → MapReduce → 序列化/YARN → Parquet/ORC → Spark）
                 title: 'Hadoop MapReduce 序列化与 YARN 资源调度 | Serialization & YARN',
                 brief: 'Hadoop 双语学习笔记：序列化与反序列化、Writable 与 WritableComparable、Shuffle 中序列化的作用、YARN 四大核心组件与生产排障，附 8 组面试问答。',
@@ -156,7 +169,6 @@ class ArticlesManager {
             { name: 'Power BI 指标迁移与 DAX', nameEn: 'Migrating Metrics to Power BI & DAX', nameFr: 'Migration des indicateurs vers Power BI et DAX', tags: ['Power BI', 'DAX'] },
             { name: '静态数据血缘梳理方法', nameEn: 'Mapping Static Data Lineage', nameFr: 'Cartographie statique du lignage de données', tags: ['血缘', '元数据'] },
             { name: 'Hadoop / HDFS / YARN 基础实验复盘', nameEn: 'Hadoop / HDFS / YARN Labs Retrospective', nameFr: 'Retour sur les TP Hadoop / HDFS / YARN', tags: ['Hadoop', 'HDFS', 'YARN'] },
-            { name: 'Spark 入门学习路线', nameEn: 'A Beginner\u2019s Path into Spark', nameFr: 'Parcours d\u2019initiation à Spark', tags: ['Spark', '学习中'] },
             { name: 'Hive 基础与湖仓概念', nameEn: 'Hive Basics & Lakehouse Concepts', nameFr: 'Bases de Hive et concepts de lakehouse', tags: ['Hive', 'Lakehouse'] }
         ];
 

@@ -23,7 +23,9 @@ window.FISHRAIN_I18N['en'] = {
         hserTitle: "Hadoop MapReduce Serialization & YARN Resource Scheduling - FishRain",
         hserDesc: "Bilingual Hadoop notes: serialization and Writable, serialization in Shuffle, the four YARN components, scheduling and production troubleshooting, with interview Q&A.",
         hcolTitle: "Hadoop File Formats & Optimization: Parquet, ORC - FishRain",
-        hcolDesc: "Bilingual Hadoop notes: row vs columnar storage, Parquet/ORC internals, partition pruning, predicate pushdown, small files and compaction."
+        hcolDesc: "Bilingual Hadoop notes: row vs columnar storage, Parquet/ORC internals, partition pruning, predicate pushdown, small files and compaction.",
+        sparkTitle: "Spark Fundamentals: From Hadoop to Distributed Execution - FishRain",
+        sparkDesc: "Introductory Spark notes: architecture and scheduling, the Application/Job/Stage/Task hierarchy, shuffle, Catalyst and AQE, small-file and skew mitigation, with a PySpark lab and Q&A."
     },
     nav: {
         home: 'Home',
@@ -302,5 +304,14 @@ window.FISHRAIN_I18N['en'] = {
         crumb: 'File Formats',
         title: 'Hadoop File Formats & Optimization: Parquet, ORC and Columnar Storage',
         summary: 'Row vs columnar storage, Parquet/ORC internals, five read optimizations, small-file governance and compaction — bilingual notes in the Hadoop series.'
+    },
+    /* Hadoop series: Spark fundamentals page (series closing note) */
+    spark: {
+        crumb: 'Spark Fundamentals',
+        title: 'Spark Fundamentals: From Hadoop to Distributed Execution',
+        summary: 'Architecture and scheduling, shuffle in action, Catalyst and AQE, small files and skew — the closing note of the Hadoop series.',
+        objectives: 'Understand where Spark fits in the big-data stack, the Driver/Executor architecture and the Application→Job→Stage→Task hierarchy, how shuffle differs from MapReduce, and how to reason about small files and data skew.',
+        readingTime: 'About 12 minutes',
+        prereq: '<a href="../hadoop-columnar-storage-parquet-orc/">Hadoop File Formats & Optimization: Parquet, ORC and Columnar Storage</a>'
     }
 };

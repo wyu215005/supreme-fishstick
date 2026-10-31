@@ -24,7 +24,9 @@ window.FISHRAIN_I18N['fr'] = {
         hserTitle: "Hadoop MapReduce : sérialisation et ordonnancement YARN - FishRain",
         hserDesc: "Notes Hadoop bilingues : sérialisation et Writable, rôle de la sérialisation dans le Shuffle, les quatre composants YARN, ordonnancement et dépannage en production, avec Q&A d'entretien.",
         hcolTitle: "Hadoop : formats de fichiers et optimisation | Parquet, ORC - FishRain",
-        hcolDesc: "Notes Hadoop bilingues : stockage en lignes vs colonnes, structure interne de Parquet/ORC, partition pruning, predicate pushdown, petits fichiers et compaction."
+        hcolDesc: "Notes Hadoop bilingues : stockage en lignes vs colonnes, structure interne de Parquet/ORC, partition pruning, predicate pushdown, petits fichiers et compaction.",
+        sparkTitle: "Comprendre Spark : de Hadoop à l’exécution distribuée - FishRain",
+        sparkDesc: "Notes d’initiation à Spark : architecture et ordonnancement, hiérarchie Application/Job/Stage/Task, shuffle, Catalyst et AQE, petits fichiers et déséquilibre, avec un TP PySpark et une FAQ."
     },
     nav: {
         home: 'Accueil',
@@ -303,5 +305,14 @@ window.FISHRAIN_I18N['fr'] = {
         crumb: 'Formats de fichiers',
         title: 'Hadoop : formats de fichiers, Parquet, ORC et optimisation',
         summary: "Stockage en lignes vs colonnes, structure interne de Parquet/ORC, cinq optimisations de lecture, petits fichiers et compaction — notes bilingues de la série Hadoop."
+    },
+    /* Série Hadoop : page initiation à Spark (note de clôture de la série) */
+    spark: {
+        crumb: 'Initiation à Spark',
+        title: 'Comprendre Spark : de Hadoop à l’exécution distribuée',
+        summary: 'Architecture et ordonnancement, le shuffle en pratique, Catalyst et AQE, petits fichiers et déséquilibre — dernière note de la série Hadoop.',
+        objectives: 'Comprendre la place de Spark dans la pile big data, l’architecture Driver/Executor et la hiérarchie Application→Job→Stage→Task, le shuffle face à MapReduce, et les approches des petits fichiers et du déséquilibre des données.',
+        readingTime: 'Environ 12 minutes',
+        prereq: '<a href="../hadoop-columnar-storage-parquet-orc/">Hadoop : formats de fichiers, Parquet, ORC et optimisation</a>'
     }
 };
