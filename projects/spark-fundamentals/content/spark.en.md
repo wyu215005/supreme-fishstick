@@ -1,4 +1,4 @@
-# Spark Fundamentals: From Hadoop to Distributed Execution
+# Spark Lesson 1: From Hadoop to Distributed Execution
 
 ## 1. Where Spark fits
 HDFS stores data, YARN manages resources, and MapReduce and Spark provide computation. Spark can use HDFS and YARN; compare it with the MapReduce engine rather than the whole Hadoop ecosystem. Spark Core provides execution fundamentals, Spark SQL handles structured data, Structured Streaming handles streams, MLlib provides machine learning, and GraphX supports graph computation.
@@ -83,6 +83,128 @@ Find filtering, partial aggregation, Exchange and final aggregation in the plan;
 - **Do more partitions always fix skew?** No; a hot key may remain concentrated.
 - **Does a DAG require AI?** No; Spark uses dependencies and planning rules.
 
+## Lesson 1 supplement A: Spark components
+
+Functional components answer what Spark can do; Driver, Executor and Cluster Manager describe who performs the work.
+
+| Layer | Component | Responsibility |
+|---|---|---|
+| Execution | Spark Core | Scheduling, memory management and recovery; RDD is a foundational abstraction |
+| Structured data | Spark SQL | SQL, DataFrames, optimization and data sources |
+| Streaming | Structured Streaming | Continuous processing using structured APIs; guarantees depend on source and configuration |
+| Machine learning | MLlib | Feature processing, algorithms and pipelines |
+| Graphs | GraphX | Graph-parallel computation, primarily through Scala APIs |
+| Resources | Standalone / YARN / Kubernetes | Allocate resources; they do not implement business logic |
+
+```mermaid
+flowchart TD
+ U[Applications] --> SQL[Spark SQL / DataFrame]
+ U --> SS[Structured Streaming]
+ U --> ML[MLlib]
+ U --> GX[GraphX]
+ SS --> SQL
+ SQL --> CORE[Spark Core]
+ ML --> CORE
+ GX --> CORE
+ CORE --> CM[Cluster manager]
+ CORE --> DATA[HDFS / object storage / other sources]
+```
+
+This is a conceptual diagram, not a complete dependency map. Applications can combine components; source capabilities affect execution.
+
+## Lesson 1 supplement B: Comparing workflows
+
+Consider paid-order averages per branch, followed by a filter for averages above 50. These diagrams illustrate one multi-job MapReduce implementation and one Spark implementation; neither is the only possible implementation or a benchmark.
+
+```mermaid
+flowchart LR
+ I[(Orders)] --> M[MR job 1: filter and partial state]
+ M --> SH[Shuffle by branch]
+ SH --> R[Reduce: merge sum and count]
+ R --> H[(Intermediate HDFS output)]
+ H --> J[MR job 2: filter averages]
+ J --> O[(Final output)]
+```
+```mermaid
+flowchart LR
+ I[(Orders)] --> F[Scan and filter]
+ F --> P[Partial sum and count]
+ P --> S[Shuffle by branch]
+ S --> A[Merge and calculate average]
+ A --> G[Filter average above 50]
+ G --> O[(Final output)]
+```
+
+| Aspect | Multi-job MapReduce example | Spark example |
+|---|---|---|
+| Input | Each job reads input; later jobs may read previous output | Tasks read input partitions |
+| Grouping | Map output shuffles to reducers; a combiner may help | Partial aggregation then shuffle to final aggregation |
+| Between steps | Job 1 writes HDFS output which job 2 reads | Narrow operators can pipeline without writing every step to HDFS |
+| Disk | Map output and shuffle use disk; output can go to HDFS | Shuffle commonly uses local disk; spill is possible; final output goes to storage |
+| Reuse | Materialized output can be reused | Explicit cache or persist; uncached data may be recomputed and cache may be evicted |
+| Recovery | Persisted output and task retries | Task retries and lineage among other mechanisms |
+
+Spark does not know the global average before data from partitions is combined and does not avoid all disk writes. One MapReduce job can also filter, aggregate and filter the final average in its reducer. The second job illustrates materialization between jobs, not a requirement for this SQL.
+
+### Trace the partial states
+
+P1 has A values 10, 20, 30 and B value 50; P2 has A value 100. P1 emits A `(60,3)` and B `(50,1)`; P2 emits A `(100,1)`. After shuffle the A task merges `(60,3)` and `(100,1)` into `(160,4)`, giving 40. These are mergeable states, not the global answer. If every key is distinct, local aggregation might not significantly reduce traffic. `COUNT(amount)` ignores NULL, while `COUNT(*)` counts rows; type, overflow and rounding also matter.
+
+## Lesson 1 supplement C: Execution, deployment and scheduling
+
+Three different questions are often confused: (1) the execution environment or cluster manager determines where resources come from; (2) client or cluster deploy mode determines where the Driver runs, subject to manager and language support; (3) FIFO or FAIR determines how concurrent jobs within one SparkContext compete for resources.
+
+| Mode or policy | Use and key point |
+|---|---|
+| Local | Learning on one machine; `local[2]` uses two local worker threads |
+| Standalone | Spark's built-in cluster manager |
+| YARN | Hadoop resource management; ApplicationMaster coordinates resources |
+| Kubernetes | Driver and Executors run on Kubernetes with suitable configuration |
+| FIFO | Default within a Spark application: earlier jobs have priority; distinct from YARN queue scheduling |
+| FAIR | Shares resources more fairly among concurrent jobs or pools; shares depend on configuration and availability |
+
+YARN cluster mode, simplified:
+```mermaid
+sequenceDiagram
+ participant C as Submission client
+ participant RM as YARN ResourceManager
+ participant AM as ApplicationMaster and Driver
+ participant E as Executor container
+ C->>RM: Submit application
+ RM->>AM: Start ApplicationMaster and Driver
+ AM->>RM: Request executor resources
+ RM->>E: Allocate and start executor container
+ AM->>E: Driver schedules tasks
+ E-->>AM: Report status and results
+```
+
+The NodeManager also participates in container launch. In client mode the Driver stays on the submitting host while ApplicationMaster coordinates YARN resources; losing the client can affect the application.
+
+```python
+# Set before SparkContext creation
+from pyspark.sql import SparkSession
+spark = (SparkSession.builder.appName('FairSchedulingExample')
+         .config('spark.scheduler.mode', 'FAIR').getOrCreate())
+```
+
+FAIR does not automatically change a job's task count or replace YARN queue scheduling. Concurrent jobs require the application to submit work concurrently; consult documentation for your versions.
+
+## Lesson 1 supplement D: Check your understanding
+
+**Exercise 1:** P1 contains A values 2 and 4; P2 contains A value 9. Find partial states and global average.  
+**Answer:** `(6,2)` and `(9,1)` merge into `(15,3)`, giving 5. Averaging 3 and 9 incorrectly gives 6.
+
+**Exercise 2:** If a computation has two stages, does it necessarily have one job?  
+**Answer:** No. Stages belong to jobs, but one action may produce multiple jobs; inspect Spark UI.
+
+**Exercise 3:** Many files and one hot key occur together. What should be investigated?  
+**Answer:** Measure file and task overhead during scans, and task data sizes and duration after shuffle for key skew.
+
+**Explore:** After the lab, compare SQL and Stages tabs, Exchange, shuffle read/write and task durations. Change input size or partition count and record results; tiny samples do not establish production speed.
+
+> Later lessons can explore RDDs and DataFrames, shuffle internals, memory and caching, SQL tuning and streaming. This first lesson supplies the foundation.
+
+
 ## Official references
 - [Cluster overview](https://spark.apache.org/docs/latest/cluster-overview.html)
 - [RDDs and shuffle](https://spark.apache.org/docs/latest/rdd-programming-guide.html)
@@ -90,3 +212,7 @@ Find filtering, partial aggregation, Exchange and final aggregation in the plan;
 - [Running on YARN](https://spark.apache.org/docs/latest/running-on-yarn.html)
 - [Spark UI](https://spark.apache.org/docs/latest/web-ui.html)
 - [NULL semantics](https://spark.apache.org/docs/latest/sql-ref-null-semantics.html)
+
+- [Job scheduling](https://spark.apache.org/docs/latest/job-scheduling.html)
+- [Spark documentation](https://spark.apache.org/docs/latest/)
+

@@ -24,8 +24,8 @@ window.FISHRAIN_I18N['zh-CN'] = {
         hserDesc: "Hadoop 双语学习笔记：序列化与反序列化、Writable 与 WritableComparable、Shuffle 中的序列化、YARN 四大组件与生产排障，附面试问答。",
         hcolTitle: "Hadoop 文件格式与优化 | Parquet, ORC & File Optimization - FishRain",
         hcolDesc: "Hadoop 双语学习笔记：行存储与列存储、Parquet/ORC 内部结构、分区裁剪、谓词下推、小文件治理与 Compaction。",
-        sparkTitle: "Spark 入门：从 Hadoop 到分布式执行 | Spark Fundamentals - FishRain",
-        sparkDesc: "Spark 入门学习笔记：架构与任务调度、Application/Job/Stage/Task 层级、Shuffle 执行过程、Catalyst 与 AQE、小文件与数据倾斜治理，附 PySpark 实验与常见问答。"
+        sparkTitle: "Spark 第一课：从 Hadoop 到分布式执行 | Spark Lesson 1 - FishRain",
+        sparkDesc: "Spark 第一课学习笔记：组件全景与分层、架构与任务调度、Shuffle 执行过程、Catalyst 与 AQE、运行模式与调度策略、小文件与数据倾斜治理，附 PySpark 实验、练习与常见问答。"
     },
     nav: {
         home: '首页',
@@ -305,13 +305,13 @@ window.FISHRAIN_I18N['zh-CN'] = {
         title: 'Hadoop 文件格式与优化 | Parquet, ORC & File Optimization',
         summary: '行存储与列存储、Parquet/ORC 内部结构、五类读取优化、小文件治理与 Compaction —— Hadoop 学习系列双语笔记。'
     },
-    /* Hadoop 学习系列：Spark 入门页（系列收尾） */
+    /* Hadoop 学习系列：Spark 第一课页（系列收尾） */
     spark: {
-        crumb: 'Spark 入门',
-        title: 'Spark 入门：从 Hadoop 到分布式执行 | Spark Fundamentals',
-        summary: '架构与任务调度、Shuffle 执行过程、Catalyst 与 AQE、小文件与数据倾斜治理 —— Hadoop 学习系列收尾篇。',
-        objectives: '理解 Spark 在大数据栈中的位置、Driver/Executor 架构与 Application→Job→Stage→Task 层级、Shuffle 的执行过程与 MapReduce 的差异，以及小文件与数据倾斜的治理思路。',
-        readingTime: '约 12 分钟',
+        crumb: 'Spark 第一课',
+        title: 'Spark 第一课：从 Hadoop 到分布式执行 | Spark Lesson 1',
+        summary: '组件全景、架构与调度、Shuffle 执行过程、Catalyst 与 AQE、运行模式与调度策略、小文件与数据倾斜 —— Hadoop 学习系列收尾篇。',
+        objectives: '区分 Spark 的功能组件与运行架构，理解 Driver/Executor 与 Application→Job→Stage→Task 层级、Shuffle 的执行过程与 MapReduce 的差异、运行模式与调度策略，以及小文件与数据倾斜的治理思路。',
+        readingTime: '约 20 分钟',
         prereq: '<a href="../hadoop-columnar-storage-parquet-orc/">Hadoop 文件格式与优化 | Parquet, ORC & File Optimization</a>'
     }
 };

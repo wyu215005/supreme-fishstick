@@ -24,8 +24,8 @@ window.FISHRAIN_I18N['en'] = {
         hserDesc: "Bilingual Hadoop notes: serialization and Writable, serialization in Shuffle, the four YARN components, scheduling and production troubleshooting, with interview Q&A.",
         hcolTitle: "Hadoop File Formats & Optimization: Parquet, ORC - FishRain",
         hcolDesc: "Bilingual Hadoop notes: row vs columnar storage, Parquet/ORC internals, partition pruning, predicate pushdown, small files and compaction.",
-        sparkTitle: "Spark Fundamentals: From Hadoop to Distributed Execution - FishRain",
-        sparkDesc: "Introductory Spark notes: architecture and scheduling, the Application/Job/Stage/Task hierarchy, shuffle, Catalyst and AQE, small-file and skew mitigation, with a PySpark lab and Q&A."
+        sparkTitle: "Spark Lesson 1: From Hadoop to Distributed Execution - FishRain",
+        sparkDesc: "Lesson 1 notes: the Spark component landscape, architecture and scheduling, shuffle, Catalyst and AQE, deployment modes and scheduling policies, small-file and skew mitigation, with a PySpark lab, exercises and Q&A."
     },
     nav: {
         home: 'Home',
@@ -305,13 +305,13 @@ window.FISHRAIN_I18N['en'] = {
         title: 'Hadoop File Formats & Optimization: Parquet, ORC and Columnar Storage',
         summary: 'Row vs columnar storage, Parquet/ORC internals, five read optimizations, small-file governance and compaction — bilingual notes in the Hadoop series.'
     },
-    /* Hadoop series: Spark fundamentals page (series closing note) */
+    /* Hadoop series: Spark Lesson 1 page (series closing note) */
     spark: {
-        crumb: 'Spark Fundamentals',
-        title: 'Spark Fundamentals: From Hadoop to Distributed Execution',
-        summary: 'Architecture and scheduling, shuffle in action, Catalyst and AQE, small files and skew — the closing note of the Hadoop series.',
-        objectives: 'Understand where Spark fits in the big-data stack, the Driver/Executor architecture and the Application→Job→Stage→Task hierarchy, how shuffle differs from MapReduce, and how to reason about small files and data skew.',
-        readingTime: 'About 12 minutes',
+        crumb: 'Spark Lesson 1',
+        title: 'Spark Lesson 1: From Hadoop to Distributed Execution',
+        summary: 'The component landscape, architecture and scheduling, shuffle in action, Catalyst and AQE, deployment modes and scheduling policies, small files and skew — the closing note of the Hadoop series.',
+        objectives: 'Distinguish Spark’s functional components from its runtime architecture, understand the Driver/Executor model and the Application→Job→Stage→Task hierarchy, how shuffle differs from MapReduce, deployment modes and scheduling policies, and how to reason about small files and data skew.',
+        readingTime: 'About 20 minutes',
         prereq: '<a href="../hadoop-columnar-storage-parquet-orc/">Hadoop File Formats & Optimization: Parquet, ORC and Columnar Storage</a>'
     }
 };

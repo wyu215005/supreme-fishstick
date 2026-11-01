@@ -21,12 +21,12 @@ class ArticlesManager {
         this.articles = [
             {
                 // 站内三语笔记页（Hadoop 学习系列收尾：HDFS → MapReduce → 序列化/YARN → Parquet/ORC → Spark）
-                title: 'Spark 入门：从 Hadoop 到分布式执行 | Spark Fundamentals',
-                brief: 'Spark 入门学习笔记：架构与任务调度、Application/Job/Stage/Task 层级、Shuffle 执行过程、Catalyst 与 AQE、小文件与数据倾斜治理，附 PySpark 实验与常见问答。',
-                titleEn: 'Spark Fundamentals: From Hadoop to Distributed Execution',
-                briefEn: 'Introductory Spark notes: architecture and scheduling, the Application/Job/Stage/Task hierarchy, shuffle in action, Catalyst and AQE, small-file and skew mitigation, with a PySpark lab and Q&A.',
-                titleFr: 'Comprendre Spark : de Hadoop à l’exécution distribuée',
-                briefFr: "Notes d’initiation à Spark : architecture et ordonnancement, hiérarchie Application/Job/Stage/Task, shuffle, Catalyst et AQE, petits fichiers et déséquilibre, avec un TP PySpark et une FAQ.",
+                title: 'Spark 第一课：从 Hadoop 到分布式执行 | Spark Lesson 1',
+                brief: 'Spark 第一课学习笔记：组件全景与分层、架构与任务调度、Shuffle 执行过程、Catalyst 与 AQE、运行模式与调度策略、小文件与数据倾斜治理，附 PySpark 实验、练习与常见问答。',
+                titleEn: 'Spark Lesson 1: From Hadoop to Distributed Execution',
+                briefEn: 'Lesson 1 notes: the Spark component landscape, architecture and scheduling, shuffle in action, Catalyst and AQE, deployment modes and scheduling policies, small-file and skew mitigation, with a PySpark lab, exercises and Q&A.',
+                titleFr: 'Spark : première leçon — de Hadoop à l’exécution distribuée',
+                briefFr: "Notes de la première leçon Spark : panorama des composants, architecture et ordonnancement, shuffle, Catalyst et AQE, modes de déploiement et politiques d’ordonnancement, petits fichiers et déséquilibre, avec un TP PySpark, des exercices et une FAQ.",
                 category: 'Big Data / Hadoop',
                 tags: ['Spark', 'Shuffle', 'Catalyst', 'AQE'],
                 date: '2026-10-31',
