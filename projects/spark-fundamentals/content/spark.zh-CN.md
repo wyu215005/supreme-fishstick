@@ -104,16 +104,16 @@ spark.stop()
 
 ```mermaid
 flowchart TD
- U[应用：批处理、报表、流数据] --> SQL[Spark SQL / DataFrame]
- U --> SS[Structured Streaming]
- U --> ML[MLlib]
- U --> GX[GraphX]
+ U["应用：批处理、报表、流数据"] --> SQL["Spark SQL / DataFrame"]
+ U --> SS["Structured Streaming"]
+ U --> ML["MLlib"]
+ U --> GX["GraphX"]
  SS --> SQL
- SQL --> CORE[Spark Core：执行与调度]
+ SQL --> CORE["Spark Core：执行与调度"]
  ML --> CORE
  GX --> CORE
- CORE --> CM[资源：Standalone / YARN / Kubernetes]
- CORE --> DATA[数据：HDFS / 对象存储 / 其他数据源]
+ CORE --> CM["资源：Standalone / YARN / Kubernetes"]
+ CORE --> DATA["数据：HDFS / 对象存储 / 其他数据源"]
 ```
 
 图是概念示意，不表示每个 API 的所有内部依赖。一个应用可以组合多种组件；Spark 不是存储系统，数据源的能力和配置也会影响实际执行。
@@ -124,22 +124,22 @@ flowchart TD
 
 ```mermaid
 flowchart LR
- I[(订单)] --> M[MR Job 1：Map 过滤与局部统计]
- M --> SH[Shuffle：按分院分组]
- SH --> R[Reduce：合并 sum 和 count 算均值]
- R --> H[(HDFS 中间输出)]
- H --> J[MR Job 2：读取并筛选均值]
- J --> O[(最终输出)]
+ I[("订单")] --> M["MR Job 1：Map 过滤与局部统计"]
+ M --> SH["Shuffle：按分院分组"]
+ SH --> R["Reduce：合并 sum 和 count 算均值"]
+ R --> H[("HDFS 中间输出")]
+ H --> J["MR Job 2：读取并筛选均值"]
+ J --> O[("最终输出")]
 ```
 
 ```mermaid
 flowchart LR
- I[(订单)] --> F[读取分区并过滤]
- F --> P[每分区局部 sum 和 count]
- P --> S[Shuffle：按分院重分区]
- S --> A[合并状态并计算均值]
- A --> G[筛选均值大于 50]
- G --> O[(最终输出)]
+ I[("订单")] --> F["读取分区并过滤"]
+ F --> P["每分区局部 sum 和 count"]
+ P --> S["Shuffle：按分院重分区"]
+ S --> A["合并状态并计算均值"]
+ A --> G["筛选均值大于 50"]
+ G --> O[("最终输出")]
 ```
 
 | 比较点 | 多 Job MapReduce 示例 | Spark 示例 |

@@ -114,6 +114,10 @@
             var done = false;
             function success(svg) {
                 if (done || !svg || svg.indexOf('<svg') === -1) return;
+                // mermaid v9 语法错误时返回“Syntax error”错误占位 svg（同样以 <svg 开头），
+                // 不能当作正常图插入正文，转走源码回退。
+                // 注意：正常 svg 的内嵌 style 也会定义 .error-icon 类，不能以该字符串判定错误。
+                if (svg.indexOf('Syntax error') !== -1) { fail(); return; }
                 done = true;
                 slot.innerHTML = svg;
                 slot.classList.add('mmd-rendered');

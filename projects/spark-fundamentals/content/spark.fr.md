@@ -45,11 +45,11 @@ Des jobs MapReduce enchaînés écrivent souvent leur sortie sur HDFS avant la l
 Catalyst analyse les plans logiques SQL/DataFrame, applique des règles d’optimisation et peut utiliser des statistiques pour choisir un plan physique. AQE peut modifier une partie du plan à partir des statistiques d’exécution. Les dépendances forment un DAG ; l’ordonnanceur découpe les stages selon ces dépendances et les shuffles. Ce processus utilise des règles et des algorithmes, sans nécessiter d’IA. Les RDD ne suivent pas le même chemin d’optimisation SQL Catalyst.
 ```mermaid
 flowchart LR
- A[SQL ou DataFrame] --> B[Plan logique]
- B --> C[Plan optimisé]
- C --> D[Plan physique et AQE]
- D --> E[DAG d’exécution]
- E --> F[Stages et tasks]
+ A["SQL ou DataFrame"] --> B["Plan logique"]
+ B --> C["Plan optimisé"]
+ C --> D["Plan physique et AQE"]
+ D --> E["DAG d’exécution"]
+ E --> F["Stages et tasks"]
 ```
 
 ## 6. Modes de déploiement
