@@ -25,7 +25,9 @@ window.FISHRAIN_I18N['zh-CN'] = {
         hcolTitle: "Hadoop 文件格式与优化 | Parquet, ORC & File Optimization - FishRain",
         hcolDesc: "Hadoop 双语学习笔记：行存储与列存储、Parquet/ORC 内部结构、分区裁剪、谓词下推、小文件治理与 Compaction。",
         sparkTitle: "Spark 第一课：从 Hadoop 到分布式执行 | Spark Lesson 1 - FishRain",
-        sparkDesc: "Spark 第一课学习笔记：组件全景与分层、架构与任务调度、Shuffle 执行过程、Catalyst 与 AQE、运行模式与调度策略、小文件与数据倾斜治理，附 PySpark 实验、练习与常见问答。"
+        sparkDesc: "Spark 第一课学习笔记：组件全景与分层、架构与任务调度、Shuffle 执行过程、Catalyst 与 AQE、运行模式与调度策略、小文件与数据倾斜治理，附 PySpark 实验、练习与常见问答。",
+        linuxTitle: "Linux 命令速查手册 | Linux Cheat Sheet - FishRain",
+        linuxDesc: "按使用场景分类的 Linux / 数据开发常用命令速查表：文件与目录、权限、文本与日志、进程、磁盘与网络、压缩备份、软件服务、Shell、Git、Hadoop/HDFS 与 YARN/Spark/Hive。"
     },
     nav: {
         home: '首页',
@@ -313,5 +315,14 @@ window.FISHRAIN_I18N['zh-CN'] = {
         objectives: '区分 Spark 的功能组件与运行架构，理解 Driver/Executor 与 Application→Job→Stage→Task 层级、Shuffle 的执行过程与 MapReduce 的差异、运行模式与调度策略，以及小文件与数据倾斜的治理思路。',
         readingTime: '约 20 分钟',
         prereq: '<a href="../hadoop-columnar-storage-parquet-orc/">Hadoop 文件格式与优化 | Parquet, ORC & File Optimization</a>'
+    },
+    /* Linux 命令速查手册页（工具型速查） */
+    linux: {
+        crumb: 'Linux 速查',
+        title: 'Linux 命令速查手册',
+        summary: '按使用场景分类的常用命令速查：文件、权限、文本与日志、进程、资源与磁盘、网络、压缩备份、软件服务、Shell 环境、Git、Hadoop/HDFS 与 YARN/Spark/Hive。',
+        objectives: '按使用场景快速查找常用命令的名称与作用，覆盖 12 类场景约 170 条命令。',
+        readingTime: '随查随用',
+        prereq: '无特殊前置，命令行基础即可。'
     }
 };

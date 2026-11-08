@@ -26,7 +26,9 @@ window.FISHRAIN_I18N['fr'] = {
         hcolTitle: "Hadoop : formats de fichiers et optimisation | Parquet, ORC - FishRain",
         hcolDesc: "Notes Hadoop bilingues : stockage en lignes vs colonnes, structure interne de Parquet/ORC, partition pruning, predicate pushdown, petits fichiers et compaction.",
         sparkTitle: "Spark : première leçon, de Hadoop à l’exécution distribuée - FishRain",
-        sparkDesc: "Notes de la première leçon Spark : panorama des composants, architecture et ordonnancement, shuffle, Catalyst et AQE, modes de déploiement et politiques d’ordonnancement, petits fichiers et déséquilibre, avec un TP PySpark, des exercices et une FAQ."
+        sparkDesc: "Notes de la première leçon Spark : panorama des composants, architecture et ordonnancement, shuffle, Catalyst et AQE, modes de déploiement et politiques d’ordonnancement, petits fichiers et déséquilibre, avec un TP PySpark, des exercices et une FAQ.",
+        linuxTitle: "Aide-mémoire des commandes Linux - FishRain",
+        linuxDesc: "Commandes Linux / data engineering usuelles classées par scénario : fichiers, permissions, texte et journaux, processus, disques et réseau, archivage, paquets et services, shell, Git, Hadoop/HDFS et YARN/Spark/Hive."
     },
     nav: {
         home: 'Accueil',
@@ -314,5 +316,14 @@ window.FISHRAIN_I18N['fr'] = {
         objectives: 'Distinguer les composants fonctionnels de Spark de son architecture d’exécution, comprendre le modèle Driver/Executor et la hiérarchie Application→Job→Stage→Task, le shuffle face à MapReduce, les modes de déploiement et politiques d’ordonnancement, et les approches des petits fichiers et du déséquilibre des données.',
         readingTime: 'Environ 20 minutes',
         prereq: '<a href="../hadoop-columnar-storage-parquet-orc/">Hadoop : formats de fichiers, Parquet, ORC et optimisation</a>'
+    },
+    /* Page aide-mémoire des commandes Linux (référence) */
+    linux: {
+        crumb: 'Aide-mémoire Linux',
+        title: 'Aide-mémoire des commandes Linux',
+        summary: 'Commandes usuelles classées par scénario : fichiers, permissions, texte et journaux, processus, ressources et disques, réseau, archivage, paquets et services, shell, Git, Hadoop/HDFS et YARN/Spark/Hive.',
+        objectives: 'Retrouver rapidement les commandes usuelles par scénario — 12 catégories, environ 170 commandes. NB : le tableau de référence est en chinois.',
+        readingTime: 'Pour consultation rapide',
+        prereq: 'Aucun prérequis particulier — quelques bases de la ligne de commande suffisent.'
     }
 };

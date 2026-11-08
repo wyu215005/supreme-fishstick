@@ -25,7 +25,9 @@ window.FISHRAIN_I18N['en'] = {
         hcolTitle: "Hadoop File Formats & Optimization: Parquet, ORC - FishRain",
         hcolDesc: "Bilingual Hadoop notes: row vs columnar storage, Parquet/ORC internals, partition pruning, predicate pushdown, small files and compaction.",
         sparkTitle: "Spark Lesson 1: From Hadoop to Distributed Execution - FishRain",
-        sparkDesc: "Lesson 1 notes: the Spark component landscape, architecture and scheduling, shuffle, Catalyst and AQE, deployment modes and scheduling policies, small-file and skew mitigation, with a PySpark lab, exercises and Q&A."
+        sparkDesc: "Lesson 1 notes: the Spark component landscape, architecture and scheduling, shuffle, Catalyst and AQE, deployment modes and scheduling policies, small-file and skew mitigation, with a PySpark lab, exercises and Q&A.",
+        linuxTitle: "Linux Command Cheat Sheet - FishRain",
+        linuxDesc: "Scenario-grouped Linux / data-engineering commands: files, permissions, text and logs, processes, disks and networking, archiving, packages and services, shell, Git, Hadoop/HDFS and YARN/Spark/Hive."
     },
     nav: {
         home: 'Home',
@@ -313,5 +315,14 @@ window.FISHRAIN_I18N['en'] = {
         objectives: 'Distinguish Spark’s functional components from its runtime architecture, understand the Driver/Executor model and the Application→Job→Stage→Task hierarchy, how shuffle differs from MapReduce, deployment modes and scheduling policies, and how to reason about small files and data skew.',
         readingTime: 'About 20 minutes',
         prereq: '<a href="../hadoop-columnar-storage-parquet-orc/">Hadoop File Formats & Optimization: Parquet, ORC and Columnar Storage</a>'
+    },
+    /* Linux command cheat sheet page (reference) */
+    linux: {
+        crumb: 'Linux Cheat Sheet',
+        title: 'Linux Command Cheat Sheet',
+        summary: 'Frequently used commands grouped by scenario: files, permissions, text and logs, processes, resources and disks, networking, archiving, packages and services, shell, Git, Hadoop/HDFS and YARN/Spark/Hive.',
+        objectives: 'Look up common commands by scenario — 12 categories, about 170 commands. Note: the reference table itself is in Chinese.',
+        readingTime: 'Reference',
+        prereq: 'None — basic command-line familiarity is enough.'
     }
 };

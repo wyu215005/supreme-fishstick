@@ -20,6 +20,19 @@ class ArticlesManager {
         // 已发布：真实存在的学习笔记/复盘仓库
         this.articles = [
             {
+                // 站内中文速查手册（Linux 命令 / 数据开发常用命令）
+                title: 'Linux 命令速查手册',
+                brief: '按使用场景分类的常用命令速查：文件与目录、权限与用户、文本处理与日志、进程与任务、系统资源与磁盘、网络、压缩备份、软件服务、Shell 环境、Git、Hadoop/HDFS 与 YARN/Spark/Hive，共 12 类约 170 条命令。',
+                titleEn: 'Linux Command Cheat Sheet',
+                briefEn: 'Scenario-grouped commands: files, permissions, text and logs, processes, resources and disks, networking, archiving, packages and services, shell, Git, Hadoop/HDFS and YARN/Spark/Hive — 12 categories, about 170 commands (table in Chinese).',
+                titleFr: 'Aide-mémoire des commandes Linux',
+                briefFr: "Commandes usuelles classées par scénario : fichiers, permissions, texte et journaux, processus, ressources et disques, réseau, archivage, paquets et services, shell, Git, Hadoop/HDFS et YARN/Spark/Hive — 12 catégories, environ 170 commandes (tableau en chinois).",
+                category: '技术专题',
+                tags: ['Linux', '命令行', '速查'],
+                date: '2026-11-08',
+                link: 'projects/linux-cheatsheet/'
+            },
+            {
                 // 站内三语笔记页（Hadoop 学习系列收尾：HDFS → MapReduce → 序列化/YARN → Parquet/ORC → Spark）
                 title: 'Spark 第一课：从 Hadoop 到分布式执行 | Spark Lesson 1',
                 brief: 'Spark 第一课学习笔记：组件全景与分层、架构与任务调度、Shuffle 执行过程、Catalyst 与 AQE、运行模式与调度策略、小文件与数据倾斜治理，附 PySpark 实验、练习与常见问答。',
