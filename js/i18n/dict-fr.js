@@ -28,7 +28,9 @@ window.FISHRAIN_I18N['fr'] = {
         sparkTitle: "Spark : première leçon, de Hadoop à l’exécution distribuée - FishRain",
         sparkDesc: "Notes de la première leçon Spark : panorama des composants, architecture et ordonnancement, shuffle, Catalyst et AQE, modes de déploiement et politiques d’ordonnancement, petits fichiers et déséquilibre, avec un TP PySpark, des exercices et une FAQ.",
         linuxTitle: "Aide-mémoire des commandes Linux - FishRain",
-        linuxDesc: "Commandes Linux / data engineering usuelles classées par scénario : fichiers, permissions, texte et journaux, processus, disques et réseau, archivage, paquets et services, shell, Git, Hadoop/HDFS et YARN/Spark/Hive."
+        linuxDesc: "Commandes Linux / data engineering usuelles classées par scénario : fichiers, permissions, texte et journaux, processus, disques et réseau, archivage, paquets et services, shell, Git, Hadoop/HDFS et YARN/Spark/Hive.",
+        gitTitle: "Git : commandes et schémas - FishRain",
+        gitDesc: "Aide-mémoire Git avec schémas : configuration, état et historique, staging et commits, branches, collaboration distante et résolution des conflits, plus cinq schémas sur les quatre zones, le travail par branches, les push refusés, merge vs rebase et la résolution des conflits."
     },
     nav: {
         home: 'Accueil',
@@ -323,6 +325,15 @@ window.FISHRAIN_I18N['fr'] = {
         title: 'Aide-mémoire des commandes Linux',
         summary: 'Commandes usuelles classées par scénario : fichiers, permissions, texte et journaux, processus, ressources et disques, réseau, archivage, paquets et services, shell, Git, Hadoop/HDFS et YARN/Spark/Hive.',
         objectives: 'Retrouver rapidement les commandes usuelles par scénario — 12 catégories, environ 170 commandes. NB : le tableau de référence est en chinois.',
+        readingTime: 'Pour consultation rapide',
+        prereq: 'Aucun prérequis particulier — quelques bases de la ligne de commande suffisent.'
+    },
+    /* Page Git : commandes et schémas (référence) */
+    git: {
+        crumb: 'Schémas Git',
+        title: 'Git : commandes et schémas',
+        summary: 'Six catégories de commandes Git usuelles : configuration, état et historique, staging et commits, branches, collaboration distante, conflits — plus cinq schémas : les quatre zones, le travail par branches, les push refusés, merge vs rebase et la résolution des conflits.',
+        objectives: 'Retrouver les commandes Git usuelles par scénario et suivre cinq schémas pour comprendre les interactions entre répertoire de travail, zone de staging, dépôt local et dépôt distant, le travail par branches, les push refusés, merge vs rebase et la résolution des conflits. NB : les tableaux de référence sont en chinois.',
         readingTime: 'Pour consultation rapide',
         prereq: 'Aucun prérequis particulier — quelques bases de la ligne de commande suffisent.'
     }

@@ -27,7 +27,9 @@ window.FISHRAIN_I18N['zh-CN'] = {
         sparkTitle: "Spark 第一课：从 Hadoop 到分布式执行 | Spark Lesson 1 - FishRain",
         sparkDesc: "Spark 第一课学习笔记：组件全景与分层、架构与任务调度、Shuffle 执行过程、Catalyst 与 AQE、运行模式与调度策略、小文件与数据倾斜治理，附 PySpark 实验、练习与常见问答。",
         linuxTitle: "Linux 命令速查手册 | Linux Cheat Sheet - FishRain",
-        linuxDesc: "按使用场景分类的 Linux / 数据开发常用命令速查表：文件与目录、权限、文本与日志、进程、磁盘与网络、压缩备份、软件服务、Shell、Git、Hadoop/HDFS 与 YARN/Spark/Hive。"
+        linuxDesc: "按使用场景分类的 Linux / 数据开发常用命令速查表：文件与目录、权限、文本与日志、进程、磁盘与网络、压缩备份、软件服务、Shell、Git、Hadoop/HDFS 与 YARN/Spark/Hive。",
+        gitTitle: "Git 命令学习与图解 | Git Commands & Diagrams - FishRain",
+        gitDesc: "Git 命令速查与核心图解：初始化、状态与历史、暂存与提交、分支管理、远程协作、冲突与排查六类命令，附四个区域、分支协作、Push 被拒绝、Merge 与 Rebase、冲突解决五幅流程图。"
     },
     nav: {
         home: '首页',
@@ -322,6 +324,15 @@ window.FISHRAIN_I18N['zh-CN'] = {
         title: 'Linux 命令速查手册',
         summary: '按使用场景分类的常用命令速查：文件、权限、文本与日志、进程、资源与磁盘、网络、压缩备份、软件服务、Shell 环境、Git、Hadoop/HDFS 与 YARN/Spark/Hive。',
         objectives: '按使用场景快速查找常用命令的名称与作用，覆盖 12 类场景约 170 条命令。',
+        readingTime: '随查随用',
+        prereq: '无特殊前置，命令行基础即可。'
+    },
+    /* Git 命令学习与图解页（工具型速查 + 图解） */
+    git: {
+        crumb: 'Git 图解',
+        title: 'Git 命令学习与图解',
+        summary: '六类常用 Git 命令速查：初始化与配置、状态与历史、暂存与提交、分支管理、远程协作、冲突与排查；附四个区域、分支协作、Push 被拒绝、Merge 与 Rebase、冲突解决五幅核心图解。',
+        objectives: '按场景查找常用 Git 命令的名称与作用，并通过五幅流程图理解工作区/暂存区/本地仓库/远程仓库的协作、分支协作、Push 被拒绝、Merge 与 Rebase 及冲突解决流程。',
         readingTime: '随查随用',
         prereq: '无特殊前置，命令行基础即可。'
     }

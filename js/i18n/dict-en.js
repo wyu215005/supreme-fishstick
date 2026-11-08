@@ -27,7 +27,9 @@ window.FISHRAIN_I18N['en'] = {
         sparkTitle: "Spark Lesson 1: From Hadoop to Distributed Execution - FishRain",
         sparkDesc: "Lesson 1 notes: the Spark component landscape, architecture and scheduling, shuffle, Catalyst and AQE, deployment modes and scheduling policies, small-file and skew mitigation, with a PySpark lab, exercises and Q&A.",
         linuxTitle: "Linux Command Cheat Sheet - FishRain",
-        linuxDesc: "Scenario-grouped Linux / data-engineering commands: files, permissions, text and logs, processes, disks and networking, archiving, packages and services, shell, Git, Hadoop/HDFS and YARN/Spark/Hive."
+        linuxDesc: "Scenario-grouped Linux / data-engineering commands: files, permissions, text and logs, processes, disks and networking, archiving, packages and services, shell, Git, Hadoop/HDFS and YARN/Spark/Hive.",
+        gitTitle: "Git Commands & Diagrams - FishRain",
+        gitDesc: "Git command cheat sheet with core diagrams: setup, status and history, staging and committing, branching, remote collaboration and conflict resolution, plus five flow diagrams covering the four areas, branch workflows, rejected pushes, merge vs rebase and conflict handling."
     },
     nav: {
         home: 'Home',
@@ -322,6 +324,15 @@ window.FISHRAIN_I18N['en'] = {
         title: 'Linux Command Cheat Sheet',
         summary: 'Frequently used commands grouped by scenario: files, permissions, text and logs, processes, resources and disks, networking, archiving, packages and services, shell, Git, Hadoop/HDFS and YARN/Spark/Hive.',
         objectives: 'Look up common commands by scenario — 12 categories, about 170 commands. Note: the reference table itself is in Chinese.',
+        readingTime: 'Reference',
+        prereq: 'None — basic command-line familiarity is enough.'
+    },
+    /* Git commands & diagrams page (reference) */
+    git: {
+        crumb: 'Git Diagrams',
+        title: 'Git Commands & Diagrams',
+        summary: 'Six categories of everyday Git commands — setup, status and history, staging and committing, branching, remote collaboration, conflicts — plus five core diagrams: the four areas, branch workflows, rejected pushes, merge vs rebase and conflict resolution.',
+        objectives: 'Look up common Git commands by scenario and follow five flow diagrams to understand how the working tree, staging area, local repo and remote interact, branch collaboration, rejected pushes, merge vs rebase and conflict resolution. Note: the reference tables themselves are in Chinese.',
         readingTime: 'Reference',
         prereq: 'None — basic command-line familiarity is enough.'
     }

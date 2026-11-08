@@ -20,6 +20,19 @@ class ArticlesManager {
         // 已发布：真实存在的学习笔记/复盘仓库
         this.articles = [
             {
+                // 站内中文速查手册（Git 命令 / 版本控制图解）
+                title: 'Git 命令学习与图解',
+                brief: '六类常用 Git 命令速查：初始化与配置、状态与历史、暂存与提交、分支管理、远程协作、冲突与排查；附四个区域、分支协作、Push 被拒绝、Merge 与 Rebase、冲突解决五幅核心图解。',
+                titleEn: 'Git Commands & Diagrams',
+                briefEn: 'Six categories of everyday Git commands — setup, status and history, staging and committing, branching, remote collaboration, conflicts — plus five core flow diagrams (tables in Chinese).',
+                titleFr: 'Git : commandes et schémas',
+                briefFr: "Six catégories de commandes Git usuelles : configuration, état et historique, staging et commits, branches, collaboration distante, conflits — plus cinq schémas (tableaux en chinois).",
+                category: '技术专题',
+                tags: ['Git', '版本控制', '图解'],
+                date: '2026-11-08',
+                link: 'projects/git-guide/'
+            },
+            {
                 // 站内中文速查手册（Linux 命令 / 数据开发常用命令）
                 title: 'Linux 命令速查手册',
                 brief: '按使用场景分类的常用命令速查：文件与目录、权限与用户、文本处理与日志、进程与任务、系统资源与磁盘、网络、压缩备份、软件服务、Shell 环境、Git、Hadoop/HDFS 与 YARN/Spark/Hive，共 12 类约 170 条命令。',
